@@ -4,34 +4,108 @@ import '../../core/app_theme.dart';
 import '../../core/constants.dart';
 import '../../services/locale_service.dart';
 import '../../services/onesignal_service.dart';
+import '../../services/gemini_service.dart';
+import '../../services/ads_service.dart';
+import '../../services/ai_suggestion_manager.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter/foundation.dart' show kReleaseMode;
+import 'dart:io' show Platform;
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  BannerAd? _banner;
+  bool _bannerReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    MobileAds.instance.initialize().then((_) => _initBanner());
+  }
+
+  Future<void> _initBanner() async {
+    String unit = Platform.isAndroid ? 'ca-app-pub-2220990495085543/9607366049' : 'ca-app-pub-3940256099942544/2934735716';
+    BannerAd? ad;
+    Future<bool> load(String u) async {
+      final b = BannerAd(
+        adUnitId: u,
+        request: const AdRequest(),
+        size: AdSize.banner,
+        listener: BannerAdListener(
+          onAdLoaded: (ad) { setState(() { _bannerReady = true; }); },
+          onAdFailedToLoad: (ad, err) { ad.dispose(); },
+        ),
+      );
+      ad = b;
+      try { await b.load(); return true; } catch (_) { return false; }
+    }
+    final ok = await load(unit);
+    if (!ok) {
+      unit = Platform.isAndroid ? 'ca-app-pub-3940256099942544/6300978111' : 'ca-app-pub-3940256099942544/2934735716';
+      await load(unit);
+    }
+    _banner = ad;
+  }
 
   void _openSettings(BuildContext context) async {
     await showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       backgroundColor: AppColors.surface,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('settings'.tr(), style: Theme.of(context).textTheme.titleLarge),
-              const SizedBox(height: 12),
-              Text('language'.tr()),
-              const SizedBox(height: 8),
-              _LanguageList(),
-              const SizedBox(height: 16),
-              ListTile(title: const Text('Privacy Policy'), trailing: const Icon(Icons.open_in_new), onTap: () => _openWeb(context, K.privacyUrl)),
-              ListTile(title: const Text('Apple Terms of Use'), trailing: const Icon(Icons.open_in_new), onTap: () => _openWeb(context, K.appleEulaUrl)),
-              const SizedBox(height: 8),
-              Text('settings_hint'.tr(), style: Theme.of(context).textTheme.bodySmall),
-            ],
+        return SafeArea(
+          child: FractionallySizedBox(
+            heightFactor: 0.9,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('settings'.tr(), style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 12),
+                  Text('language'.tr()),
+                  const SizedBox(height: 8),
+                  _LanguageList(),
+                  const SizedBox(height: 16),
+                  ListTile(title: Text('settings_subscription'.tr()), trailing: const Icon(Icons.credit_card), onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, K.routeSubscription);
+                  }),
+                  
+              ListTile(title: const Text('Günlük AI hakkını sıfırla'), trailing: const Icon(Icons.refresh), onTap: () async {
+                final ok = await showDialog<bool>(context: context, builder: (ctx) {
+                  return AlertDialog(
+                    title: const Text('Günlük hakkı sıfırla'),
+                    content: const Text('Bugünkü ücretsiz ve reklam haklarını sıfırlamak istiyor musunuz?'),
+                    actions: [
+                      TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('İptal')),
+                      TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Sıfırla')),
+                    ],
+                  );
+                });
+                if (ok == true) {
+                  await AiSuggestionManager().resetToday();
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Günlük AI hakkı sıfırlandı')));
+                }
+              }),
+                  ListTile(title: const Text('Privacy Policy'), trailing: const Icon(Icons.open_in_new), onTap: () => _openWeb(context, K.privacyUrl)),
+                  ListTile(title: const Text('Apple Terms of Use'), trailing: const Icon(Icons.open_in_new), onTap: () => _openWeb(context, K.appleEulaUrl)),
+                  const Divider(),
+                  
+                  const SizedBox(height: 8),
+                  Text('settings_hint'.tr(), style: Theme.of(context).textTheme.bodySmall),
+                ],
+              ),
+            ),
           ),
         );
       },
@@ -40,7 +114,10 @@ class HomeScreen extends StatelessWidget {
 
   Widget _featureCard(BuildContext context, {required IconData icon, required String title, required String desc, required VoidCallback onTap}) {
     return InkWell(
-      onTap: onTap,
+      onTap: () async {
+        await AdsService.maybeShowInterstitial(adUnitId: Platform.isAndroid ? 'ca-app-pub-2220990495085543/2215412440' : null);
+        onTap();
+      },
       borderRadius: BorderRadius.circular(20),
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -91,13 +168,6 @@ class HomeScreen extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, K.routeEnemyPick),
             ),
             const SizedBox(height: 12),
-            _featureCard(
-              context,
-              icon: Icons.health_and_safety,
-              title: 'home_my_counters_title'.tr(),
-              desc: 'home_my_counters_desc'.tr(),
-              onTap: () => Navigator.pushNamed(context, K.routeMyCounters),
-            ),
             const SizedBox(height: 12),
             _featureCard(
               context,
@@ -106,10 +176,27 @@ class HomeScreen extends StatelessWidget {
               desc: 'home_popular_desc'.tr(),
               onTap: () => Navigator.pushNamed(context, K.routePopularHeroes),
             ),
+            const SizedBox(height: 12),
+            _featureCard(
+              context,
+              icon: Icons.memory,
+              title: 'home_ai_title'.tr(),
+              desc: 'home_ai_desc'.tr(),
+              onTap: () => Navigator.pushNamed(context, K.routeAiSuggestion),
+            ),
+            const SizedBox(height: 12),
           ],
         ),
       ),
-      bottomNavigationBar: null,
+      bottomNavigationBar: _banner != null && _bannerReady
+          ? SafeArea(
+              child: SizedBox(
+                width: _banner!.size.width.toDouble(),
+                height: _banner!.size.height.toDouble(),
+                child: AdWidget(ad: _banner!),
+              ),
+            )
+          : null,
     );
   }
 }

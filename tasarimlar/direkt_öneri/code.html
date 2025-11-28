@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Kahraman Önerisi Sonuç Ekranı</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .glow {
+            box-shadow: 0 0 8px 0px rgba(245, 214, 61, 0.4), 0 0 20px 0px rgba(245, 214, 61, 0.2);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f5d63d",
+              "background-light": "#1A0F2B",
+              "background-dark": "#1A0F2B",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark dark group/design-root overflow-x-hidden">
+<div class="flex-grow">
+<h1 class="text-white tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-2 pt-10 font-display">⚡ AI Senin İçin Kahraman Seçti!</h1>
+<p class="text-[#A094B7] text-base font-normal leading-normal pb-6 px-4 text-center font-display">Bugünkü gizli güç kartın hazır. Dene ve eğlen!</p>
+<div class="px-4 pb-4">
+<div id="best-bg" class="bg-cover bg-center flex flex-col items-stretch justify-end rounded-lg pt-[132px] shadow-[0_0_4px_rgba(0,0,0,0.1)]" data-alt="Splash art of the hero Layla from Mobile Legends, a female character with a large futuristic cannon." style='background-image: linear-gradient(0deg, rgba(26, 15, 43, 0.8) 0%, rgba(26, 15, 43, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAc5o_lOajE_Cv-BmCw53mp5wmdJXZAcip-J4cQCvva9UWmgJWST8oBJZ05hKF8GAD7_pIg85mVomhZVxinIVGfQZ1b6iMFBnL5baj8MvSlp4YJMvLBWUEbfK6vm3EDZAKh-4tKd2n7VgqtvACdsEw0qZmOPsU-wHk1ckRZOZivgt2Lb3yLNmZs1GI35_AJj4uRXLazj6buXEhzXn6oGELjqugRk-M8UzXJ4H-qTJSrrCzxCD8A9RXBH2WJm8p32hOtQ-DyjOozXLb7");'>
+<div class="flex w-full items-end justify-between gap-4 p-4">
+<div class="flex max-w-[440px] flex-1 flex-col gap-1">
+<p id="best-name" class="text-white tracking-light text-2xl font-bold leading-tight max-w-[440px] font-display">Layla</p>
+<p id="best-role" class="text-primary text-base font-medium leading-normal font-display">Marksman</p>
+</div>
+<div class="flex min-w-[84px] max-w-[480px] items-center justify-center rounded-full h-10 px-4 bg-white/10">
+<span id="best-reason" class="truncate text-white text-sm font-normal leading-normal tracking-[0.015em] font-display">Bu maç seni taşıtabilir 😎</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 pb-4 @container">
+<div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-start shadow-[0_0_4px_rgba(0,0,0,0.1)] bg-[#2C1F3D]">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-4">
+<p class="text-primary text-lg font-bold leading-tight tracking-[-0.015em] font-display">🎯 Bugünkü AI Challenge'ın</p>
+<div class="flex flex-col gap-1">
+<p id="challenge-text" class="text-[#F5F0FF] text-base font-normal leading-normal font-display">İlk 3 dakikada hiç ölmeme challenge!</p>
+<p class="text-[#A094B7] text-sm font-normal leading-normal font-display">👉 Challenge tamamen eğlence amaçlıdır.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 px-4 pb-4">
+<div class="flex flex-col rounded-lg bg-[#2C1F3D] overflow-hidden">
+<div id="alt2-bg" class="h-24 w-full bg-cover bg-center" data-alt="Splash art of the hero Tigreal, a knight in heavy armor." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9tfL-mKbNxziC-6Kn1qvCm7PFZKdk-RshoV8x01y0R_NmR0grEL5HpFBpwpLF4ESDQyUbsJPtX8JAh8k8BdMDwGg8UGN7THCZ4_WZuXokrFJknUg1CO4VunzHape-u9sXFAMR56rwFg4cVIocUqz8JolbQ8mYe1nOnceJD_ZVykhvcMQS9q42MOqsiQ9xYuQ3DPz4X_xflVzKDupi-uaGpE5lAXj7HI_cdm_8qU5oRvU7TpuLInmWlWGjsdQhKe05UulNh31Se3b1');"></div>
+<div class="p-3">
+<p id="alt2-name" class="text-white font-bold text-base leading-tight font-display">Tigreal</p>
+<p id="alt2-desc" class="text-[#A094B7] text-sm font-normal leading-normal font-display">Güvenli oyun isteyenlere.</p>
+</div>
+</div>
+<div class="flex flex-col rounded-lg bg-[#2C1F3D] overflow-hidden">
+<div id="alt3-bg" class="h-24 w-full bg-cover bg-center" data-alt="Splash art of the hero Eudora, a female mage wielding lightning." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOmsSVSK09v9WiNQLqlH-J8iJQzLwXSyKDIE6882YJDEckASQImv_fVW7QeS8YKEKdwYTnIuUy8Kkw6sZ5B4OpZsZ8vXCo2zCQsN3vYRca4_HDyMbsh88raAk5r4HQ8M0BFsrJv33WDyy8kaoJ7VZi1pJC2LGm67xY6FeX4cSJVCmvX0akIklJy7-qdHMjbaKddX5LSE4UmFbG5bhyh1xzNjomrK34k8-fSV-0MwTlo1oDzETkitzumnunGFt0hanRklVjq7_IAToi');"></div>
+<div class="p-3">
+<p id="alt3-name" class="text-white font-bold text-base leading-tight font-display">Eudora</p>
+<p id="alt3-desc" class="text-[#A094B7] text-sm font-normal leading-normal font-display">Agresif tarz sevenlere.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 w-full bg-gradient-to-t from-[#1A0F2B] via-[#1A0F2B] to-transparent pt-8 pb-6 px-4">
+<div class="flex flex-col gap-3">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-6 bg-primary text-[#1A0F2B] text-base font-bold leading-normal tracking-[0.015em] glow font-display">
+<span class="truncate">Bu Kahramanı Kullanmaya Başla</span>
+</button>
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-transparent text-[#A094B7] text-base font-medium leading-normal tracking-[0.015em] border border-[#A094B7]/30 font-display">
+<span class="truncate">Yeni Öneri Ver (AI Reroll)</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

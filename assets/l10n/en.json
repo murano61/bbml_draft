@@ -6,6 +6,7 @@
   "language": "Language",
   "notifications_pref": "Notifications",
   "settings_hint": "Preferences are saved locally.",
+  "settings_subscription": "Subscription",
 
   "home_title": "What do you need today?",
   "home_enemy_pick_title": "Pick by enemy hero",
@@ -14,6 +15,8 @@
   "home_my_counters_desc": "See who is strong against your main and key tips.",
   "home_popular_title": "Most researched heroes",
   "home_popular_desc": "Ranking of heroes most searched in this app.",
+  "home_ai_title": "AI Hero Suggestion",
+  "home_ai_desc": "Get the smartest hero suggestion in 15 seconds.",
 
   "onb_title_1": "Pick by enemy hero",
   "onb_desc_1": "Choose the enemy hero and get the best counter pick.",
@@ -43,6 +46,8 @@
   "my_counters_subheader": "Select your main; see strong heroes and tips.",
   "show_counters": "Show Counters",
   "empty_state_stats": "No stats yet, ask your first question!",
+  "best_counters_title": "Best Counters Encountered",
+  "most_countered_title": "Heroes Most Countered",
   "tactics_for_matchup": "Tactics for this matchup",
   "tip_ulti_timing": "Ulti timing suggestions.",
   "tip_def_items": "Recommended defensive items.",
@@ -60,6 +65,29 @@
   "generic_reason": "A balanced choice for most matchups.",
   "generic_early": "Early: play safe and watch enemy rotations.",
   "generic_mid": "Mid: contest objectives with team.",
-  "generic_late": "Late: stick to team and avoid picks."
+  "generic_late": "Late: stick to team and avoid picks.",
+  "admin_counters_title": "Counter Management",
+  "admin_counters_desc": "Edit and preview counter suggestions for your main."
+  ,
+  "ai_title": "AI Hero Suggestion",
+  "ai_page_hint": "Choose the enemy hero or get a direct suggestion.",
+  "ai_tab_enemy": "Pick Enemy",
+  "ai_tab_direct": "Direct Suggestion",
+  "ai_search_hint": "Select or search the enemy hero…",
+  "ai_info_trial": "In trial mode: you can get suggestions.",
+  "ai_get_suggestion": "Get Suggestion"
+  ,
+  "ai_info_counts": "Daily free: {}, Bonus: {}",
+  "ai_ads_confirm_title": "Rewarded Ads Required",
+  "ai_ads_confirm_desc": "Your free quota is over today. 2 rewarded ads will be shown to get a suggestion.",
+  "ai_ads_confirm_ok": "Continue",
+  "ai_ads_confirm_cancel": "Cancel",
+  "ai_ads_fail": "Ad failed to load, please try again."
+  ,
+  "ai_ads_need_n": "You need to watch {} rewarded ad(s) to get a suggestion.",
+  "ai_ads_watch": "Watch Ad",
+  "ai_ads_watching": "Showing ad…"
+  ,
+  "ai_free_today": "You have 1 free suggestion today."
 }
 

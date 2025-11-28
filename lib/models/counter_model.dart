@@ -13,8 +13,9 @@ class CounterEntry {
 class CountersDoc {
   final String mainHeroId;
   final List<CounterEntry> counters;
+  final List<CounterEntry> countered;
 
-  const CountersDoc({required this.mainHeroId, required this.counters});
+  const CountersDoc({required this.mainHeroId, required this.counters, this.countered = const []});
 }
 
 final localCounters = <String, CountersDoc>{
@@ -35,6 +36,16 @@ final localCounters = <String, CountersDoc>{
         reason: {
           'tr': 'Safe farm ve pozisyon alma ile tehdit düzeyi azalır.',
           'en': 'Safe farm reduces threat level.',
+        },
+      ),
+    ],
+    countered: [
+      CounterEntry(
+        heroId: 'layla',
+        difficulty: 'easy',
+        reason: {
+          'tr': 'Yavaş ve kaçışı zayıf kahramanlara karşı baskın olabilir.',
+          'en': 'Strong against slow, low-escape heroes.',
         },
       ),
     ],

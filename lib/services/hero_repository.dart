@@ -1,12 +1,70 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 import '../models/hero_model.dart';
 import '../models/counter_model.dart';
 import '../models/search_log_model.dart';
 import 'firebase_service.dart';
 
 class HeroRepository {
-  List<HeroModel> getHeroesLocal() => sampleHeroes;
+  static List<HeroModel>? _heroesCache;
+  static DateTime? _heroesCacheAt;
+  List<HeroModel> getHeroesLocal() => const [];
+
+  Future<List<HeroModel>> getHeroes() async {
+    final now = DateTime.now();
+    if (_heroesCache != null && _heroesCacheAt != null && now.difference(_heroesCacheAt!).inMinutes < 10) {
+      return _heroesCache!;
+    }
+    if (!FirebaseService.isInitialized) return _heroesCache ?? const [];
+    try {
+      final snap = await FirebaseService.db.collection('heroes').get();
+      final list = snap.docs.map((d) {
+        final m = d.data();
+        return HeroModel(
+          id: (m['id'] ?? d.id).toString(),
+          names: {
+            'tr': (m['name_tr'] ?? '').toString(),
+            'en': (m['name_en'] ?? '').toString(),
+            'ru': (m['name_ru'] ?? '').toString(),
+            'id': (m['name_id'] ?? '').toString(),
+            'fil': (m['name_fil'] ?? '').toString(),
+          },
+          roles: List<String>.from((m['roles'] ?? []) as List),
+          lanes: List<String>.from((m['lanes'] ?? []) as List),
+          imageUrl: (m['imageUrl'] ?? '').toString(),
+        );
+      }).toList();
+      _heroesCache = list;
+      _heroesCacheAt = now;
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final payload = jsonEncode(list.map((e) => e.toMap()).toList());
+        await prefs.setString('heroes_cache_v1', payload);
+        await prefs.setInt('heroes_cache_v1_at', now.millisecondsSinceEpoch);
+      } catch (_) {}
+      return list;
+    } catch (_) {
+      return _heroesCache ?? const [];
+    }
+  }
+
+  Future<List<HeroModel>> getHeroesCached() async {
+    if (_heroesCache != null) return _heroesCache!;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final s = prefs.getString('heroes_cache_v1');
+      if (s != null && s.isNotEmpty) {
+        final list = (jsonDecode(s) as List).map((e) => HeroModel.fromMap(Map<String, dynamic>.from(e))).toList();
+        _heroesCache = list;
+        final atMs = prefs.getInt('heroes_cache_v1_at');
+        _heroesCacheAt = atMs != null ? DateTime.fromMillisecondsSinceEpoch(atMs) : DateTime.now();
+        return list;
+      }
+    } catch (_) {}
+    return const [];
+  }
 
   CountersDoc? countersLocalFor(String mainHeroId) => localCounters[mainHeroId];
 
@@ -32,7 +90,23 @@ class HeroRepository {
               reason: reason,
             );
           }).toList();
-          return CountersDoc(mainHeroId: mainHeroId, counters: entries);
+          final List<dynamic> listCountered = data['countered'] ?? [];
+          final counteredEntries = listCountered.map((e) {
+            final m = Map<String, dynamic>.from(e as Map);
+            final reason = <String, String>{
+              'tr': (m['reason_tr'] ?? '').toString(),
+              'en': (m['reason_en'] ?? '').toString(),
+              'ru': (m['reason_ru'] ?? '').toString(),
+              'id': (m['reason_id'] ?? '').toString(),
+              'fil': (m['reason_fil'] ?? '').toString(),
+            };
+            return CounterEntry(
+              heroId: (m['heroId'] ?? '').toString(),
+              difficulty: (m['difficulty'] ?? 'easy').toString(),
+              reason: reason,
+            );
+          }).toList();
+          return CountersDoc(mainHeroId: mainHeroId, counters: entries, countered: counteredEntries);
         }
       } catch (_) {}
     }
@@ -81,59 +155,5 @@ class HeroRepository {
     }
   }
 
-  Future<void> seedSampleData() async {
-    if (!FirebaseService.isInitialized) return;
-    try {
-      // Seed heroes
-      for (final h in sampleHeroes) {
-        final doc = FirebaseService.db.collection('heroes').doc(h.id);
-        final exists = (await doc.get()).exists;
-        if (!exists) {
-          await doc.set({
-            'id': h.id,
-            'name_tr': h.names['tr'] ?? h.id,
-            'name_en': h.names['en'] ?? h.id,
-            'name_ru': h.names['ru'] ?? h.id,
-            'name_id': h.names['id'] ?? h.id,
-            'name_fil': h.names['fil'] ?? h.id,
-            'roles': h.roles,
-            'imageAsset': h.imageAsset ?? '',
-            'imageUrl': h.imageUrl ?? '',
-          });
-        }
-      }
-
-      // Seed counters for fanny (from local)
-      final fannyDoc = countersLocalFor('fanny');
-      if (fannyDoc != null) {
-        final doc = FirebaseService.db.collection('counters').doc('fanny');
-        final exists = (await doc.get()).exists;
-        if (!exists) {
-          await doc.set({
-            'counters': fannyDoc.counters.map((c) => {
-                  'heroId': c.heroId,
-                  'difficulty': c.difficulty,
-                  'reason_tr': c.reason['tr'] ?? '',
-                  'reason_en': c.reason['en'] ?? '',
-                  'reason_ru': c.reason['ru'] ?? '',
-                  'reason_id': c.reason['id'] ?? '',
-                  'reason_fil': c.reason['fil'] ?? '',
-                }).toList(),
-          });
-        }
-      }
-
-      // Seed hero_stats
-      for (final h in sampleHeroes) {
-        final ref = FirebaseService.db.collection('hero_stats').doc(h.id);
-        await ref.set({
-          'searchCountEnemyPick': 0,
-          'searchCountCounters': 0,
-          'totalSearchCount': 0,
-        }, SetOptions(merge: true));
-      }
-    } catch (e) {
-      debugPrint('seedSampleData failed: $e');
-    }
-  }
+  Future<void> seedSampleData() async {}
 }

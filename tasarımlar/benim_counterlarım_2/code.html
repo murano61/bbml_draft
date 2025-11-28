@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -46,10 +45,14 @@
       min-height: max(884px, 100dvh);
     }
   </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
   </head>
 <body class="bg-background-dark font-display">
 <div class="relative flex min-h-screen w-full flex-col bg-background-dark dark group/design-root overflow-x-hidden">
-<!-- Top App Bar -->
 <div class="flex items-center bg-background-dark p-4 pb-2 justify-between">
 <div class="flex size-12 shrink-0 items-center justify-center text-white">
 <span class="material-symbols-outlined text-3xl">arrow_back</span>
@@ -57,12 +60,9 @@
 <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Hero Counters</h2>
 <div class="flex size-12 shrink-0 items-center justify-center"></div>
 </div>
-<!-- Main Content -->
 <main class="flex-1 px-4 py-6">
-<!-- Headline & Body Text -->
 <h1 class="text-white tracking-light text-[32px] font-bold leading-tight text-left pb-3">Benim counterlarım neler?</h1>
 <p class="text-white/70 text-base font-normal leading-normal pb-6">Main hero’nu seç, sana karşı güçlü olan kahramanları ve dikkat etmen gereken noktaları gösterelim.</p>
-<!-- Form Section -->
 <div class="flex flex-col gap-4">
 <label class="flex flex-col w-full">
 <p class="text-white text-base font-medium leading-normal pb-2">Main hero</p>
@@ -78,7 +78,6 @@
 </div>
 </div>
 </label>
-<!-- Filter Chips -->
 <div class="flex gap-3 py-2 overflow-x-auto">
 <button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#392839] pl-3 pr-4 ring-2 ring-transparent hover:bg-primary/30 focus:bg-primary focus:ring-primary/50 transition-colors">
 <span class="material-symbols-outlined text-white text-lg">shield</span>
@@ -98,13 +97,14 @@
 </button>
 </div>
 </div>
-<!-- Action Button -->
 <div class="py-8">
 <button class="flex w-full items-center justify-center rounded-xl bg-primary h-14 text-white text-lg font-bold hover:bg-opacity-90 transition-opacity disabled:bg-primary/30 disabled:cursor-not-allowed" disabled="">Counter'ları Göster</button>
 </div>
-<!-- Results Section -->
+<div class="mb-6 grid grid-cols-2 gap-2 rounded-xl bg-[#271c27] p-1 border border-[#543b54]">
+<button class="rounded-lg bg-primary py-2.5 text-center text-sm font-bold text-white transition-colors">Karşılaştığı En İyi Counterlar</button>
+<button class="rounded-lg py-2.5 text-center text-sm font-medium text-white/60 transition-colors hover:bg-white/10">En Çok Counterladığı Hero'lar</button>
+</div>
 <div class="space-y-6">
-<!-- Counter Hero Card 1 -->
 <div class="flex flex-col gap-4 rounded-lg bg-[#271c27] p-4 border border-[#543b54]">
 <div class="flex items-center gap-4">
 <img class="h-14 w-14 rounded-full object-cover border-2 border-primary" data-alt="Fanny hero avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd1_eXFgWP28Yc5k7-bEAqDjI9H0iJQwY3J9FJVns4V3yNX3cp-tvV2ono9NpAGPkb_Q-hTacRyDS8IOwIIV1pxk0ZVPJtKOvgUPKtZmOx8c_MYjOkPBzW2685MRr1BcV0CjVFNaHrDWgpklMKMlnjiD-Kvuf37mZ5PIeQSTOMsLZzPzITmxcXZGWch5apx7N68h_le0GesA4fzMevFb4YIX1_lljiR3UvYHUC3MEzdwJAk2oarBuWQXOuGsFeDjGTJ05PW5BMb2TV"/>
@@ -117,7 +117,6 @@
 </div>
 </div>
 </div>
-<!-- Counter Hero Card 2 -->
 <div class="flex flex-col gap-4 rounded-lg bg-[#271c27] p-4 border border-[#543b54]">
 <div class="flex items-center gap-4">
 <img class="h-14 w-14 rounded-full object-cover border-2 border-primary" data-alt="Kaja hero avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKjS9FOGwBsetuq6MedAoe4aek9Flkt3nylT_2_6Rw46axNNtUWQDQL5fJSdrOM630WFkHlC5JIymk4E-RU4N6_HPCzIfJn7bz6c69wroFTyTPjPc34uxngwwLpQOZ9qZFck-yf3LPWSycsAShQVDca6kZRM-bSrlFnrlr2_H74tgmYLRBJMUhbZL4QspM59KdKgqQgQeJr-wYo72Qnra1zAXZZ88fJhwHNamYVyS1RYJLHpfUKXTq7ZIINnOrLLn-_RIfgfUHMTmf"/>
@@ -130,7 +129,6 @@
 </div>
 </div>
 </div>
-<!-- Counter Hero Card 3 -->
 <div class="flex flex-col gap-4 rounded-lg bg-[#271c27] p-4 border border-[#543b54]">
 <div class="flex items-center gap-4">
 <img class="h-14 w-14 rounded-full object-cover border-2 border-primary" data-alt="Minsitthar hero avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtRYduufVOwHWfUG7cehUkELXU_eQc6MEqEGM7azZRJ04BxJOXJpp56Q2sG3094Jq6TWaRYUQHNKq-d-gjCR8eDksWZuunwTG3AyyRUen1fMR0aQWh6UfaDhH_26otMrKMcK3YQHtvFTtZKbnayVwBWwPQQfzlRewRbe3nM_3tVP8JyUvEXBz08Jpg6EI2llHifyBn3GZ-9_BMAQ2BeNvF4_jdjhEOo1SN2ePZJfbxgypxicXRk6_stTyesbf3Gt7RMn6jrFDxpNPp"/>
@@ -143,7 +141,6 @@
 </div>
 </div>
 </div>
-<!-- Tips & Tactics Card -->
 <div class="flex flex-col gap-4 rounded-lg bg-primary/10 p-4 border border-primary/30">
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-primary text-2xl">tips_and_updates</span>

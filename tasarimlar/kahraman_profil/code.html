@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kahraman Detay Ekranı</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f5d63d",
+              "background-light": "#f8f8f5",
+              "background-dark": "#221f10",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 sticky top-0 z-10">
+<div class="text-black dark:text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Gusion</h2>
+</div>
+<!-- Promotional Card -->
+<div class="p-4 pt-0">
+<div class="flex flex-col sm:flex-row items-stretch justify-between gap-4 rounded-lg bg-[#f5f5f2] dark:bg-[#2a271a] p-4">
+<div class="flex flex-1 flex-col gap-2">
+<p class="text-black dark:text-white text-base font-bold leading-tight">Daha detaylı Build ve Amblem Bilgileri</p>
+<p class="text-gray-600 dark:text-gray-400 text-sm font-normal leading-normal">Kahramanın en iyi itemleri, amblemleri ve spell önerilerini BBML Build uygulamamızda görebilirsin. Tamamen isteğe bağlıdır.</p>
+<button class="mt-2 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-4 bg-primary/90 text-background-dark gap-2 text-sm font-bold leading-normal w-fit hover:bg-primary transition-colors">
+<span class="truncate">BBML Build’i Aç</span>
+<span class="material-symbols-outlined text-lg">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+<!-- HeaderImage -->
+<div class="px-4">
+<div class="relative w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-lg min-h-[220px]" data-alt="Splash art of the hero Gusion in a dynamic pose" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBoDl2ilKH6Zh81WRV8-wSdEBic0uSrWgGtT5_2mPRBBDtKgjIcZo1nCeWr0G1Nhk5T9Lf-EW9SqsBn74rrB3J_BP9JxJp-ALmFQ8Oomzf4gUjJrzOm3yOuG9uzl2wINpUc6WBiFNaMJ2YWQHhgRWSDNRCNScp-oYvh4tvJDstrMU8LEX0wfLPdi4QJ_ssrJ8SLTMfiPr3Ty9M2w89vMStAkPD02kwBoZ85KhBmHUrBl3ZF7bkntqxYabnjzocrKftZP_UOPYNVULR2");'>
+<div class="absolute top-3 right-3 flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/90 pl-4 pr-4">
+<p class="text-background-dark text-sm font-bold leading-normal">Assassin</p>
+</div>
+</div>
+</div>
+<!-- BodyText: Hero Summary -->
+<p class="text-gray-800 dark:text-gray-300 text-base font-normal leading-normal pt-4 pb-2 px-4">Yüksek mobilite ve ani hasar odaklı bir suikastçı.</p>
+<!-- Matchups Section -->
+<div class="px-4 py-2">
+<div class="flex flex-col gap-4 rounded-lg bg-[#f5f5f2] dark:bg-[#2a271a] p-4">
+<div>
+<h3 class="text-black dark:text-white font-bold text-base mb-1">Zorlandığı Kahramanlar (High Threat)</h3>
+<p class="text-gray-600 dark:text-gray-400 text-sm">Bu kahramanlar Gusion'ın hareket kabiliyetini kısıtlayabilir veya anlık hasarından kurtulabilir.</p>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<img class="size-12 rounded-full object-cover" data-alt="Chou hero icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI7E8X23yUIX7Iifou4xA9sSzVw3kZotqGzagBflhO-xtJqBv5EOudM48n86H8vtqV-gkPvQtKr1v0tJDCiukwRxA2upcBEoV1DDwnuenm_tiID9WfhA6MCrsOXybU5xXqFFj6VXvQBE6hQDRgTqEkNhvcOK_28e6MOxUcG1-eSTnKTT3KTRVi9PM6tNRsPW1cQZnNzp94m62iw18SY6GO8NpdsJ1ZU3YCpd5vKhW-Q8ASMJN0wLa0m4pq2_84-msWh1e40HUmckou"/>
+<div class="flex-1">
+<p class="font-bold text-black dark:text-white">Chou</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">Tekli hedef kitle kontrolü ile seni yakalar.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<img class="size-12 rounded-full object-cover" data-alt="Khufra hero icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPpvK5k0wxHXqLHyvHORYKkVUHAwBWza2hybDURGK8sbAexeo2WuLL5Igjqtr3XJ7HlCQ8XkNBGRUmOMv32YtkwSE2wakhU78CfWPKv7DaEhdjVuOdcnQSTHUrNiPJmPXHTXQp3EVCXnnEgtvsTtDJNmv5XC0SATZ3JBipjULp5mJsQsItSOT4azvG0W9yGgxyWBlKMbvEp1X1ufpYMAzeTPcjChHMeBTPNFO6IMe8VenYvyh6Rk_hgodzLDVjvpmExgue9qDL9ScY"/>
+<div class="flex-1">
+<p class="font-bold text-black dark:text-white">Khufra</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">Zıplama yeteneklerini engelleyerek kombonu bozar.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<img class="size-12 rounded-full object-cover" data-alt="Saber hero icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMNQKs149MeqJuRhG1Z6P9aEKHf1354eZfhb-UmHrPtAJ134wwKkxF5EnFgpUiLWBw00r8nc8f2em38C_3WYxk9a_u-LvkqOKXEITbMhObamKY15uk8n6k1WmTWmUOPrMWb6A-M9ECJUyukzyItyhOtUbtkfYX7S-jbqMvmm5KnjXF0iiTxpt7NWDyaXm_vFq7RnLOCmzOgt_yfljPz6M2bJFtThhMIvC7FkYaHh9VXcsZC3d1kkWsOsH_G3jA8MgkYXDwJuC7pI4o"/>
+<div class="flex-1">
+<p class="font-bold text-black dark:text-white">Saber</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">Ultisi ile seni anında ortadan kaldırabilir.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 py-2">
+<div class="flex flex-col gap-4 rounded-lg bg-[#f5f5f2] dark:bg-[#2a271a] p-4">
+<div>
+<h3 class="text-black dark:text-white font-bold text-base mb-1">Avantajlı Olduğu Kahramanlar (Counters)</h3>
+<p class="text-gray-600 dark:text-gray-400 text-sm">Düşük mobiliteli ve dayanıksız kahramanlar Gusion için kolay hedeflerdir.</p>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<img class="size-12 rounded-full object-cover" data-alt="Layla hero icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6_Sn7fX-KViQIcmwxj2GIFtKxaeQ2LAzlmskhultSDz2Vma7k5pZrpDGmvgH0TgDGOPQOtZoU8EENSHBz6sQfZGgPYaOwyXNgHG_1s7yJWTV9tpS5P3wNsCB1Lweo-FfsteBmIx4li41KhrC-wp2wRKjazhYXbD3NiXS9Sk-gIryR-2H-FCyWl7tJBnn8uEkFYi-YcxQOg2ZcGbSS6op-NXGY0Yh_dPoSm3omoAAyQ8Ag0RSOtb39wWAA-8_thzchfJSuJWO_BNPQ"/>
+<div class="flex-1">
+<p class="font-bold text-black dark:text-white">Layla</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">Mobilitesi düşük, kolay cezalandırılır.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<img class="size-12 rounded-full object-cover" data-alt="Eudora hero icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC__Ku3mmAhdT7762pzp1uBMDPn07nCWqRXzshOqExmB-reGOr2epUanN-fAptMO-93cwPOyVzONH12vMye-8qLN96ZmdFsaGSC50gaEsHclapxMqX9h6QKdxPfNElnzyTU7zzMiUMUo5K4W-WDiOPHBoMR8-VUGg5Q35cfUNa_ddd0Q3bk4zUzixrtqkF_rGRGvd0-WPkX5QkDhjd5Em9XBrJCwtSEzqi0Sk14WOvhrUARizPol_8qlkjrzBmCP4wnYCn7aZJXe0f"/>
+<div class="flex-1">
+<p class="font-bold text-black dark:text-white">Eudora</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">Kaçış mekanizması yok, ani hasara açık.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<img class="size-12 rounded-full object-cover" data-alt="Gord hero icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMfX6d1CFyjVAlWuhXt_r2y_fwIKtFSrMmCmVr3wilpUxMR-IMLCjOUr9IRue34fABBa0GCuAbu33L_NrNoirYGAn51dQCH5Sc0tPlVJqydO8RQIzwpWocPbWUoN33ZShOsUSnjHlQQ0OUFP3Yk4nOV-FYmvcf3NHY6DptcajSzmbW9k6I83CPUhI0zUr5XGEAAR6cmHm41A_lkcP76TTdO_iLCnpHAI3ZMB5_Sjjb84tYtPwPnTV3W-ZWGwMR3ZmnYucSxMQsRgCq"/>
+<div class="flex-1">
+<p class="font-bold text-black dark:text-white">Gord</p>
+<p class="text-sm text-gray-600 dark:text-gray-400">Ultisi sırasında hareketsiz kalır, kolay hedef.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Strategy Cards Section -->
+<div class="px-4 py-2 space-y-4">
+<h3 class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-1">Oyun Aşaması Stratejileri</h3>
+<!-- Early Game Card -->
+<div class="rounded-lg bg-[#f5f5f2] dark:bg-[#2a271a] p-4">
+<h4 class="font-bold text-black dark:text-white mb-2">Erken Oyun</h4>
+<ul class="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
+<li>Hızlıca seviye 4 olmaya odaklan.</li>
+<li>Orta koridoru domine et ve yan koridorlara baskına git.</li>
+<li>Kaplumbağa savaşlarında kilit rol oyna.</li>
+</ul>
+</div>
+<!-- Mid Game Card -->
+<div class="rounded-lg bg-[#f5f5f2] dark:bg-[#2a271a] p-4">
+<h4 class="font-bold text-black dark:text-white mb-2">Orta Oyun</h4>
+<ul class="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
+<li>Haritada tek gezen nişancı veya büyücüleri avla.</li>
+<li>Takımınla birlikte kuleleri ve hedefleri zorla.</li>
+<li>Savaşlarda arka saflara sızarak taşıyıcıları hedef al.</li>
+</ul>
+</div>
+<!-- Late Game Card -->
+<div class="rounded-lg bg-[#f5f5f2] dark:bg-[#2a271a] p-4">
+<h4 class="font-bold text-black dark:text-white mb-2">Geç Oyun</h4>
+<ul class="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
+<li>Pozisyon hatası yapan rakibi anında cezalandır.</li>
+<li>Lord savaşlarında rakibin en önemli hasar kaynağını yok et.</li>
+<li>Ölmemeye özen göster, geri dönüşü zor olabilir.</li>
+</ul>
+</div>
+</div>
+<!-- Team Fight Role Card -->
+<div class="px-4 py-2">
+<div class="rounded-lg bg-[#f5f5f2] dark:bg-[#2a271a] p-4">
+<h3 class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] mb-2">Takım Savaşı Rolü</h3>
+<div class="space-y-3">
+<div>
+<h4 class="font-bold text-black dark:text-white text-sm">Fokus Sırası</h4>
+<p class="text-sm text-gray-600 dark:text-gray-400">Öncelikli hedefin rakip nişancı ve büyücülerdir. Tanklara odaklanmaktan kaçın.</p>
+</div>
+<div>
+<h4 class="font-bold text-black dark:text-white text-sm">Kaçınılması Gerekenler</h4>
+<p class="text-sm text-gray-600 dark:text-gray-400">Savaşı başlatan kişi olma. Rakibin kitle kontrol yetenekleri kullandıktan sonra savaşa dahil ol.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Professional Tip -->
+<div class="p-4">
+<div class="flex items-start gap-3 rounded-lg bg-primary/20 dark:bg-primary/20 p-4 border border-primary/50">
+<span class="material-symbols-outlined text-primary text-2xl mt-0.5">workspace_premium</span>
+<div class="flex-1">
+<p class="font-bold text-black dark:text-white text-base">Profesyonel Koç Tavsiyesi:</p>
+<p class="text-gray-700 dark:text-gray-200 text-sm mt-1">Yeteneklerinin bekleme sürelerini iyi ayarla. Bir hedefe girdikten sonra ikinci yeteneğini kullanarak anında pozisyon değiştirebilir ve hayatta kalabilirsin.</p>
+</div>
+</div>
+</div>
+<div class="h-5"></div>
+</div>
+</body></html>

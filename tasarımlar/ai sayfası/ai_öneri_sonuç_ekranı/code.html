@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BBML Draft - AI Recommendation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2cc0d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1A1032",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark dark group/design-root overflow-x-hidden">
+<!-- Top App Bar -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">arrow_back_ios_new</span>
+</div>
+<h1 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">AI Recommendation</h1>
+</div>
+<!-- Main Content -->
+<main class="flex-grow px-4 py-2">
+<!-- Best Pick For You Section -->
+<div class="mb-6">
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-2">Best Pick For You</h2>
+<div class="relative rounded-lg bg-[#2C214C]/70 p-4 border border-primary/20 shadow-lg shadow-primary/10">
+<div class="absolute inset-0 rounded-lg bg-gradient-to-br from-primary/10 to-transparent opacity-50"></div>
+<div class="relative flex flex-col items-stretch justify-start">
+<div id="best-bg" class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="Dynamic portrait of a fierce mage hero casting a spell" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9HhXTLlkaoXOG3Gom1jRCNs8-35Kemnxrd4rx-cokBLJkD4QSNcOWMCP0PIa7nGSbEaQKvG1Flk7_G_UET1bax1hlSYrjl4cWEnzszzOV_Ni-Z81Z_y2ssCXDWiUkiURN7SVKWWMqafhhf3orOalbVhPtGmiq-xpg8n16tYquALlIwtkDe1EABlS0HCQLKGrtIJKH13AE1yu3SnsF0YX3ByQ_dCHyMHehK1Ozrgbwkf4_J1l4yH0E9ymB-hW1QCM6QiV_-EZtjtAV");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-2 py-4">
+<div class="flex items-center justify-between gap-3">
+<p id="best-name" class="text-white text-2xl font-bold leading-tight tracking-[-0.015em]">Luminara</p>
+<span id="best-role" class="bg-primary/20 text-primary text-xs font-bold px-3 py-1 rounded-full">Mage</span>
+</div>
+<p class="text-[#D9D3E8] text-sm font-normal leading-normal">Playstyle: Aggressive</p>
+<p class="text-base font-normal leading-normal text-[#D9D3E8] pt-2">
+<span class="font-bold text-white">Why this hero?</span> Her AoE control is perfect against the enemy team's dive composition.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Alternatives Section -->
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<h3 class="text-white text-base font-medium leading-normal">Alternative 2</h3>
+<div class="relative flex flex-col gap-3 rounded-lg bg-[#2C214C]/70 p-3 border border-white/10">
+<div id="alt2-bg" class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-md" data-alt="Portrait of a stoic tank hero with heavy armor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAyJS8f0fHzTPc2C37P7h_i-UkDxe7eS_XYYiuC4NPIF6Kugo9PdfHh0g8fiTwwMikKaFFiQ1TGyvOrz-UNFcOF-doGhaW0VJN_eYBgLsc0SSZIovWpLTXWiMoksP98btGpiygCDN8tIc4f-V-ifTxG55jeFHxyf9TmJBqzOop6FcFjj-ZncqouS9YMfpajxmjZ8-AG59tO0ppp1sChAvWqt0G1nqxqsr2AAyKXzGvdA4N-Z3S70oddvG8WtWmFEFnhYHCC-Dy2rnQX");'></div>
+<div>
+<p id="alt2-name" class="text-white text-lg font-bold leading-tight">Valerius</p>
+<p class="text-[#D9D3E8] text-sm font-normal leading-normal">Playstyle: Safe</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-white text-base font-medium leading-normal">Alternative 3</h3>
+<div class="relative flex flex-col gap-3 rounded-lg bg-[#2C214C]/70 p-3 border border-white/10">
+<div id="alt3-bg" class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-md" data-alt="Action shot of an assassin hero leaping through shadows" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAjQjY-jj3XjK-xtiIAI2TiO_y8b15-Bfc2wPefCAO3vmH0nx7iJN4XboHkYDhHt3_ac_x53PJY-_S611Dn5-JtXOMVq1mbJujydEXNvscj6Jo0DT6z5MeVF9wTxldacml-MtnjcWIsA-vi9YyVRVEgqgzJzgpPEmgUERGiGGsjpK_3Q0lwjL3PWM3kfN0iestP_G4t_3ATUioNWyXG0eHgK6qxClOqEur2IxjcbdU_omlmHXaBkMnYEqEOCa9CcoVxdd0I5aBsJr_K");'></div>
+<div>
+<p id="alt3-name" class="text-white text-lg font-bold leading-tight">Nyx</p>
+<p class="text-[#D9D3E8] text-sm font-normal leading-normal">Playstyle: Team Fight</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Action Buttons -->
+<footer class="sticky bottom-0 bg-background-dark/80 backdrop-blur-sm pt-4 pb-6 px-4">
+<div class="flex gap-3">
+<button class="flex flex-1 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-[#393628] text-white text-base font-bold leading-normal tracking-[0.015em] border border-primary/30">
+<span class="truncate">Get Different Suggestions</span>
+</button>
+<button class="flex flex-1 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-primary text-[#1A1032] text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/30">
+<span class="truncate">I've Picked This Hero</span>
+</button>
+</div>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tactical War Room: Hero Analizi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#00FF00", // Bright neon green for accents
+              "background-dark": "#1A1A1A", // Dark charcoal/near black
+              "surface": "#2C2C2C", // Slightly lighter dark for panels
+              "text-light": "#E0E0E0", // Off-white for primary text
+              "text-muted": "#A0A0A0", // Gray for secondary text
+              "border-dark": "#404040", // Darker border for structure
+              "accent-red": "#FF3333", // Red for warnings/critical stats
+              "accent-blue": "#3399FF", // Blue for info/data
+            },
+            fontFamily: {
+              "display": ["Orbitron", "sans-serif"], // For titles, sci-fi feel
+              "mono": ["Roboto Mono", "monospace"], // For data, precise
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem"}, // Sharper corners
+            boxShadow: {
+              'neon': '0 0 8px rgba(0, 255, 0, 0.7)',
+              'inset-glow': 'inset 0 0 5px rgba(0, 255, 0, 0.5)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        body {
+            min-height: max(884px, 100dvh);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-mono text-text-light">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark border-4 border-primary/50 shadow-neon">
+<div class="flex items-center p-3 justify-between bg-surface border-b border-primary/50">
+<div class="flex size-10 shrink-0 items-center">
+<span class="material-symbols-outlined text-primary text-2xl">arrow_back_ios_new</span>
+</div>
+<h2 class="text-primary text-base font-display leading-tight tracking-[0.05em] flex-1 text-center uppercase">TACTICAL ANALYSIS DASHBOARD</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center h-10 w-10 text-primary">
+<span class="material-symbols-outlined text-2xl">info</span>
+</button>
+</div>
+</div>
+<div class="p-4 border-b border-border-dark">
+<h1 class="text-text-light font-display tracking-wide text-2xl font-bold leading-tight text-left mb-2">OPERATIONAL DATA: TOP DOMINATORS</h1>
+<p class="text-text-muted text-sm font-mono leading-tight">GLOBAL DATA STREAM // PRIORITY TARGETS IDENTIFIED // WEEKLY RECALIBRATION</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 bg-surface/50 border-b border-border-dark">
+<div class="relative flex flex-col items-center p-4 bg-surface border border-primary/60 rounded-sm shadow-inset-glow">
+<div class="absolute top-2 left-2 text-primary font-display text-2xl z-10 drop-shadow-[0_0_5px_rgba(0,255,0,0.8)]">01</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-28 w-28 border-2 border-primary mb-3 shadow-md" data-alt="Fanny hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBY-brVpL9bBmxvAB_D97yAA_BHTpvmNNjZTx8dyfkA-4gfswb1X9ST7mQL_F3YNQ-QtftSoG40L0EpfVAgFrB7Pr5-310Vy6QuW6ysZ6IXH1I9D-PCv7chDcXLQqeMByFtoo7W725nxY6uTze5HI62H5_90fn4u3i1aSjvmjFvPp8n64I7T3IJShxE8mnrzmSymnZSGup8hsc6JSImpusl3-_GFv_tyt-NVBBDA63hgXRxk3VW5QwfwQDKobDzRE13QWzaRKXLwO65");'></div>
+<h3 class="text-text-light text-xl font-display font-bold uppercase mb-1">FANNY</h3>
+<div class="flex flex-col gap-1 w-full text-center">
+<p class="text-primary text-sm font-mono tracking-wide"><span class="material-symbols-outlined text-sm align-middle mr-1">trending_up</span> SEARCH QUERIES: <span class="text-lg font-bold">2345</span></p>
+<p class="text-accent-blue text-xs font-mono">Engagement Index: <span class="font-bold">A++</span></p>
+<p class="text-text-muted text-xs font-mono">Strategic Impact: High</p>
+</div>
+</div>
+<div class="relative flex flex-col items-center p-4 bg-surface border border-accent-blue/60 rounded-sm shadow-md">
+<div class="absolute top-2 left-2 text-accent-blue font-display text-2xl z-10 drop-shadow-[0_0_5px_rgba(51,153,255,0.8)]">02</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-28 w-28 border-2 border-accent-blue mb-3 shadow-md" data-alt="Valentina hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAifMq8WydJ3zlcTxr2OzWRV3cWvBOmcANQ5fmwDUVMEei9dJnPSELYRkdAm1bwKpLxPNjsql8Ul_XGK39AvoKIqVpclrJIRRTsQqYZDWLp9jzalB0jQcOeWfS1jcgWrz2cuJDu2wsdWzvCP3ZZ22rLdqc9Zlday7JrYWl4th7arvxLkaWgpLTxWu46pduXEB0tAg7rAYUz5r5d_ddQzj9_9HdMH1Mi8gciLmLC2JKG9OQjE8Noy8E1qcucaG0d6WTnxqRl7O2n77R9");'></div>
+<h3 class="text-text-light text-xl font-display font-bold uppercase mb-1">VALENTINA</h3>
+<div class="flex flex-col gap-1 w-full text-center">
+<p class="text-accent-blue text-sm font-mono tracking-wide"><span class="material-symbols-outlined text-sm align-middle mr-1">trending_up</span> SEARCH QUERIES: <span class="text-lg font-bold">1987</span></p>
+<p class="text-accent-red text-xs font-mono">Counter Rate: <span class="font-bold">Moderate</span></p>
+<p class="text-text-muted text-xs font-mono">Strategic Impact: High</p>
+</div>
+</div>
+<div class="relative flex flex-col items-center p-4 bg-surface border border-accent-red/60 rounded-sm shadow-md">
+<div class="absolute top-2 left-2 text-accent-red font-display text-2xl z-10 drop-shadow-[0_0_5px_rgba(255,51,51,0.8)]">03</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-28 w-28 border-2 border-accent-red mb-3 shadow-md" data-alt="Joy hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKrFM6r_YpJmxUP0FvAdoeX-aor3wI28W_KTRFNbBbkteRdJOEA884vwgP0LHsE80xInOyWhDa97wZZfGAPnp4o92lAcgQLvweEQQ2BOvcweBCNsPGh_NaN9t-o6KGKFgKVFz8wPCWwTdPDgcCW-S2Dq3N5pXSA_GblgvgcIhdbQ9QZIEOtDPiKzvr1hb2hp5loVh-kB_x2Vfw-wpccsyuChgU9UGmI4ZqQjF5lGWPlUqBoaCKXEij96yuXpvMJ75VaMhJPUxCphv4");'></div>
+<h3 class="text-text-light text-xl font-display font-bold uppercase mb-1">JOY</h3>
+<div class="flex flex-col gap-1 w-full text-center">
+<p class="text-accent-red text-sm font-mono tracking-wide"><span class="material-symbols-outlined text-sm align-middle mr-1">trending_up</span> SEARCH QUERIES: <span class="text-lg font-bold">1521</span></p>
+<p class="text-primary text-xs font-mono">Win Rate Trend: <span class="font-bold">Stable</span></p>
+<p class="text-text-muted text-xs font-mono">Strategic Impact: Medium</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col flex-1 p-4 bg-surface/30 border-b border-border-dark">
+<div class="flex justify-between items-center mb-3 pb-2 border-b border-border-dark">
+<h3 class="text-text-light font-display text-lg uppercase">OPERATIONAL LOG: REMAINING HEROES</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">filter_list</span>
+<span class="text-primary text-sm font-mono">FİLTRELE</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 pb-2 text-primary text-xs font-bold font-mono uppercase border-b border-border-dark">
+<div class="col-span-1 text-left">RANK</div>
+<div class="col-span-2 text-left">HERO ADI</div>
+<div class="col-span-2 text-right">SORGULAR</div>
+<div class="col-span-2 text-right">TREND</div>
+</div>
+<div class="flex flex-col gap-1 mt-2">
+<div class="grid grid-cols-7 gap-2 py-2 border-b border-border-dark/50 hover:bg-surface/70">
+<div class="col-span-1 flex items-center gap-2 text-text-light">
+<span class="text-base font-bold">04</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-8 w-8 border border-border-dark" data-alt="Chou hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKDaFltAJMkTjsGBmJDv3lolX_HbuMPOpLRpUW3jf-FtyNljAm9Fa1kTKSXMI5OkXWqLPEYd_D-s4LS6ZCDkcbYmTZnTJR9em1xl6jOXfzCxKIbKc8SjR_J55nMlMu-FiZHUEnZisEWHF_SqwE-0wIP04lAEbiD9xmbKltW9T5stQIapPbRsP_82ID9EpOe_-4WLDGweTZZTWfPv3K90djm979KTOfh-95oyS_AOoZx7tsZMi85atyxhvJt6b39D3a1MukPnk_orwe");'></div>
+<p class="text-text-light text-sm font-mono line-clamp-1">CHOU</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end">
+<p class="text-text-light text-sm font-mono">988</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end text-accent-blue">
+<span class="material-symbols-outlined text-base">trending_flat</span> <span class="text-sm font-mono">STABLE</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 py-2 border-b border-border-dark/50 hover:bg-surface/70">
+<div class="col-span-1 flex items-center gap-2 text-text-light">
+<span class="text-base font-bold">05</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-8 w-8 border border-border-dark" data-alt="Lancelot hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcuCPbw9PAQt24xhrowKKQXeMf10o6brLQLalX3LhF7j2tOqayNm8XWEsOwFM-Y1oxvQX55h8aPIkRPQjKvgky6fbDN2jM_aWfIiqLJc_nj5-GOQqLnVFaP9Donvf8z9bSI5xXLsYatqkHU34naa-Bm5NwO2DDB1kbb1fUfkU3x8hkj1u3aWUYveJL49YUCrCDcHs7Fuv_sCYvlsB87ptunrJDXdM58omeSLUui5f6makTIy_xrRQRh5FDXJgAUNkw7iVkNm64hH_R");'></div>
+<p class="text-text-light text-sm font-mono line-clamp-1">LANCELOT</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end">
+<p class="text-text-light text-sm font-mono">876</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end text-primary">
+<span class="material-symbols-outlined text-base">trending_up</span> <span class="text-sm font-mono">RISING</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 py-2 border-b border-border-dark/50 hover:bg-surface/70">
+<div class="col-span-1 flex items-center gap-2 text-text-light">
+<span class="text-base font-bold">06</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-8 w-8 border border-border-dark" data-alt="Karina hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCkkK8pZJZQ78COK8x-XaU3OK8YG_Jq_TX-dlIoftkyBZbK8gM7R4RpyaFOwyxqjhg1PKx2pYa8rSAED2aM1rGTx6OYXUKTb0zsTrLnWdtGeTjYYDHoc192mQHKNmLczzFSkC9y98o5ElONFAckVGi7dJ6UPgpYILSBT_i5MKjYUYhLsJYndXPO5fsq_A3qEj8_MEDHUTRWS4ww6ZforZmyR7DpUE-glmLklw_nQX1pVfuBFf5ft0mXaSgFZ39lu8wZbljB7lwy-ee0");'></div>
+<p class="text-text-light text-sm font-mono line-clamp-1">KARINA</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end">
+<p class="text-text-light text-sm font-mono">754</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end text-accent-red">
+<span class="material-symbols-outlined text-base">trending_down</span> <span class="text-sm font-mono">DECLINE</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 py-2 border-b border-border-dark/50 hover:bg-surface/70">
+<div class="col-span-1 flex items-center gap-2 text-text-light">
+<span class="text-base font-bold">07</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-8 w-8 border border-border-dark" data-alt="Gusion hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBY-brVpL9bBmxvAB_D97yAA_BHTpvmNNjZTx8dyfkA-4gfswb1X9ST7mQL_F3YNQ-QtftSoG40L0EpfVAgFrB7Pr5-310Vy6QuW6ysZ6IXH1I9D-PCv7chDcXLQqeMByFtoo7W725nxY6uTze5HI62H5_90fn4u3i1aSjvmjFvPp8n64I7T3IJShxE8mnrzmSymnZSGup8hsc6JSImpusl3-_GFv_tyt-NVBBDA63hgXRxk3VW5QwfwQDKobDzRE13QWzaRKXLwO65");'></div> 
+<p class="text-text-light text-sm font-mono line-clamp-1">GUSION</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end">
+<p class="text-text-light text-sm font-mono">621</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end text-accent-blue">
+<span class="material-symbols-outlined text-base">trending_flat</span> <span class="text-sm font-mono">STABLE</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 py-2 border-b border-border-dark/50 hover:bg-surface/70">
+<div class="col-span-1 flex items-center gap-2 text-text-light">
+<span class="text-base font-bold">08</span>
+</div>
+<div class="col-span-2 flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-8 w-8 border border-border-dark" data-alt="Ling hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAifMq8WydJ3zlcTxr2OzWRV3cWvBOmcANQ5fmwDUVMEei9dJnPSELYRkdAm1bwKpLxPNjsql8Ul_XGK39AvoKIqVpclrJIRRTsQqYZDWLp9jzalB0jQcOeWfS1jcgWrz2cuJDu2wsdWzvCP3ZZ22rLdqc9Zlday7JrYWl4th7arvxLkaWgpLTxWu46pduXEB0tAg7rAYUz5r5d_ddQzj9_9HdMH1Mi8gciLmLC2JKG9OQjE8Noy8E1qcucaG0d6WTnxqRl7O2n77R9");'></div> 
+<p class="text-text-light text-sm font-mono line-clamp-1">LING</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end">
+<p class="text-text-light text-sm font-mono">590</p>
+</div>
+<div class="col-span-2 text-right flex items-center justify-end text-primary">
+<span class="material-symbols-outlined text-base">trending_up</span> <span class="text-sm font-mono">RISING</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface border-t border-primary/50 text-center">
+<p class="text-text-muted text-xs font-mono tracking-wide">
+        DATA SOURCE: GLOBAL STRATEGIC NETWORK // ANALİZ SİSTEMİ VERSİYON 2.1
+    </p>
+</div>
+</div>
+</body></html>

@@ -22,6 +22,9 @@ class _MyCountersScreenState extends State<MyCountersScreen> {
   final roles = const ['Tank', 'Fighter', 'Assassin', 'Mage', 'Marksman', 'Support'];
   final Set<String> _roleFilters = {};
   List<CounterEntry> _results = [];
+  List<CounterEntry> _myCountersResults = [];
+  List<HeroModel> _heroes = [];
+  int _tabIndex = 0;
 
   void _submit() async {
     if (_mainHero == null) {
@@ -31,6 +34,9 @@ class _MyCountersScreenState extends State<MyCountersScreen> {
     final doc = await repo.countersFor(_mainHero!.id, context.locale.languageCode);
     setState(() {
       _results = (doc?.counters ?? [])
+          .where((c) => _roleFilters.isEmpty || _roleFilters.contains(_roleFromHeroId(c.heroId)))
+          .toList();
+      _myCountersResults = (doc?.countered ?? [])
           .where((c) => _roleFilters.isEmpty || _roleFilters.contains(_roleFromHeroId(c.heroId)))
           .toList();
     });
@@ -43,13 +49,13 @@ class _MyCountersScreenState extends State<MyCountersScreen> {
   }
 
   String _roleFromHeroId(String heroId) {
-    final heroes = repo.getHeroesLocal();
-    return heroes.firstWhere((h) => h.id == heroId).roles.first;
+    final h = _heroes.firstWhere((h) => h.id == heroId, orElse: () => HeroModel(id: heroId, names: {'en': heroId}, roles: ['Unknown']));
+    return h.roles.isNotEmpty ? h.roles.first : 'Unknown';
   }
 
   @override
   Widget build(BuildContext context) {
-    final heroes = repo.getHeroesLocal();
+    final heroes = _heroes;
     return Scaffold(
       appBar: AppBar(title: Text('my_counters_title'.tr())),
       body: Padding(
@@ -90,15 +96,21 @@ class _MyCountersScreenState extends State<MyCountersScreen> {
           const SizedBox(height: 16),
           PrimaryButton(label: 'show_counters'.tr(), onPressed: _submit),
           const SizedBox(height: 16),
-          if (_results.isEmpty)
+          if (_results.isEmpty && _myCountersResults.isEmpty)
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(16)),
               child: Text('empty_state_stats'.tr()),
             )
           else ...[
-            ..._results.map((c) {
-              final hero = heroes.firstWhere((h) => h.id == c.heroId);
+            Row(children: [
+              Expanded(child: _segButton(label: 'best_counters_title'.tr(), selected: _tabIndex == 0, onTap: () { setState(() { _tabIndex = 0; }); })),
+              const SizedBox(width: 8),
+              Expanded(child: _segButton(label: 'most_countered_title'.tr(), selected: _tabIndex == 1, onTap: () { setState(() { _tabIndex = 1; }); })),
+            ]),
+            const SizedBox(height: 12),
+            ...(_tabIndex == 0 ? _bestCounters() : _myCountersResults).map((c) {
+              final hero = heroes.firstWhere((h) => h.id == c.heroId, orElse: () => HeroModel(id: c.heroId, names: {'en': c.heroId}, roles: ['Unknown']));
               final reason = c.reason[context.locale.languageCode] ?? c.reason['en'] ?? '';
               final badge = switch (c.difficulty) {
                 'easy' => 'Kolay',
@@ -130,11 +142,45 @@ class _MyCountersScreenState extends State<MyCountersScreen> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _loadHeroes();
+  }
+
+  Future<void> _loadHeroes() async {
+    _heroes = await repo.getHeroes();
+    if (mounted) setState(() {});
+  }
+
   Widget _bullet(String text) {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const Icon(Icons.circle, size: 8),
       const SizedBox(width: 8),
       Expanded(child: Text(text)),
     ]);
+  }
+
+  List<CounterEntry> _bestCounters() {
+    final hard = _results.where((c) => c.difficulty.toLowerCase() == 'hard').toList();
+    if (hard.isNotEmpty) return hard.take(3).toList();
+    final medium = _results.where((c) => c.difficulty.toLowerCase() == 'medium').toList();
+    return medium.take(3).toList();
+  }
+
+  Widget _segButton({required String label, required bool selected, required VoidCallback onTap}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(24),
+      child: Container(
+        height: 40,
+        decoration: BoxDecoration(
+          color: selected ? AppColors.primary : AppColors.card,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        alignment: Alignment.center,
+        child: Text(label, style: TextStyle(color: selected ? Colors.white : AppColors.textSecondary, fontWeight: FontWeight.w600)),
+      ),
+    );
   }
 }

@@ -6,6 +6,7 @@
   "language": "Dil",
   "notifications_pref": "Bildirimler",
   "settings_hint": "Tercihler yerel olarak kaydedilir.",
+  "settings_subscription": "Abonelik",
 
   "home_title": "Bugün neye ihtiyacın var?",
   "home_enemy_pick_title": "Rakip kahramana göre hero seç",
@@ -14,6 +15,8 @@
   "home_my_counters_desc": "Main’ine karşı güçlü kahramanları ve ipuçlarını gör.",
   "home_popular_title": "En fazla araştırılan kahramanlar",
   "home_popular_desc": "Uygulamada en çok sorgulanan kahramanların sıralaması.",
+  "home_ai_title": "Yapay Zeka Kahraman Önerisi",
+  "home_ai_desc": "15 saniyede en mantıklı hero önerisini al.",
 
   "onb_title_1": "Rakip kahramana göre hero seç",
   "onb_desc_1": "Rakip hero’yu seç ve en mantıklı karşı pick’i al.",
@@ -43,6 +46,8 @@
   "my_counters_subheader": "Main’ini seç; güçlü kahramanları ve ipuçlarını gör.",
   "show_counters": "Counter’ları Göster",
   "empty_state_stats": "Henüz istatistik yok, ilk sorunu sor!",
+  "best_counters_title": "Karşılaştığı En İyi Counterlar",
+  "most_countered_title": "En Çok Counterladığı Herolar",
   "tactics_for_matchup": "Bu eşleşme için taktikler",
   "tip_ulti_timing": "Ulti zamanlaması önerileri.",
   "tip_def_items": "Önerilen defans itemleri.",
@@ -60,6 +65,29 @@
   "generic_reason": "Çoğu eşleşme için dengeli bir seçim.",
   "generic_early": "Erken: güvenli oyna ve rakip rotasyonlarını izle.",
   "generic_mid": "Orta: takım ile hedefleri contest et.",
-  "generic_late": "Geç: takımdan ayrılma, yakalanmalara dikkat."
+  "generic_late": "Geç: takımdan ayrılma, yakalanmalara dikkat.",
+  "admin_counters_title": "Counter Yönetimi",
+  "admin_counters_desc": "Main için karşı-counter önerilerini düzenle ve önizle."
+  ,
+  "ai_title": "Yapay Zeka Kahraman Önerisi",
+  "ai_page_hint": "İstersen rakip kahramanı seç, istersen direkt öneri al.",
+  "ai_tab_enemy": "Rakip Seç",
+  "ai_tab_direct": "Direkt Öneri",
+  "ai_search_hint": "Rakip kahramanı seç veya ara…",
+  "ai_info_trial": "Deneme modunda: öneri alabilirsiniz.",
+  "ai_get_suggestion": "Öneri Al"
+  ,
+  "ai_info_counts": "Günlük ücretsiz: {}, Ek hak: {}",
+  "ai_ads_confirm_title": "Ödüllü Reklam Gerekli",
+  "ai_ads_confirm_desc": "Bugün ücretsiz hakkınız bitti. Öneri almak için 2 ödüllü reklam izlenecek.",
+  "ai_ads_confirm_ok": "Devam",
+  "ai_ads_confirm_cancel": "Vazgeç",
+  "ai_ads_fail": "Reklam yüklenemedi, lütfen tekrar deneyin."
+  ,
+  "ai_ads_need_n": "Öneri almak için {} ödüllü reklam izlemen gerekiyor.",
+  "ai_ads_watch": "Reklam İzle",
+  "ai_ads_watching": "Reklam gösteriliyor…"
+  ,
+  "ai_free_today": "Bugün 1 ücretsiz öneri hakkınız var."
 }
 

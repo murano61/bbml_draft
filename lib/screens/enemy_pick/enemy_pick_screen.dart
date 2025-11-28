@@ -7,6 +7,8 @@ import '../../models/search_log_model.dart';
 import '../../services/hero_repository.dart';
 import '../../widgets/pill_chip.dart';
 import '../../widgets/primary_button.dart';
+import 'dart:math';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class EnemyPickScreen extends StatefulWidget {
   const EnemyPickScreen({super.key});
@@ -21,41 +23,76 @@ class _EnemyPickScreenState extends State<EnemyPickScreen> {
   HeroModel? _enemyHero;
   String? _role;
   final Set<String> _playStyle = {};
+  List<HeroModel> _heroes = [];
+  List<HeroModel> _featured = [];
+  BannerAd? _banner;
+  bool _bannerReady = false;
 
   final roles = const ['Gold', 'EXP', 'Jungle', 'Mid', 'Roam'];
   final styles = const ['Agresif', 'Güvenli', 'Takım Savaşı'];
-  final Map<String, String> _imageUrls = {};
+  // no per-hero image fetch; use Firestore 'imageUrl' directly
 
   @override
   void initState() {
     super.initState();
-    _preloadImages();
+    _loadHeroes();
+    _initBanner();
   }
 
-  Future<void> _preloadImages() async {
-    final heroes = repo.getHeroesLocal();
-    for (final h in heroes) {
-      final url = await repo.heroImageUrl(h.id);
+  Future<void> _loadHeroes() async {
+    _heroes = await repo.getHeroesCached();
+    if (_heroes.isEmpty) {
+      _heroes = sampleHeroes;
+    }
+    _featured = _pickRandom(_heroes, 5);
+    if (mounted) setState(() {});
+    if (!mounted) return;
+    for (final h in _featured) {
+      final url = h.imageUrl;
       if (url != null && url.isNotEmpty) {
-        _imageUrls[h.id] = url;
+        // best-effort pre-cache only featured images
+        precacheImage(NetworkImage(url), context);
       }
     }
-    if (mounted) setState(() {});
+    final fresh = await repo.getHeroes();
+    if (fresh.isNotEmpty) {
+      _heroes = fresh;
+      _featured = _pickRandom(_heroes, 3);
+      if (mounted) setState(() {});
+    }
+  }
+
+  List<HeroModel> _pickRandom(List<HeroModel> heroes, int n) {
+    if (heroes.isEmpty) return [];
+    final pool = List<HeroModel>.from(heroes);
+    final res = <HeroModel>[];
+    final rnd = Random(DateTime.now().millisecondsSinceEpoch);
+    for (var i = 0; i < n && pool.isNotEmpty; i++) {
+      final idx = rnd.nextInt(pool.length);
+      res.add(pool.removeAt(idx));
+    }
+    return res;
   }
 
   String _imageForHero(HeroModel h) {
-    final cached = _imageUrls[h.id];
-    if (cached != null && cached.isNotEmpty) return cached;
-    switch (h.id) {
-      case 'fanny':
-        return 'https://lh3.googleusercontent.com/aida-public/AB6AXuBd1_eXFgWP28Yc5k7-bEAqDjI9H0iJQwY3J9FJVns4V3yNX3cp-tvV2ono9NpAGPkb_Q-hTacRyDS8IOwIIV1pxk0ZVPJtKOvgUPKtZmOx8c_MYjOkPBzW2685MRr1BcV0CjVFNaHrDWgpklMKMlnjiD-Kvuf37mZ5PIeQSTOMsLZzPzITmxcXZGWch5apx7N68h_le0GesA4fzMevFb4YIX1_lljiR3UvYHUC3MEzdwJAk2oarBuWQXOuGsFeDjGTJ05PW5BMb2TV';
-      case 'miya':
-        return 'https://via.placeholder.com/300x300.png?text=Miya';
-      case 'tigreal':
-        return 'https://via.placeholder.com/300x300.png?text=Tigreal';
-      default:
-        return 'https://via.placeholder.com/300x300.png?text=${h.name(context.locale.languageCode)}';
-    }
+    final url = h.imageUrl;
+    if (url != null && url.isNotEmpty) return url;
+    return 'https://via.placeholder.com/300x300.png?text=${h.name(context.locale.languageCode)}';
+  }
+
+  Future<void> _initBanner() async {
+    final unit = 'ca-app-pub-2220990495085543/9607366049';
+    final ad = BannerAd(
+      adUnitId: unit,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) { if (mounted) setState(() { _bannerReady = true; }); },
+        onAdFailedToLoad: (ad, err) { ad.dispose(); },
+      ),
+    );
+    await ad.load();
+    _banner = ad;
   }
 
   void _submit() async {
@@ -64,7 +101,6 @@ class _EnemyPickScreenState extends State<EnemyPickScreen> {
       return;
     }
 
-    final suggestion = suggestHero(enemyHeroId: _enemyHero!.id, role: _role!, playStyle: _playStyle.toList());
 
     await repo.logSearch(SearchLog(
       type: 'enemy_pick',
@@ -75,12 +111,16 @@ class _EnemyPickScreenState extends State<EnemyPickScreen> {
     ));
 
     if (!mounted) return;
-    Navigator.pushNamed(context, K.routeEnemyPickResult, arguments: suggestion);
+    Navigator.pushNamed(context, K.routeEnemyPickResult, arguments: {
+      'enemyHeroId': _enemyHero!.id,
+      'role': _role != null ? [_role!] : const [],
+      'ai': false,
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final heroes = repo.getHeroesLocal();
+    final heroes = _heroes;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back)),
@@ -103,7 +143,7 @@ class _EnemyPickScreenState extends State<EnemyPickScreen> {
                 mainAxisSpacing: 12,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                children: heroes.map((h) {
+                children: (_featured.isNotEmpty ? _featured : heroes.take(5)).map((h) {
                   final selected = _enemyHero?.id == h.id;
                   return GestureDetector(
                     onTap: () {
@@ -209,7 +249,13 @@ class _EnemyPickScreenState extends State<EnemyPickScreen> {
           ),
         ),
       ]),
-      bottomNavigationBar: null,
+      bottomNavigationBar: _banner != null && _bannerReady
+          ? Container(
+              height: _banner!.size.height.toDouble(),
+              alignment: Alignment.center,
+              child: AdWidget(ad: _banner!),
+            )
+          : null,
     );
   }
 }
@@ -233,12 +279,10 @@ class HeroSuggestion {
   });
 }
 
-HeroSuggestion suggestHero({required String enemyHeroId, required String role, required List<String> playStyle}) {
-  // Simple rule-set example for demo
-  const heroes = sampleHeroes;
+HeroSuggestion suggestHero({required String enemyHeroId, required String role, required List<String> playStyle, required List<HeroModel> heroes}) {
   if (enemyHeroId == 'fanny' && role.toLowerCase() == 'gold') {
-    final miya = heroes.firstWhere((h) => h.id == 'miya');
-    final tigreal = heroes.firstWhere((h) => h.id == 'tigreal');
+    final miya = heroes.firstWhere((h) => h.id == 'miya', orElse: () => heroes.isNotEmpty ? heroes.first : const HeroModel(id: 'placeholder', names: {'en': 'Placeholder'}, roles: ['Marksman']));
+    final tigreal = heroes.firstWhere((h) => h.id == 'tigreal', orElse: () => heroes.isNotEmpty ? heroes.first : miya);
     return HeroSuggestion(
       suggestedHero: miya,
       difficulty: 'Kolay',
@@ -250,7 +294,7 @@ HeroSuggestion suggestHero({required String enemyHeroId, required String role, r
     );
   }
 
-  final fallback = heroes.first;
+  final fallback = heroes.isNotEmpty ? heroes.first : const HeroModel(id: 'placeholder', names: {'en': 'Placeholder'}, roles: ['Fighter']);
   return HeroSuggestion(
     suggestedHero: fallback,
     difficulty: 'Orta',

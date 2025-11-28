@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yapay Zeka Kahraman Önerisi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FFD700",
+                        "background-light": "#F0F0F0",
+                        "background-dark": "#2C1D3E",
+                        "surface-dark": "#403155",
+                        "text-muted-dark": "#A9A2B5"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark">
+<div class="flex flex-col flex-grow">
+<!-- Top App Bar -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="flex size-12 shrink-0 items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">arrow_back</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Yapay Zeka Kahraman Önerisi</h2>
+</div>
+<!-- Body Text -->
+<p class="text-text-muted-dark text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">İstersen rakip kahramanı seç, istersen direkt öneri al.</p>
+<!-- Segmented Buttons -->
+<div class="flex px-4 py-3">
+<div class="flex h-12 flex-1 items-center justify-center rounded-full bg-surface-dark p-1.5">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-2 has-[:checked]:bg-primary has-[:checked]:shadow-[0_0_8px_rgba(255,215,0,0.3)] has-[:checked]:text-background-dark text-text-muted-dark text-sm font-medium leading-normal transition-colors">
+<span class="truncate">Rakip Seç</span>
+<input checked="" class="invisible w-0" name="recommendation-mode" type="radio" value="Rakip Kahramanı Seçeceğim"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-2 has-[:checked]:bg-primary has-[:checked]:shadow-[0_0_8px_rgba(255,215,0,0.3)] has-[:checked]:text-background-dark text-text-muted-dark text-sm font-medium leading-normal transition-colors">
+<span class="truncate">Direkt Öneri</span>
+<input class="invisible w-0" name="recommendation-mode" type="radio" value="Direkt Öneri Al"/>
+</label>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-14 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-muted-dark flex border-none bg-surface-dark items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-surface-dark h-full placeholder:text-text-muted-dark px-4 pl-2 text-base font-normal leading-normal" placeholder="Rakip kahramanı seç veya ara..." value=""/>
+</div>
+</label>
+</div>
+<!-- Chips -->
+<div class="flex gap-3 px-4 py-2 flex-wrap">
+<div class="flex h-10 cursor-pointer shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-dark hover:bg-primary/20 transition-colors pl-5 pr-5">
+<p class="text-white text-sm font-medium leading-normal">Gold</p>
+</div>
+<div class="flex h-10 cursor-pointer shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary shadow-[0_0_8px_rgba(255,215,0,0.3)] pl-5 pr-5">
+<p class="text-background-dark text-sm font-bold leading-normal">EXP</p>
+</div>
+<div class="flex h-10 cursor-pointer shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-dark hover:bg-primary/20 transition-colors pl-5 pr-5">
+<p class="text-white text-sm font-medium leading-normal">Jungle</p>
+</div>
+<div class="flex h-10 cursor-pointer shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-dark hover:bg-primary/20 transition-colors pl-5 pr-5">
+<p class="text-white text-sm font-medium leading-normal">Mid</p>
+</div>
+<div class="flex h-10 cursor-pointer shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-dark hover:bg-primary/20 transition-colors pl-5 pr-5">
+<p class="text-white text-sm font-medium leading-normal">Roam</p>
+</div>
+</div>
+<!-- Spacer -->
+<div class="flex-grow"></div>
+</div>
+<!-- CTA Button -->
+<div class="sticky bottom-0 w-full p-4 bg-background-dark">
+<button class="flex items-center justify-center rounded-lg w-full h-14 bg-primary text-background-dark font-bold text-lg hover:bg-yellow-300 transition-colors shadow-[0_0_12px_rgba(255,215,0,0.4)]">
+                Öneri Al
+            </button>
+</div>
+</div>
+</body></html>

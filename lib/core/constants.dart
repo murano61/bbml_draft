@@ -13,6 +13,8 @@ class K {
   static const routeMyCounters = '/my_counters';
   static const routePopularHeroes = '/popular_heroes';
   static const routeLanguage = '/language_select';
+  static const routeAiSuggestion = '/ai-suggestion';
+  static const routeSubscription = '/subscription';
   static const privacyUrl = 'https://massoft.vercel.app/privacypolicy';
-  static const appleEulaUrl = 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/';
+  static const appleEulaUrl = 'https://www.apple.com/legal/internet-services/terms/site.html';
 }

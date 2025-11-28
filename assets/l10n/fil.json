@@ -61,4 +61,15 @@
   "generic_early": "Early: maglaro nang ligtas at bantayan ang rotasyon ng kalaban.",
   "generic_mid": "Mid: contest ang objectives kasama ang team.",
   "generic_late": "Late: manatili sa team at iwasan ang pick-offs."
+  ,
+  "ai_info_counts": "Libreng pang-araw-araw: {}, Bonus: {}",
+  "ai_ads_confirm_title": "Kinakailangang Rewarded Ads",
+  "ai_ads_confirm_desc": "Ubos na ang libreng quota ngayong araw. 2 rewarded ads ang ipapakita para makakuha ng rekomendasyon.",
+  "ai_ads_confirm_ok": "Magpatuloy",
+  "ai_ads_confirm_cancel": "Kanselahin",
+  "ai_ads_fail": "Hindi ma-load ang ad, subukan muli.",
+  "ai_ads_need_n": "Kailangan mong manood ng {} rewarded ad(s) para makakuha ng rekomendasyon.",
+  "ai_ads_watch": "Manood ng Ad",
+  "ai_ads_watching": "Ipinapakita ang ad…",
+  "ai_free_today": "Mayroon kang 1 libreng rekomendasyon ngayon."
 }

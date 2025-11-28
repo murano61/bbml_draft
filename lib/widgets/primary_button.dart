@@ -14,13 +14,15 @@ class PrimaryButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
-        minimumSize: const Size.fromHeight(52),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
       onPressed: onPressed,
       child: Text(label),
     );
-    return expanded ? SizedBox(width: double.infinity, child: btn) : btn;
+    return expanded
+        ? SizedBox(width: double.infinity, child: ConstrainedBox(constraints: const BoxConstraints(minHeight: 52), child: btn))
+        : ConstrainedBox(constraints: const BoxConstraints(minHeight: 52), child: btn);
   }
 }
 

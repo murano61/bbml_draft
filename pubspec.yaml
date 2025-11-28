@@ -1,7 +1,7 @@
 name: bbml_draft
 description: MLBB draft hero öneri asistanı (Flutter)
 publish_to: 'none'
-version: 0.1.0
+version: 0.3.1+4
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -18,6 +18,10 @@ dependencies:
   google_fonts: ^6.2.1
   url_launcher: ^6.3.0
   webview_flutter: ^4.7.0
+  webview_flutter_wkwebview: ^3.10.0
+  cached_network_image: ^3.3.1
+  google_mobile_ads: ^4.0.0
+  google_generative_ai: ^0.2.2
 
   # Material localization
   flutter_localizations:
@@ -27,6 +31,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
@@ -34,3 +39,12 @@ flutter:
     - assets/l10n/
     - assets/images/
     - assets/icons/
+    - tasarımlar/ai sayfası/ai_öneri_sonuç_ekranı/code.html
+    - tasarimlar/direkt_öneri/
+    - tasarimlar/abonelik/
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "tasarımlar/logo.png"
+  min_sdk_android: 21

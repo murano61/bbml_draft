@@ -61,4 +61,15 @@
   "generic_early": "Early: bermain aman dan awasi rotasi musuh.",
   "generic_mid": "Mid: rebut objektif bersama tim.",
   "generic_late": "Late: tetap bersama tim dan hindari pick off."
+  ,
+  "ai_info_counts": "Gratis harian: {}, Bonus: {}",
+  "ai_ads_confirm_title": "Iklan berhadiah diperlukan",
+  "ai_ads_confirm_desc": "Kuota gratis hari ini sudah habis. 2 iklan berhadiah akan ditampilkan untuk mendapatkan saran.",
+  "ai_ads_confirm_ok": "Lanjut",
+  "ai_ads_confirm_cancel": "Batal",
+  "ai_ads_fail": "Iklan gagal dimuat, coba lagi.",
+  "ai_ads_need_n": "Anda perlu menonton {} iklan berhadiah untuk mendapatkan saran.",
+  "ai_ads_watch": "Tonton Iklan",
+  "ai_ads_watching": "Menampilkan iklan…",
+  "ai_free_today": "Anda punya 1 saran gratis hari ini."
 }

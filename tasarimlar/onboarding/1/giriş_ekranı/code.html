@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Legends Helper Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee2bee",
+                        "background-light": "#f8f6f8",
+                        "background-dark": "#181118", // Using a darker purple shade as requested
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col dark group/design-root overflow-x-hidden">
+<main class="flex-grow flex flex-col">
+<!-- Header Section with Skip Button -->
+<header class="flex justify-end p-4">
+<button class="flex min-w-[64px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Geç</span>
+</button>
+</header>
+<!-- Onboarding Content: Flex-grow will push the footer down -->
+<div class="flex-grow flex flex-col justify-center">
+<!-- HeaderImage Component -->
+<div class="@container">
+<div class="@[480px]:px-4 @[480px]:py-3">
+<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden bg-[#181118] @[480px]:rounded-xl min-h-80" data-alt="Stylized image of two opposing game characters clashing" style='background-image: linear-gradient(0deg, rgba(24, 17, 24, 1) 0%, rgba(24, 17, 24, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5MJJbgOC9FsLsBXn7z2J3xLuqNvV-gVfaO_T9XP96CeBpVxUPb4zyWj0KJz3Fm_iJ8ZjEutxyO-Y3mJgQYuqAp69bLxoYTdQVAjoSVhXM-tj8ddXThI0SwVPF4kcyp1zxxUNEThdDCSvkd2YViV861533m6fmGKUUbf-ztOW1tQYGpjTc8QlGSn2vzKMHhpDBZnkXaaT-d4XjaGMZ8j3vQlw_Kp4VFKrM6LuB-3FGomHsMZXQzW_PfYtmlpXSPHplW6Fj-adYxawT");'>
+</div>
+</div>
+</div>
+<!-- HeadlineText Component -->
+<h1 class="text-white tracking-tight text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6">Rakip kahramana göre en mantıklı hero'yu seç.</h1>
+<!-- BodyText Component -->
+<p class="text-white/70 text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">Draft ekranında zafere giden yolu seçmek için en iyi önerileri al.</p>
+</div>
+<!-- Footer Section with Pagination and CTA Button -->
+<footer class="flex flex-col items-center justify-center w-full px-4 pb-8 pt-4 gap-6">
+<!-- PageIndicators Component -->
+<div class="flex w-full flex-row items-center justify-center gap-3 py-2">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+<div class="h-2 w-2 rounded-full bg-white/20"></div>
+<div class="h-2 w-2 rounded-full bg-white/20"></div>
+</div>
+<!-- SingleButton Component -->
+<div class="flex w-full px-0 py-0">
+<button class="flex min-w-[84px] w-full max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 flex-1 bg-primary text-white text-lg font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Başla</span>
+</button>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

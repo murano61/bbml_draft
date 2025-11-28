@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLBB Helper Ana Ekran</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ee2bee",
+            "background-light": "#f8f6f8",
+            "background-dark": "#221022",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<header class="flex items-center justify-between p-4 pb-2">
+<div class="flex size-12 shrink-0 items-center">
+<!-- Placeholder for a logo if needed -->
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex h-12 max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent p-0 text-gray-400 hover:text-white min-w-0">
+<span class="material-symbols-outlined text-3xl">
+            settings
+          </span>
+</button>
+</div>
+</header>
+<main class="flex flex-col px-4">
+<h1 class="text-gray-900 dark:text-white tracking-tight text-[32px] font-bold leading-tight pt-6 pb-6 text-left">Bugün neye ihtiyacın var?</h1>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="group/card @container cursor-pointer overflow-hidden rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors">
+<div class="p-5 flex flex-col items-stretch justify-start gap-4">
+<div class="flex h-16 w-16 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined !text-4xl">swords</span>
+</div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1">
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Rakip kahramana göre hero seç</p>
+<p class="text-gray-600 dark:text-gray-400 text-base font-normal leading-normal">Draft ekranında, rakibin aldığı kahramana göre en iyi seçimi bul.</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group/card @container cursor-pointer overflow-hidden rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors">
+<div class="p-5 flex flex-col items-stretch justify-start gap-4">
+<div class="flex h-16 w-16 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined !text-4xl">shield_with_heart</span>
+</div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1">
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Benim counterlarım neler?</p>
+<p class="text-gray-600 dark:text-gray-400 text-base font-normal leading-normal">Main’inin karşısına kim geldiğinde zorlanırsın, kimlere dikkat etmelisin?</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group/card @container cursor-pointer overflow-hidden rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors">
+<div class="p-5 flex flex-col items-stretch justify-start gap-4">
+<div class="flex h-16 w-16 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined !text-4xl">leaderboard</span>
+</div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1">
+<p class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">En fazla oynanan kahramanlar</p>
+<p class="text-gray-600 dark:text-gray-400 text-base font-normal leading-normal">Bu uygulama içinde en çok araştırılan kahramanların sıralamasını gör.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
