@@ -56,7 +56,7 @@ class ItemApiService {
   Future<void> ensureCache() async {
     if (_cache.isNotEmpty) return;
     try {
-      final res = await _client.get(Uri.parse('$baseUrl/items')).timeout(const Duration(seconds: 8));
+      final res = await _client.get(Uri.parse('$baseUrl/items')).timeout(const Duration(seconds: 3));
       if (res.statusCode == 200) {
         final data = jsonDecode(res.body);
         if (data is List) {

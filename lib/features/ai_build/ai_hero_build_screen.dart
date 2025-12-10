@@ -24,16 +24,19 @@ class _AiHeroBuildScreenState extends State<AiHeroBuildScreen> with SingleTicker
   WebViewController? _web;
   bool _computed = false;
   bool _fallbackPushed = false;
+  bool _loading = false;
   @override
   void initState(){
     super.initState();
     _tab = TabController(length: 2, vsync: this);
     _api = ItemApiService.create();
     _buildApi = BuildApiService.create();
-    _generate();
+    WidgetsBinding.instance.addPostFrameCallback((_) { _generate(); });
   }
   Future<void> _generate() async {
-    final locale = Localizations.localeOf(context).languageCode;
+    String locale = 'tr';
+    try { locale = Localizations.localeOf(context).languageCode; } catch (_) {}
+    setState(() { _loading = true; });
     try {
       await _api.ensureCache();
       final items = await _api.getAllItems();
@@ -89,6 +92,7 @@ class _AiHeroBuildScreenState extends State<AiHeroBuildScreen> with SingleTicker
     if (_web != null) {
       await _pushPayload();
     }
+    if (mounted) { setState(() { _loading = false; }); }
   }
   @override
   void dispose(){ _tab.dispose(); super.dispose(); }
@@ -117,7 +121,10 @@ class _AiHeroBuildScreenState extends State<AiHeroBuildScreen> with SingleTicker
     _web = c;
     if (_computed) { Future.microtask(() => _pushPayload()); }
     _scheduleFallback();
-    return Scaffold(appBar: AppBar(title: const Text('AI Build')), body: WebViewWidget(controller: c));
+    return Scaffold(appBar: AppBar(title: const Text('AI Build')), body: Stack(children:[
+      WebViewWidget(controller: c),
+      if (_loading) Positioned.fill(child: Container(color: Colors.black26, child: const Center(child: CircularProgressIndicator()))),
+    ]));
   }
   void _scheduleFallback(){
     if (_fallbackPushed) return;

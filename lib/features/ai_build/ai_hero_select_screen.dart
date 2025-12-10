@@ -22,10 +22,20 @@ class _AiHeroSelectScreenState extends State<AiHeroSelectScreen> {
     _load();
   }
   Future<void> _load() async {
-    var heroes = await HeroRepository().getHeroesCached();
-    if (heroes.isEmpty) heroes = await HeroRepository().getHeroes();
-    if (!mounted) return;
-    setState(() { _heroes = heroes; _loading = false; });
+    try {
+      setState(() { _loading = true; });
+      var heroes = await HeroRepository().getHeroesCached();
+      if (heroes.isEmpty) {
+        heroes = HeroRepository().getHeroesLocal();
+        if (mounted) { ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Kahraman listesi çevrimdışı yükleniyor'))); }
+      }
+      if (!mounted) return;
+      setState(() { _heroes = heroes; _loading = false; });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() { _heroes = HeroRepository().getHeroesLocal(); _loading = false; });
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Kahraman listesi alınamadı')));
+    }
   }
   List<HeroModel> _filtered(){
     Iterable<HeroModel> base = _heroes;

@@ -218,17 +218,6 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () => Navigator.pushNamed(context, K.routeDraftPower),
           ),
           const SizedBox(height: 12),
-          _featureCard(
-            context,
-            icon: Icons.build,
-            title: 'AI Build Asistanı',
-            desc: 'Kahramanına uygun meta ve eğlenceli build önerileri.',
-            onTap: () {
-              debugPrint('Home -> AI Build Asistanı tapped');
-              Navigator.pushNamed(context, K.routeAiBuildEntry);
-            },
-          ),
-          const SizedBox(height: 12),
           ],
         ),
       ),

@@ -20,7 +20,6 @@ class BuildApiService {
     return Future.value(const []);
   }
   Future<List<BuildModel>> getBuildsByHero({String? heroId, String? heroName}) async {
-    final out = <BuildModel>[];
     final paths = <String>[];
     if (heroId != null && heroId.isNotEmpty) {
       paths.add('/builds?heroId=$heroId');
@@ -33,33 +32,38 @@ class BuildApiService {
       paths.add('/builds?heroName=$q');
       paths.add('/heroBuilds?heroName=$q');
     }
-    for (final p in paths) {
+    if (paths.isEmpty) return const [];
+    final futures = paths.map((p) async {
       try {
-        final res = await _client.get(Uri.parse(baseUrl + p)).timeout(const Duration(seconds: 8));
-        final list = await _decodeList(res);
-        if (list.isNotEmpty) { out.addAll(list); break; }
-      } catch (_) {}
-    }
-    return out;
+        final res = await _client.get(Uri.parse(baseUrl + p)).timeout(const Duration(seconds: 3));
+        return _decodeList(res);
+      } catch (_) { return Future.value(const <BuildModel>[]); }
+    }).toList();
+    final results = await Future.wait(futures, eagerError: false);
+    for (final r in results) { if (r.isNotEmpty) return r; }
+    return const [];
   }
   Future<List<BuildModel>> getAllBuilds() async {
     try {
-      final res = await _client.get(Uri.parse('$baseUrl/builds')).timeout(const Duration(seconds: 8));
+      final res = await _client.get(Uri.parse('$baseUrl/builds')).timeout(const Duration(seconds: 3));
       return _decodeList(res);
     } catch (_) { return const []; }
   }
   Future<BuildModel?> getRandomBuild() async {
     final paths = ['/builds/random', '/heroBuilds/random'];
-    for (final p in paths) {
+    final futures = paths.map((p) async {
       try {
-        final res = await _client.get(Uri.parse(baseUrl + p)).timeout(const Duration(seconds: 8));
+        final res = await _client.get(Uri.parse(baseUrl + p)).timeout(const Duration(seconds: 3));
         if (res.statusCode == 200) {
           final data = jsonDecode(res.body);
           if (data is Map) { return BuildModel.fromJson(Map<String, dynamic>.from(data)); }
           if (data is List && data.isNotEmpty) { return BuildModel.fromJson(Map<String, dynamic>.from(data.first)); }
         }
       } catch (_) {}
-    }
+      return null;
+    }).toList();
+    final results = await Future.wait(futures, eagerError: false);
+    for (final r in results) { if (r != null) return r; }
     return null;
   }
 }

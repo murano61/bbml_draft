@@ -102,7 +102,8 @@ class _AppState extends State<App> {
   Future<void> _prepare() async {
     setState(() => _loaded = true);
     try {
-      await HeroRepository().getHeroes();
+      var heroes = await HeroRepository().getHeroesCached();
+      if (heroes.isEmpty) { heroes = HeroRepository().getHeroesLocal(); }
     } catch (_) {}
     try {
       await MobileAds.instance.initialize();
