@@ -4,13 +4,13 @@ import '../../core/app_theme.dart';
 import '../../core/constants.dart';
 import '../../services/locale_service.dart';
 import '../../services/onesignal_service.dart';
-import '../../services/gemini_service.dart';
 import '../../services/ads_service.dart';
 import '../../services/ai_suggestion_manager.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:flutter/foundation.dart' show kReleaseMode;
 import 'dart:io' show Platform;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
+import '../../services/gemini_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _initBanner() async {
+    if (!AdsService.enabled) return;
     String unit = Platform.isAndroid ? 'ca-app-pub-2220990495085543/9607366049' : 'ca-app-pub-3940256099942544/2934735716';
     BannerAd? ad;
     Future<bool> load(String u) async {
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _openSettings(BuildContext context) async {
+    final existingKey = await GeminiService().getApiKey();
     await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -75,32 +77,47 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 8),
                   _LanguageList(),
                   const SizedBox(height: 16),
+                  if (kDebugMode) ...[
+                    Text('Gemini API Anahtarı (Debug)', style: Theme.of(context).textTheme.titleMedium),
+                    const SizedBox(height: 8),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: AppColors.accentPurple.withValues(alpha: 0.5)),
+                        color: AppColors.card,
+                      ),
+                      child: Text(existingKey ?? '(boş)', style: Theme.of(context).textTheme.bodyMedium),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
                   ListTile(title: Text('settings_subscription'.tr()), trailing: const Icon(Icons.credit_card), onTap: () {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, K.routeSubscription);
                   }),
+                  const SizedBox(height: 8),
                   
-              ListTile(title: const Text('Günlük AI hakkını sıfırla'), trailing: const Icon(Icons.refresh), onTap: () async {
-                final ok = await showDialog<bool>(context: context, builder: (ctx) {
-                  return AlertDialog(
-                    title: const Text('Günlük hakkı sıfırla'),
-                    content: const Text('Bugünkü ücretsiz ve reklam haklarını sıfırlamak istiyor musunuz?'),
-                    actions: [
-                      TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('İptal')),
-                      TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Sıfırla')),
-                    ],
-                  );
-                });
-                if (ok == true) {
-                  await AiSuggestionManager().resetToday();
-                  if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Günlük AI hakkı sıfırlandı')));
-                }
-              }),
+                  ListTile(title: const Text('Günlük AI hakkını sıfırla'), trailing: const Icon(Icons.refresh), onTap: () async {
+                    final ok = await showDialog<bool>(context: context, builder: (ctx) {
+                      return AlertDialog(
+                        title: const Text('Günlük hakkı sıfırla'),
+                        content: const Text('Bugünkü ücretsiz ve reklam haklarını sıfırlamak istiyor musunuz?'),
+                        actions: [
+                          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('İptal')),
+                          TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Sıfırla')),
+                        ],
+                      );
+                    });
+                    if (ok == true) {
+                      await AiSuggestionManager().resetToday();
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Günlük AI hakkı sıfırlandı')));
+                    }
+                  }),
                   ListTile(title: const Text('Privacy Policy'), trailing: const Icon(Icons.open_in_new), onTap: () => _openWeb(context, K.privacyUrl)),
                   ListTile(title: const Text('Apple Terms of Use'), trailing: const Icon(Icons.open_in_new), onTap: () => _openWeb(context, K.appleEulaUrl)),
                   const Divider(),
-                  
+
                   const SizedBox(height: 8),
                   Text('settings_hint'.tr(), style: Theme.of(context).textTheme.bodySmall),
                 ],
@@ -185,10 +202,37 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () => Navigator.pushNamed(context, K.routeAiSuggestion),
             ),
             const SizedBox(height: 12),
+            _featureCard(
+              context,
+              icon: Icons.grid_view,
+              title: '5’li Analiz',
+              desc: 'Takımını analiz et, skor ve öneriler al.',
+              onTap: () => Navigator.pushNamed(context, K.routeFiveAnalysis),
+            ),
+            const SizedBox(height: 12),
+          _featureCard(
+            context,
+            icon: Icons.auto_graph,
+            title: 'Draft Güç Analizi',
+            desc: 'Draft gücü, eşleşmeler ve kompozisyon karşılaştırması.',
+            onTap: () => Navigator.pushNamed(context, K.routeDraftPower),
+          ),
+          const SizedBox(height: 12),
+          _featureCard(
+            context,
+            icon: Icons.build,
+            title: 'AI Build Asistanı',
+            desc: 'Kahramanına uygun meta ve eğlenceli build önerileri.',
+            onTap: () {
+              debugPrint('Home -> AI Build Asistanı tapped');
+              Navigator.pushNamed(context, K.routeAiBuildEntry);
+            },
+          ),
+          const SizedBox(height: 12),
           ],
         ),
       ),
-      bottomNavigationBar: _banner != null && _bannerReady
+      bottomNavigationBar: AdsService.enabled && _banner != null && _bannerReady
           ? SafeArea(
               child: SizedBox(
                 width: _banner!.size.width.toDouble(),

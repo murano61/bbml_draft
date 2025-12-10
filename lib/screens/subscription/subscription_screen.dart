@@ -4,6 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:io' show Platform;
+import '../../services/ads_service.dart';
 import '../../core/constants.dart';
 
 class SubscriptionScreen extends StatefulWidget {
@@ -59,7 +60,8 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   }
 
   Future<void> _initBanner() async {
-    final unit = Platform.isAndroid ? 'ca-app-pub-2220990495085543/9607366049' : 'ca-app-pub-3940256099942544/2934735716';
+    if (!AdsService.enabled) return;
+    String unit = Platform.isAndroid ? 'ca-app-pub-2220990495085543/9607366049' : 'ca-app-pub-3940256099942544/2934735716';
     final ad = BannerAd(
       adUnitId: unit,
       request: const AdRequest(),
@@ -120,7 +122,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
       body: _web == null
           ? const Center(child: CircularProgressIndicator())
           : WebViewWidget(controller: _web!),
-      bottomNavigationBar: _banner != null && _bannerReady
+      bottomNavigationBar: AdsService.enabled && _banner != null && _bannerReady
           ? Container(
               height: _banner!.size.height.toDouble(),
               alignment: Alignment.center,

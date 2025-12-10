@@ -1,4 +1,4 @@
-package com.user06069517634.bbmldraft
+package com.murano.bbml_draft
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -7,6 +7,7 @@ import '../../models/hero_model.dart';
 import '../../services/hero_repository.dart';
 import '../../services/firebase_service.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../../services/ads_service.dart';
 
 class PopularHeroesScreen extends StatefulWidget {
   const PopularHeroesScreen({super.key});
@@ -109,7 +110,7 @@ class _PopularHeroesScreenState extends State<PopularHeroesScreen> {
                 ]),
               ),
             ),
-      bottomNavigationBar: _banner != null && _bannerReady
+      bottomNavigationBar: AdsService.enabled && _banner != null && _bannerReady
           ? Container(
               height: _banner!.size.height.toDouble(),
               alignment: Alignment.center,
@@ -235,7 +236,8 @@ class _PopularHeroesScreenState extends State<PopularHeroesScreen> {
   }
 
   Future<void> _initBanner() async {
-    final unit = 'ca-app-pub-2220990495085543/9607366049';
+    if (!AdsService.enabled) return;
+    const unit = 'ca-app-pub-2220990495085543/9607366049';
     final ad = BannerAd(
       adUnitId: unit,
       request: const AdRequest(),

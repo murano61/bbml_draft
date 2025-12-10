@@ -5,9 +5,14 @@ import '../../core/app_theme.dart';
 import '../../services/locale_service.dart';
 import '../../services/onesignal_service.dart';
 
-class LanguageSelectScreen extends StatelessWidget {
+class LanguageSelectScreen extends StatefulWidget {
   const LanguageSelectScreen({super.key});
 
+  @override
+  State<LanguageSelectScreen> createState() => _LanguageSelectScreenState();
+}
+
+class _LanguageSelectScreenState extends State<LanguageSelectScreen> {
   Map<String, (String name, String flag)> get _langs => {
         'tr': ('Türkçe', '🇹🇷'),
         'en': ('English', '🇺🇸'),
@@ -34,9 +39,7 @@ class LanguageSelectScreen extends StatelessWidget {
                 await context.setLocale(Locale(code));
                 await LocaleService.setLocaleCode(code);
                 await OneSignalService.setTags({'language': code});
-                // Dil seçimi sonrası her zaman onboarding göster
-                // Onboarding tamamlanınca Home'a geçilecek.
-                // ignore: use_build_context_synchronously
+                if (!mounted) return;
                 Navigator.pushReplacementNamed(context, K.routeOnboarding);
               },
             );

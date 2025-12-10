@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Build Asistanı Giriş</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#af4dfe",
+              "background-light": "#f7f5f8",
+              "background-dark": "#0C0620",
+              "custom-purple": "#6500BA",
+              "custom-pink": "#AD4CFE",
+              "custom-dark-navy": "#0C0620"
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            boxShadow: {
+              'glow-pink': '0 0 15px 5px rgba(173, 76, 254, 0.3)',
+              'glow-purple': '0 0 15px 5px rgba(101, 0, 186, 0.3)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col items-center overflow-hidden p-4">
+<!-- Background decorative elements -->
+<div class="absolute top-0 left-0 h-full w-full overflow-hidden">
+<div class="absolute -top-1/4 -left-1/4 h-1/2 w-1/2 rounded-full bg-custom-purple/20 blur-3xl" data-alt="Purple decorative light orb"></div>
+<div class="absolute bottom-0 -right-1/4 h-1/2 w-1/2 rounded-full bg-custom-pink/20 blur-3xl" data-alt="Pink decorative light orb"></div>
+</div>
+<div class="relative z-10 flex w-full max-w-md flex-col items-center">
+<!-- Header Section -->
+<div class="pt-16 pb-8 text-center">
+<h1 class="font-display text-3xl font-bold tracking-tight text-white">AI Build Asistanı</h1>
+<p class="font-display mt-2 text-base font-normal text-slate-300">Ne tür bir build önerisi almak istersin?</p>
+</div>
+<!-- Options Cards -->
+<div class="flex w-full flex-col gap-6">
+<!-- Card 1: Kahraman + Build -->
+<div class="group flex cursor-pointer flex-col gap-4 rounded-xl border border-white/10 bg-gradient-to-br from-custom-purple/50 to-custom-pink/40 p-5 shadow-glow-pink backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+<div class="flex items-center gap-4">
+<div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-black/30">
+<span class="material-symbols-outlined text-4xl text-white">person</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="font-display text-lg font-bold text-white">Kahraman + Build</p>
+<p class="font-display mt-1 text-sm font-normal leading-tight text-slate-300">Kahraman seç, AI sana en uygun meta ve eğlenceli build önerisini çıkarsın.</p>
+</div>
+</div>
+</div>
+<!-- Card 2: Rastgele Build -->
+<div class="group flex cursor-pointer flex-col gap-4 rounded-xl border border-white/10 bg-gradient-to-br from-custom-dark-navy/60 to-custom-purple/50 p-5 shadow-glow-purple backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+<div class="flex items-center gap-4">
+<div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-black/30">
+<span class="material-symbols-outlined text-4xl text-white">auto_awesome</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="font-display text-lg font-bold text-white">Rastgele Build</p>
+<p class="font-display mt-1 text-sm font-normal leading-tight text-slate-300">Kahraman seçmeden AI’dan tamamen rastgele veya eğlenceli bir build al.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

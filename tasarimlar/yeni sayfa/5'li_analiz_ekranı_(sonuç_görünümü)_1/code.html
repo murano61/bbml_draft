@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>5'li Analiz Ekranı (Boş Durum)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1f9ef9",
+            "background-light": "#f5f7f8",
+            "background-dark": "#0f1b23",
+          },
+          fontFamily: {
+            "display": ["Spline Sans"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          boxShadow: {
+            'neon-primary': '0 0 5px #1f9ef9, 0 0 10px #1f9ef9, 0 0 20px #1f9ef9, 0 0 40px #1f9ef9',
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL'0, 'wght'400, 'GRAD'0, 'opsz'24;
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<h2 class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1">5'li Analiz</h2>
+</div>
+<div class="flex flex-1 flex-col justify-center items-center p-4">
+<div class="grid grid-cols-5 gap-2 px-4 py-4 w-full max-w-sm">
+<div class="flex flex-col gap-2 text-center items-center">
+<div class="w-full aspect-square rounded-full border-2 border-dashed border-slate-700 bg-slate-800/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 text-2xl">add</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center items-center">
+<div class="w-full aspect-square rounded-full border-2 border-dashed border-slate-700 bg-slate-800/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 text-2xl">add</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center items-center">
+<div class="w-full aspect-square rounded-full border-2 border-dashed border-slate-700 bg-slate-800/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 text-2xl">add</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center items-center">
+<div class="w-full aspect-square rounded-full border-2 border-dashed border-slate-700 bg-slate-800/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 text-2xl">add</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center items-center">
+<div class="w-full aspect-square rounded-full border-2 border-dashed border-slate-700 bg-slate-800/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 text-2xl">add</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center text-center px-4 mt-8 flex-grow">
+<div class="relative w-48 h-48 mb-6 flex items-center justify-center">
+<div class="absolute w-full h-full bg-primary/10 rounded-full blur-2xl"></div>
+<span class="material-symbols-outlined text-9xl text-primary drop-shadow-[0_0_15px_rgba(31,158,249,0.5)]">groups_3</span>
+</div>
+<p class="text-lg font-semibold text-white max-w-xs">
+          5'li takımını oluştur, yapay zeka sana S-Tier olup olmadığını söylesin!
+        </p>
+</div>
+</div>
+<div class="p-4 sticky bottom-0 bg-background-dark/80 backdrop-blur-sm">
+<button class="w-full rounded-full bg-primary py-4 px-6 text-center text-lg font-bold text-white shadow-lg shadow-neon-primary transition-shadow hover:shadow-none">
+        5 kahraman seç
+      </button>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Draft Güç Analizi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6F2CFF",
+                        "background-light": "#f8f6f8",
+                        "background-dark": "#0E0B1F",
+                        "card-dark": "#1A152E",
+                        "advantage": "#10C299",
+                        "disadvantage": "#FF5353"
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <style>
+    .slot-avatar-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <style>
+    .text-gray-300 { color: #D6D1E6 !important; }
+    .text-gray-400 { color: #D6D1E6 !important; }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative w-full flex-col group/design-root overflow-x-hidden">
+ 
+<main class="p-4 pt-2">
+<div class="bg-card-dark rounded-lg p-4 mb-6">
+<div class="flex justify-between items-center text-white mb-3">
+<div class="text-center">
+<p class="text-sm font-medium text-gray-300">Senin Takımın</p>
+<p class="text-3xl font-bold text-advantage" id="score-ally">58</p>
+</div>
+<p class="text-gray-400 text-2xl font-light">VS</p>
+<div class="text-center">
+<p class="text-sm font-medium text-gray-300">Rakip Takım</p>
+<p class="text-3xl font-bold text-disadvantage" id="score-enemy">42</p>
+</div>
+</div>
+<div class="text-center mb-4">
+<p class="text-advantage text-base font-normal leading-normal" id="adv-text">Senin takımın draft avantajına sahip</p>
+</div>
+<div class="rounded-full bg-disadvantage h-2.5">
+<div class="h-2.5 rounded-full bg-advantage" id="adv-bar" style="width: 58%;"></div>
+</div>
+</div>
+<div class="mb-6">
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-4">Kahraman Seçimi</h2>
+<div id="hero-selection-root"></div>
+</div>
+</div>
+<button id="draft-submit-btn" class="w-full flex items-center justify-center rounded-full h-14 px-6 bg-primary text-white text-lg font-bold">
+                Draft Analizini Oluştur
+            </button>
+<div class="mt-8">
+<div class="bg-card-dark rounded-lg p-4 mb-6">
+<h3 class="text-white text-lg font-bold mb-4">Oyun Aşamalarına Göre Güç Eğrisi</h3>
+<div class="relative h-48 text-gray-400" id="power-curve">
+<svg class="absolute inset-0 w-full h-full" fill="none" height="192" preserveAspectRatio="none" viewBox="0 0 310 192" width="310" xmlns="http://www.w3.org/2000/svg">
+<line class="stroke-gray-700/50" stroke-dasharray="2 2" x1="155" x2="155" y2="172"></line>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="yourTeamFill" x1="155" x2="155" y1="0" y2="192">
+<stop stop-color="#10C299" stop-opacity="0.2"></stop>
+<stop offset="1" stop-color="#10C299" stop-opacity="0"></stop>
+</linearGradient>
+<linearGradient gradientUnits="userSpaceOnUse" id="opponentTeamFill" x1="155" x2="155" y1="0" y2="192">
+<stop stop-color="#FF5353" stop-opacity="0.2"></stop>
+<stop offset="1" stop-color="#FF5353" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M5 110 C 80 90, 230 50, 305 20 L 305 172 L 5 172 Z" fill="url(#yourTeamFill)"></path>
+<path d="M5 80 C 80 65, 230 40, 305 10 L 305 172 L 5 172 Z" fill="url(#opponentTeamFill)"></path>
+<path d="M5 110 C 80 90, 230 50, 305 20" stroke="#10C299" stroke-width="2.5"></path>
+<path d="M5 80 C 80 65, 230 40, 305 10" stroke="#FF5353" stroke-width="2.5"></path>
+</svg>
+<div class="absolute inset-x-0 bottom-0 flex justify-between px-1 text-sm text-gray-400">
+<span>Erken</span>
+<span>Orta</span>
+<span>Geç</span>
+</div>
+<div class="absolute text-xs" style="left: 1.6%; top: 54.1%;">
+<div class="flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#10C299] bg-[#151329] text-white" id="pc-ally-early">48</div>
+</div>
+<div class="absolute text-xs" style="left: 48.3%; top: 31.2%;">
+<div class="flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#10C299] bg-[#151329] text-white" id="pc-ally-mid">65</div>
+</div>
+<div class="absolute text-xs" style="right: 0%; top: 7.2%;">
+<div class="flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#10C299] bg-[#151329] text-white" id="pc-ally-late">82</div>
+</div>
+<div class="absolute text-xs" style="left: 1.6%; top: 38.5%;">
+<div class="flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#FF5353] bg-[#151329] text-white" id="pc-enemy-early">58</div>
+</div>
+<div class="absolute text-xs" style="left: 48.3%; top: 23.4%;">
+<div class="flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#FF5353] bg-[#151329] text-white" id="pc-enemy-mid">72</div>
+</div>
+<div class="absolute text-xs" style="right: 0%; top: 2.0%;">
+<div class="flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#FF5353] bg-[#151329] text-white" id="pc-enemy-late">88</div>
+</div>
+</div>
+</div>
+<h3 class="text-white text-xl font-bold mb-4">Koridor Eşleşme Analizi</h3>
+<div class="space-y-4" id="lane-section">
+<div class="bg-card-dark rounded-lg overflow-hidden">
+<div class="p-4">
+<p class="text-white font-semibold mb-3">EXP Lane Draft Özeti</p>
+<div class="flex items-center justify-between">
+<div class="flex flex-col items-center gap-2 w-1/3 text-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-primary/50" data-alt="Paquito hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFYpIB4ypqQZNdva3ENP1F1VgQhYVGb4TAtDKezuBc7ahCG1-4o6GQFxoQ8BwVuWcSmRRjjtIfXqzgI3GeHTfydCkpWmzDYW4qqbVdot5K-kSGIftEKdRlIyJXZQVtPax33vl6pcAVaXWH_Tl_xgK52DDIDlMAmcE4eW8RR9wtQu4aesBbebM7vzKzO0lB213ir6SxOqZoNsJ97tf_hgILTtbggUbIkQrXu2-_quQDccft_p8Ep-flRgQE1haTG_-uDrUV5M3VGZk");'></div>
+<p class="text-white text-sm font-medium">Paquito</p>
+</div>
+<div class="text-center">
+<p class="text-2xl font-bold text-white"><span class="text-advantage">62</span> - <span class="text-disadvantage">38</span></p>
+</div>
+<div class="flex flex-col items-center gap-2 w-1/3 text-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-disadvantage/50" data-alt="Yu Zhong hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuANGrHqNMQYOYO0QawHUnm2-GqqL4x6RN42NClAiLbVmul8VdP5nsJ6g1AsMampe3W8HljD0VltDXouTlQGjqDDX1UOBIBvRZY2JU4q4xfi_VxiJz-pTBRvOLKX93Fz13CU8KCMHQIxvQ7RRj1EkiqV3kUylwjVowGlBO8pd_g3lUNKx3sUvB4ukJMwlM8mg4EHhelc7WCLTWhABh5U4xYhLvQril_6xLXdf_eWWOvxq_2PWlfIgf8iyBBkkVJjkzjaKYfhCc3v4fg");'></div>
+<p class="text-white text-sm font-medium">Yu Zhong</p>
+</div>
+</div>
+<p class="text-gray-300 text-sm mt-3 text-center">Paquito'nun erken oyun hasarı ve mobilitesi, Yu Zhong'un sürdürülebilirliğine karşı avantaj sağlıyor. Koridoru domine etme potansiyeli yüksek.</p>
+</div>
+<div class="h-1 bg-disadvantage"><div class="h-1 bg-advantage" style="width: 62%;"></div></div>
+</div>
+<div class="bg-card-dark rounded-lg overflow-hidden">
+<div class="p-4">
+<p class="text-white font-semibold mb-3">Mid Lane Draft Özeti</p>
+<div class="flex items-center justify-between">
+<div class="flex flex-col items-center gap-2 w-1/3 text-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-primary/50" data-alt="Pharsa hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQ6DeXLYkYoyjjBklEPli-fxRkZrOfpKGSobeaWcSGlz0rtHZlQeQi-7hmBpsQB4MzVOFM23onNQ0EGH9hT73hxiu2NWR6AlohIZ8z_nXTIhlQturGoK6dcEaTAVK9eeFE9D9lCf2nEtaUDy41XDJFTlWJEEeeuV_sT4WW9SjV8oJwdFlh9vr2LV7Bb1v7aehpUeyOnXi5mXk1hCljaLEPZkd80hKGkbLpm5OGj8W9z4bNEpPE_NYHBVDRcmbEpwXCnorp73qlFMo");'></div>
+<p class="text-white text-sm font-medium">Pharsa</p>
+</div>
+<div class="text-center">
+<p class="text-2xl font-bold text-white"><span class="text-disadvantage">45</span> - <span class="text-advantage">55</span></p>
+</div>
+<div class="flex flex-col items-center gap-2 w-1/3 text-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-disadvantage/50" data-alt="Valentina hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD54Cuna1gdpD32o2HMnN7IXf-rOfiVyRigkNkvh8x5ciUNxWNAXUYvm63ufVg9Z25GLgospX-mLifJLvavODP8mDDsUXFAc07HoHNv0bvVrxvkWic9boHVUeRKXXxU82ffu07X1UFgyLG78yQig3z2GuEhcvdht63gtVu1vT_rrNALSOMDF7IXNY0dmgEaL0Hkywztkn6UIa4RHNrQzbAKWOkityetlCtJ6bHBPZngR_d4NideQwk4TW3CdkeKifSWRmb_JC3OguY");'></div>
+<p class="text-white text-sm font-medium">Valentina</p>
+</div>
+</div>
+<p class="text-gray-300 text-sm mt-3 text-center">Valentina'nın ulti kopyalama yeteneği, Pharsa'nın ultisine karşı büyük bir tehdit oluşturuyor. Koridor safhası dengeli geçse de takım savaşlarında Valentina daha etkili olabilir.</p>
+</div>
+<div class="h-1 bg-advantage"><div class="h-1 bg-disadvantage" style="width: 55%;"></div></div>
+</div>
+</div>
+<div class="space-y-6 mt-8">
+<div class="bg-card-dark rounded-lg p-4" id="synergy-section">
+<h3 class="text-white text-xl font-bold mb-4">Takım Uyumu</h3>
+<div class="space-y-6">
+<div class="text-center">
+<p class="text-white text-sm font-semibold mb-2">Kitle Kontrol Gücü (CC)</p>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 rounded-l-full bg-[#a855f7]/30"><div class="h-3 rounded-l-full bg-[#a855f7]" style="width: 70%;"></div></div>
+<div class="flex-1 h-3 rounded-r-full bg-disadvantage/30" dir="rtl"><div class="h-3 rounded-r-full bg-disadvantage" style="width: 60%;"></div></div>
+</div>
+<p class="text-gray-400 text-xs mt-2">Senin takımının kitle kontrolü daha fazla, takım savaşlarında avantajlısınız.</p>
+</div>
+<div class="text-center">
+<p class="text-white text-sm font-semibold mb-2">Burst</p>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 rounded-l-full bg-[#a855f7]/30"><div class="h-3 rounded-l-full bg-[#a855f7]" style="width: 55%;"></div></div>
+<div class="flex-1 h-3 rounded-r-full bg-disadvantage/30" dir="rtl"><div class="h-3 rounded-r-full bg-disadvantage" style="width: 80%;"></div></div>
+</div>
+<p class="text-gray-400 text-xs mt-2">Rakibin ani hasarı daha yüksek, dikkatli pozisyon alın.</p>
+</div>
+<div class="text-center">
+<p class="text-white text-sm font-semibold mb-2">Sustain / Healing</p>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 rounded-l-full bg-[#a855f7]/30"><div class="h-3 rounded-l-full bg-[#a855f7]" style="width: 40%;"></div></div>
+<div class="flex-1 h-3 rounded-r-full bg-disadvantage/30" dir="rtl"><div class="h-3 rounded-r-full bg-disadvantage" style="width: 75%;"></div></div>
+</div>
+<p class="text-gray-400 text-xs mt-2">Rakibin savaşta kalma süresi daha uzun.</p>
+</div>
+<div class="text-center">
+<p class="text-white text-sm font-semibold mb-2">Önde Durabilme (Frontline)</p>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 rounded-l-full bg-[#a855f7]/30"><div class="h-3 rounded-l-full bg-[#a855f7]" style="width: 65%;"></div></div>
+<div class="flex-1 h-3 rounded-r-full bg-disadvantage/30" dir="rtl"><div class="h-3 rounded-r-full bg-disadvantage" style="width: 50%;"></div></div>
+</div>
+<p class="text-gray-400 text-xs mt-2">Takımınızın ön hattı daha dayanıklı.</p>
+</div>
+<div class="text-center">
+<p class="text-white text-sm font-semibold mb-2">Objective Kontrol</p>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 rounded-l-full bg-[#a855f7]/30"><div class="h-3 rounded-l-full bg-[#a855f7]" style="width: 85%;"></div></div>
+<div class="flex-1 h-3 rounded-r-full bg-disadvantage/30" dir="rtl"><div class="h-3 rounded-r-full bg-disadvantage" style="width: 45%;"></div></div>
+</div>
+<p class="text-gray-400 text-xs mt-2">Lord ve Turtle gibi hedeflerde üstünlüğünüz var.</p>
+</div>
+</div>
+</div>
+<div class="bg-card-dark rounded-lg p-4">
+<h3 class="text-white text-xl font-bold mb-4">Meta Uygunluğu</h3>
+<div class="flex justify-around items-center mb-6">
+<div class="text-center">
+<p class="text-sm font-medium text-gray-300">Senin Takımın</p>
+<p class="text-4xl font-bold text-primary">78</p>
+</div>
+<div class="text-center">
+<p class="text-sm font-medium text-gray-300">Rakip Takım</p>
+<p class="text-4xl font-bold text-disadvantage">65</p>
+</div>
+</div>
+<div class="flex justify-around text-center text-white mb-4">
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-16 h-16">
+<svg class="w-full h-full" viewBox="0 0 36 36"><path class="stroke-primary/20" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"></path><path class="stroke-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="85, 100" stroke-linecap="round" stroke-width="3"></path></svg>
+<p class="absolute inset-0 flex items-center justify-center font-bold text-lg">85</p>
+</div>
+<p class="text-xs text-gray-400 mt-1">Erken Oyun</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-16 h-16">
+<svg class="w-full h-full" viewBox="0 0 36 36"><path class="stroke-primary/20" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"></path><path class="stroke-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="70, 100" stroke-linecap="round" stroke-width="3"></path></svg>
+<p class="absolute inset-0 flex items-center justify-center font-bold text-lg">70</p>
+</div>
+<p class="text-xs text-gray-400 mt-1">Orta Oyun</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-16 h-16">
+<svg class="w-full h-full" viewBox="0 0 36 36"><path class="stroke-primary/20" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"></path><path class="stroke-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="60, 100" stroke-linecap="round" stroke-width="3"></path></svg>
+<p class="absolute inset-0 flex items-center justify-center font-bold text-lg">60</p>
+</div>
+<p class="text-xs text-gray-400 mt-1">Geç Oyun</p>
+</div>
+</div>
+<p class="text-gray-300 text-sm mt-3 text-center">Takımınız, özellikle erken oyunda mevcut metaya çok uygun kahramanlara sahip. Bu avantajı kullanarak oyunu domine etme potansiyeliniz yüksek.</p>
+</div>
+<div class="bg-card-dark rounded-lg p-4">
+<h3 class="text-white text-xl font-bold mb-4">5v5 Kompozisyon Karşılaştırması</h3>
+<div class="grid grid-cols-2 gap-4 text-sm">
+<div class="text-center">
+<p class="text-advantage font-semibold mb-3">Senin Takımın</p>
+<ul class="space-y-2 text-left" id="comp-ally">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-advantage text-base">check</span><span class="text-gray-300">Erken 5v5 Teamfight</span></li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-advantage text-base">check</span><span class="text-gray-300">Jungle Baskısı</span></li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-advantage text-base">check</span><span class="text-gray-300">Siege Potansiyeli</span></li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-advantage text-base">check</span><span class="text-gray-300">Pick-off Potansiyeli</span></li>
+</ul>
+</div>
+<div class="text-center">
+<p class="text-disadvantage font-semibold mb-3">Rakip Takım</p>
+<ul class="space-y-2 text-left" id="comp-enemy">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-disadvantage text-base">close</span><span class="text-gray-300">Midgame Macro</span></li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-disadvantage text-base">close</span><span class="text-gray-300">Lategame Fight</span></li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-disadvantage text-base">close</span><span class="text-gray-300">Anti-siege</span></li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-disadvantage text-base">close</span><span class="text-gray-300">Splitpush Potansiyeli</span></li>
+</ul>
+</div>
+</div>
+<p class="text-gray-300 text-sm mt-4 text-center" id="comp-summary">Takım savaşlarında erken ve orta oyunda üstünlüğünüz var, ancak rakibin geç oyundaki gücüne ve harita kontrolüne karşı dikkatli olmalısınız.</p>
+</div>
+</div>
+<div class="bg-card-dark rounded-lg p-4 mt-8" id="evaluation-section">
+<h3 class="text-white text-xl font-bold mb-4">Draft Değerlendirmesi</h3>
+<div class="inline-block bg-advantage/20 text-advantage text-sm font-bold px-3 py-1 rounded-full mb-3" id="eval-winner">Draft'ı Kazanan: Senin Takımın</div>
+<p class="text-gray-300 text-sm mb-5" id="eval-reason">Takımınız, güçlü erken oyun baskısı ve alan kontrolü yetenekleriyle öne çıkıyor. Paquito ve Pharsa ile koridorlarda üstünlük kurarak rakibi kart kontrolünden düşürebilirsiniz. Rakibin geç oyunda güçlenen kompozisyonuna karşı erken ve orta oyunda avantajı skora yansıtmak anahtar olacak.</p>
+<h4 class="text-white font-semibold mb-3">Oyun Planı</h4>
+<ul class="space-y-2 text-sm">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base pt-0.5">check_circle</span>
+<p class="text-gray-300 flex-1" id="plan-early"><span class="font-semibold text-white">Erken Oyun:</span> EXP ve Mid koridorlarında agresif oynayarak ilk Turtle'ı hedefleyin.</p>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base pt-0.5">check_circle</span>
+<p class="text-gray-300 flex-1" id="plan-mid"><span class="font-semibold text-white">Orta Oyun Makro:</span> Pharsa'nın ultisiyle takım savaşları başlatın ve kuleleri zorlayın. Rakip ormanını istila edin.</p>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base pt-0.5">check_circle</span>
+<p class="text-gray-300 flex-1" id="plan-late"><span class="font-semibold text-white">Geç Oyun Riski:</span> Rakibin hasar potansiyeli arttığında ayrık ittirmelere karşı dikkatli olun ve takım olarak hareket edin.</p>
+</li>
+</ul>
+</div>
+</div>
+</main>
+</div>
+<script>
+  (function(){
+    const map = {
+      'paquito':'paquito','pharsa':'pharsa','yu zhong':'yu_zhong','valentina':'valentina',
+      'miya':'miya','x-borg':'x-borg','lunox':'lunox','lancelot':'lancelot','tigreal':'tigreal',
+      'moskov':'moskov','thamuz':'thamuz','fanny':'fanny','franco':'franco'
+    };
+    document.querySelectorAll('[data-alt]').forEach(el=>{
+      try {
+        const nameEl = el.parentElement?.querySelector('p');
+        const name = (nameEl?.textContent||'').trim().toLowerCase();
+        const id = map[name];
+        if (id) {
+          const test = new Image();
+          const assetUrl = `assets/heroes/${id}.png`;
+          test.onload = ()=>{ el.style.backgroundImage = `url('${assetUrl}')`; };
+          test.onerror = ()=>{};
+          test.src = assetUrl;
+        }
+      } catch(e) {}
+    });
+  })();
+</script>
+<script>
+  (function(){
+    const state = { ally: {}, enemy: {} };
+    window.state = state;
+    const roleKeyToLaneText = (rk)=>({exp:'EXP Lane', mid:'Mid Lane', gold:'Gold Lane', jungle:'Jungle', roam:'Roam'}[rk]||rk);
+    const laneKeys = ['exp','jungle','mid','gold','roam'];
+    function safePick(team, laneText){
+      try {
+        if (window.BBML && typeof BBML.postMessage === 'function') {
+          BBML.postMessage(JSON.stringify({type:'pick', side: team, lane: laneText}));
+        }
+      } catch(_){ }
+    }
+    function slotHtml(team, key){
+      const laneText = roleKeyToLaneText(key);
+      const isAlly = team==='ally';
+      const entry = (state[team]||{})[key] || null;
+      const filledAvatar = `<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-10 w-10 border-2 ${isAlly?'border-primary/50':'border-disadvantage/50'}"></div>`;
+      const emptyAvatar = `<div class="bg-black/20 border-2 border-dashed border-gray-600 aspect-square rounded-full h-10 w-10 flex items-center justify-center text-gray-400"><span class="material-symbols-outlined text-xl">add</span></div>`;
+      const infoFilled = `<div class="flex-1"><p class="text-white text-sm font-medium truncate">${entry? String(entry.hero||''): ''}</p><p class="text-gray-400 text-xs">${laneText}</p></div>`;
+      const infoEmpty = `<div class="flex-1"><button class="w-full text-left text-primary text-sm font-medium">${laneText} Seç</button></div>`;
+      const row = document.createElement('div');
+      row.className = 'flex items-center gap-3 bg-card-dark p-2 rounded-lg';
+      row.setAttribute('data-slot', team+'|'+laneText);
+      row.style.position='relative';
+      row.innerHTML = (entry ? (filledAvatar + infoFilled) : (emptyAvatar + infoEmpty));
+      Array.from(row.querySelectorAll('*')).forEach(el=>{ try{ el.style.pointerEvents='none'; }catch{} });
+      const ov = document.createElement('div');
+      ov.onclick = function(){ safePick(team, laneText); };
+      ov.style.position='absolute'; ov.style.left='0'; ov.style.top='0'; ov.style.right='0'; ov.style.bottom='0'; ov.style.width='100%'; ov.style.height='100%'; ov.style.zIndex='999'; ov.style.background='rgba(0,0,0,0)'; ov.style.pointerEvents='auto';
+      row.appendChild(ov);
+      return row;
+    }
+    function renderHeroSelection(){
+      const root = document.getElementById('hero-selection-root');
+      if (!root) return;
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-2 gap-4';
+      const allyCol = document.createElement('div');
+      const enemyCol = document.createElement('div');
+      const allyTitle = document.createElement('p'); allyTitle.className='text-center text-gray-300 font-semibold mb-3'; allyTitle.textContent='Senin Takımın';
+      const enemyTitle = document.createElement('p'); enemyTitle.className='text-center text-gray-300 font-semibold mb-3'; enemyTitle.textContent='Rakip Takım';
+      const allyList = document.createElement('div'); allyList.className='flex flex-col gap-3';
+      const enemyList = document.createElement('div'); enemyList.className='flex flex-col gap-3';
+      laneKeys.forEach(k=>{ allyList.appendChild(slotHtml('ally', k)); });
+      laneKeys.forEach(k=>{ enemyList.appendChild(slotHtml('enemy', k)); });
+      allyCol.appendChild(allyTitle); allyCol.appendChild(allyList);
+      enemyCol.appendChild(enemyTitle); enemyCol.appendChild(enemyList);
+      root.innerHTML=''; grid.appendChild(allyCol); grid.appendChild(enemyCol); root.appendChild(grid);
+    }
+    function renderSlot(team, roleKey){
+      const laneText = roleKeyToLaneText(roleKey);
+      const sel = document.querySelector('[data-slot="'+team+'|'+laneText+'"]');
+      if (!sel) return;
+      const entry = (state[team]||{})[roleKey];
+      if (!entry) return;
+      const isAlly = team==='ally';
+      let avatarEl = sel.querySelector('.bg-center.bg-no-repeat.aspect-square.bg-cover.rounded-full.h-10.w-10');
+      if (!avatarEl) avatarEl = sel.querySelector('.bg-black/20');
+      if (!avatarEl) return;
+      avatarEl.className = 'bg-center bg-no-repeat aspect-square bg-cover rounded-full h-10 w-10 border-2 '+(isAlly?'border-primary/50':'border-disadvantage/50');
+      avatarEl.style.backgroundColor = '#151329';
+      const imgVal = String(entry.image || entry.imageUrl || '').trim();
+      const heroName = String(entry.hero||'').trim();
+      let src = '';
+      if (imgVal) {
+        const isHttp = /^https?:/i.test(imgVal);
+        src = isHttp ? imgVal : ('assets/heroes/'+imgVal);
+      } else if (heroName) {
+        const normId = heroName.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_\-]/g,'');
+        src = 'assets/heroes/'+normId+'.png';
+      }
+      let imgEl = avatarEl.querySelector('img');
+      if (!imgEl) { imgEl = document.createElement('img'); imgEl.className = 'h-10 w-10 rounded-full object-cover'; avatarEl.appendChild(imgEl); }
+      if (src) {
+        try { avatarEl.style.backgroundImage = "url('"+src+"')"; } catch(_){}
+        imgEl.src = src;
+      } else {
+        imgEl.removeAttribute('src');
+      }
+      imgEl.alt = heroName || 'hero';
+      try { console.log('renderSlot', roleKey, heroName, (entry && (entry.image || entry.imageUrl)) || null, src); } catch(_){ }
+      const info = sel.querySelector('.flex-1');
+      if (info){
+        info.innerHTML = '<p class="text-white text-sm font-medium truncate">'+String(entry.hero||'')+'</p><p class="text-gray-400 text-xs">'+roleKeyToLaneText(roleKey)+'</p>';
+      }
+    }
+    window.updateHero = function(team, roleKey, hero){
+      if (!state[team]) state[team] = {}; 
+      state[team][roleKey] = hero; 
+      try { console.log('updateHero', team, roleKey, hero && hero.hero, hero && (hero.image || hero.imageUrl)); } catch(_){ }
+      renderHeroSelection();
+      try {
+        setTimeout(function(){
+          laneKeys.forEach(function(k){ try{ renderSlot('ally', k); }catch(_){} });
+          laneKeys.forEach(function(k){ try{ renderSlot('enemy', k); }catch(_){} });
+        }, 0);
+      } catch(_){ }
+    };
+    renderHeroSelection();
+    const submitBtn = document.getElementById('draft-submit-btn') || Array.from(document.querySelectorAll('button')).find(b=>((b.textContent||'').trim().toLowerCase().includes('draft analizini oluştur')));
+    if (submitBtn){
+      submitBtn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        try { console.log('DEBUG SUBMIT CLICKED'); } catch(_){}
+        function toIdMap(team){
+          const src = (state[team]||{});
+          const out = {};
+          ['exp','jungle','mid','gold','roam'].forEach(function(k){
+            const h = src[k];
+            if (h && typeof h === 'object' && h.id) { out[k] = String(h.id); }
+          });
+          return out;
+        }
+        const payloadObj = { ally: toIdMap('ally'), enemy: toIdMap('enemy') };
+        try { console.debug('DEBUG SUBMIT PAYLOAD', payloadObj); } catch(_){}
+        const s = encodeURIComponent(JSON.stringify(payloadObj));
+        try {
+          if (window.BBML && typeof BBML.postMessage === 'function') {
+            try { console.debug('submit sent to Flutter'); } catch(_){}
+            BBML.postMessage(JSON.stringify({ type: 'submit', json: s }));
+          } else {
+            alert('BBML kanalı bulunamadı');
+          }
+        } catch(e){ alert('submit hata: '+e); }
+      });
+    }
+    const hideAnalysis = ()=>{
+      const topCards = Array.from(document.querySelectorAll('.bg-card-dark.rounded-lg.p-4'));
+      if (topCards.length>0){
+        // first score card
+        topCards[0].style.display='none';
+      }
+      const hideByH3 = (t)=>{
+        const h3 = Array.from(document.querySelectorAll('h3')).find(x=> (x.textContent||'').trim().toLowerCase() === t.toLowerCase());
+        if (h3){ const sec = h3.closest('.bg-card-dark'); if (sec) sec.style.display='none'; }
+      };
+      hideByH3('Oyun Aşamalarına Göre Güç Eğrisi');
+      hideByH3('5v5 Kompozisyon Karşılaştırması');
+      hideByH3('Takım Uyumu');
+      hideByH3('Meta Uygunluğu');
+      const k = Array.from(document.querySelectorAll('h3')).find(x=> (x.textContent||'').trim().toLowerCase()==='koridor eşleşme analizi');
+      if (k){ const sec = k.parentElement; if (sec) sec.style.display='none'; }
+      const d = Array.from(document.querySelectorAll('h3')).find(x=> (x.textContent||'').trim().toLowerCase()==='draft değerlendirmesi');
+      if (d){ const sec = d.closest('.bg-card-dark'); if (sec) sec.style.display='none'; }
+    };
+    const showAnalysis = ()=>{
+      const blocks = [
+        '.bg-card-dark.rounded-lg.p-4.mb-6',
+        'h3:text(Oyun Aşamalarına Göre Güç Eğrisi)',
+        'h3:text(5v5 Kompozisyon Karşılaştırması)',
+        'h3:text(Takım Uyumu)',
+        'h3:text(Meta Uygunluğu)',
+        'h3:text(Koridor Eşleşme Analizi)',
+        'h3:text(Draft Değerlendirmesi)'
+      ];
+      const showByH3 = (t)=>{
+        const h3 = Array.from(document.querySelectorAll('h3')).find(x=> (x.textContent||'').trim().toLowerCase() === t.toLowerCase());
+        if (h3){ const sec = h3.closest('.bg-card-dark'); if (sec) sec.style.display=''; else { const p = h3.parentElement; if (p) p.style.display=''; } }
+      };
+      const topCard = Array.from(document.querySelectorAll('.bg-card-dark.rounded-lg.p-4'))[0];
+      if (topCard) topCard.style.display='';
+      showByH3('Oyun Aşamalarına Göre Güç Eğrisi');
+      showByH3('5v5 Kompozisyon Karşılaştırması');
+      showByH3('Takım Uyumu');
+      showByH3('Meta Uygunluğu');
+      const k = Array.from(document.querySelectorAll('h3')).find(x=> (x.textContent||'').trim().toLowerCase()==='koridor eşleşme analizi');
+      if (k){ const sec = k.parentElement; if (sec) sec.style.display=''; }
+      showByH3('Draft Değerlendirmesi');
+    };
+    hideAnalysis();
+    window.showAnalysis = showAnalysis;
+  })();
+</script>
+<script>
+  (function(){
+    function num(v){ try{ var n = Number(v); if (isNaN(n)) return 0; return Math.max(0, Math.min(100, Math.round(n))); }catch(_){ return 0; } }
+    function setText(sel, val){ var el = document.querySelector(sel); if (el) el.textContent = val; }
+    function setWidth(sel, pct){ var el = document.querySelector(sel); if (el) el.style.width = Math.max(0, Math.min(100, pct)) + '%'; }
+    function avg(arr){ if (!arr || !arr.length) return 0; var s=0; for (var i=0;i<arr.length;i++){ s+=Number(arr[i]||0);} return Math.round(s/arr.length); }
+    window.populateAnalysis = function(payload){
+      var data = (typeof payload === 'string') ? JSON.parse(payload) : payload;
+      try {
+        if (data && data.overall_score) {
+          var mapped = {};
+          mapped.draftPower = { ally: Number((data.overall_score.ally||0)), enemy: Number((data.overall_score.enemy||0)) };
+          mapped.draftAdvantageText = String(data.overall_score.advantage_text||'');
+          var pc = data.power_curve||{}; var aPc = pc.ally||{}, ePc = pc.enemy||{};
+          mapped.powerCurve = { early: { ally: Number(aPc.early||0), enemy: Number(ePc.early||0) }, mid: { ally: Number(aPc.mid||0), enemy: Number(ePc.mid||0) }, late: { ally: Number(aPc.late||0), enemy: Number(ePc.late||0) } };
+          var lm = data.lane_matchups||{}; var lmKeys = ['EXP','Mid','Gold','Jungle','Roam']; var laneComp = {};
+          lmKeys.forEach(function(k){ var it = lm[k]||{}; laneComp[k] = { allyScore: Number(it.ally_score||0), enemyScore: Number(it.enemy_score||0), summary: String(it.summary||'') }; });
+          mapped.laneComparison = laneComp;
+          var ts = data.team_synergy||{}; mapped.teamSynergy = { cc: { ally: Number((ts.crowd_control||{}).ally_score||0), enemy: Number((ts.crowd_control||{}).enemy_score||0) }, burst: { ally: Number((ts.burst||{}).ally_score||0), enemy: Number((ts.burst||{}).enemy_score||0) }, sustain: { ally: Number((ts.sustain||{}).ally_score||0), enemy: Number((ts.sustain||{}).enemy_score||0) }, frontline: { ally: Number((ts.frontline||{}).ally_score||0), enemy: Number((ts.frontline||{}).enemy_score||0) }, objective: { ally: Number((ts.objective_control||{}).ally_score||0), enemy: Number((ts.objective_control||{}).enemy_score||0) } };
+          var mf = data.meta_fit||{}; mapped.metaFit = { ally: { early: Number(((mf.ally||{}).early||0)), mid: Number(((mf.ally||{}).mid||0)), late: Number(((mf.ally||{}).late||0)) }, enemy: { early: Number(((mf.enemy||{}).early||0)), mid: Number(((mf.enemy||{}).mid||0)), late: Number(((mf.enemy||{}).late||0)) }, summary: String(mf.summary||'') };
+          var tch = data.team_comp_highlights||{}; mapped.compositionComparison = { allyAdvantages: Array.isArray(tch.ally)? tch.ally.map(String) : [], enemyAdvantages: Array.isArray(tch.enemy)? tch.enemy.map(String) : [], summary: '' };
+          var de = data.draft_evaluation||{}; var w = String(de.winner||'').toLowerCase(); mapped.draftWinner = w==='enemy'?'Enemy':'Ally'; mapped.draftWinnerReason = String(de.winner_text||''); var gp = de.gameplan||{}; mapped.gamePlan = { early: String(gp.early||''), mid: String(gp.mid||''), late: String(gp.late||'') };
+          data = mapped;
+        }
+      } catch(_){}
+      try {
+        var dp = data.draftPower || {}; var ally = num(dp.ally), enemy = num(dp.enemy);
+        setText('#score-ally', ally.toString());
+        setText('#score-enemy', enemy.toString());
+        var sum = ally + enemy; var leftPct = sum>0 ? Math.round(ally*100/sum) : 0; setWidth('#adv-bar', leftPct);
+        if (data.draftAdvantageText){ setText('#adv-text', String(data.draftAdvantageText)); }
+        var pc = data.powerCurve || {}; var e = pc.early || {}, m = pc.mid || {}, l = pc.late || {};
+        setText('#pc-ally-early', num(e.ally).toString());
+        setText('#pc-enemy-early', num(e.enemy).toString());
+        setText('#pc-ally-mid', num(m.ally).toString());
+        setText('#pc-enemy-mid', num(m.enemy).toString());
+        setText('#pc-ally-late', num(l.ally).toString());
+        setText('#pc-enemy-late', num(l.enemy).toString());
+        var lanes = data.laneComparison || {}; var order = ['EXP','Mid','Gold','Jungle','Roam'];
+        var laneRoot = document.querySelector('#lane-section');
+        if (laneRoot){ laneRoot.innerHTML = ''; for (var i=0;i<order.length;i++){ var k = order[i]; var it = lanes[k]; if (!it) continue; var lsA = num(it.allyScore), lsE = num(it.enemyScore); var card = document.createElement('div'); card.className='bg-card-dark rounded-lg overflow-hidden'; card.innerHTML = '<div class="p-4">\n<p class="text-white font-semibold mb-3">'+k+' Lane Draft Özeti</p>\n<div class="flex items-center justify-between">\n<div class="flex flex-col items-center gap-2 w-1/3 text-center"><div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-primary/50"></div><p class="text-white text-sm font-medium">'+(k)+'</p></div>\n<div class="text-center"><p class="text-2xl font-bold text-white"><span class="text-advantage">'+lsA+'</span> - <span class="text-disadvantage">'+lsE+'</span></p></div>\n<div class="flex flex-col items-center gap-2 w-1/3 text-center"><div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-disadvantage/50"></div><p class="text-white text-sm font-medium">'+(k)+'</p></div>\n</div>\n<p class="text-gray-300 text-sm mt-3 text-center">'+(it.summary||'')+'</p>\n</div>\n<div class="h-1 bg-disadvantage"><div class="h-1 bg-advantage" style="width: '+lsA+'%;"></div></div>';
+          laneRoot.appendChild(card);
+          try {
+            var keyMap = {'EXP':'exp','Mid':'mid','Gold':'gold','Jungle':'jungle','Roam':'roam'};
+            var rk = keyMap[k] || k.toLowerCase();
+            var allyEntry = (window.state && window.state.ally && window.state.ally[rk]) || null;
+            var enemyEntry = (window.state && window.state.enemy && window.state.enemy[rk]) || null;
+            var allyImg = null, enemyImg = null;
+            if (allyEntry){ allyImg = (typeof allyEntry === 'string') ? allyEntry+'.png' : (allyEntry.image || allyEntry.imageUrl || null); }
+            if (enemyEntry){ enemyImg = (typeof enemyEntry === 'string') ? enemyEntry+'.png' : (enemyEntry.image || enemyEntry.imageUrl || null); }
+            var avs = card.querySelectorAll('.bg-center.bg-no-repeat.aspect-square.bg-cover.rounded-full.h-12.w-12');
+            if (avs && avs[0]){
+              if (allyImg){ var aIsHttp = /^https?:/i.test(allyImg); var aUrl = aIsHttp ? allyImg : ('assets/heroes/'+allyImg); avs[0].style.backgroundImage = "url('"+aUrl+"')"; }
+              else if (allyEntry && allyEntry.hero){ var idA = String(allyEntry.hero).toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_\-]/g,''); var urlA = 'assets/heroes/'+idA+'.png'; var testA = new Image(); testA.onload = ()=>{ avs[0].style.backgroundImage = "url('"+urlA+"')"; }; testA.onerror = ()=>{ console.warn('Lane ally image missing for', allyEntry.hero); }; testA.src = urlA; }
+            }
+            if (avs && avs[1]){
+              if (enemyImg){ var eIsHttp = /^https?:/i.test(enemyImg); var eUrl = eIsHttp ? enemyImg : ('assets/heroes/'+enemyImg); avs[1].style.backgroundImage = "url('"+eUrl+"')"; }
+              else if (enemyEntry && enemyEntry.hero){ var idE = String(enemyEntry.hero).toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_\-]/g,''); var urlE = 'assets/heroes/'+idE+'.png'; var testE = new Image(); testE.onload = ()=>{ avs[1].style.backgroundImage = "url('"+urlE+"')"; }; testE.onerror = ()=>{ console.warn('Lane enemy image missing for', enemyEntry.hero); }; testE.src = urlE; }
+            }
+          } catch(_){ }
+        }}
+        var syn = data.teamSynergy || {}; var synMap = { cc:'Kitle Kontrol Gücü (CC)', burst:'Burst', sustain:'Sustain / Healing', frontline:'Önde Durabilme (Frontline)', objective:'Objective Kontrol' };
+        var synRoot = document.querySelector('#synergy-section .space-y-6');
+        if (synRoot){ synRoot.innerHTML=''; for (var key in syn){ if (!syn.hasOwnProperty(key)) continue; var v = syn[key]||{}; var a = num(v.ally), b = num(v.enemy); var block = document.createElement('div'); block.className='text-center'; block.innerHTML = '<p class="text-white text-sm font-semibold mb-2">'+(synMap[key]||key)+'</p>\n<div class="flex items-center gap-2"><div class="flex-1 h-3 rounded-l-full bg-[#a855f7]/30"><div class="h-3 rounded-l-full bg-[#a855f7]" style="width: '+a+'%;"></div></div><div class="flex-1 h-3 rounded-r-full bg-disadvantage/30" dir="rtl"><div class="h-3 rounded-r-full bg-disadvantage" style="width: '+b+'%;"></div></div></div>';
+          synRoot.appendChild(block);
+        }}
+        var mf = data.metaFit || {}; var allyM = mf.ally||{}, enemyM = mf.enemy||{}; var allyOverall = avg([allyM.early, allyM.mid, allyM.late]); var enemyOverall = avg([enemyM.early, enemyM.mid, enemyM.late]); setText('#evaluation-section ~ .bg-card-dark .text-4xl.font-bold.text-primary', allyOverall.toString()); setText('#evaluation-section ~ .bg-card-dark .text-4xl.font-bold.text-disadvantage', enemyOverall.toString()); var metaSec = Array.from(document.querySelectorAll('h3')).find(function(x){ return (x.textContent||'').trim().toLowerCase()==='meta uygunluğu'; }); if (metaSec){ var sec = metaSec.closest('.bg-card-dark'); if (sec){ var svgs = sec.querySelectorAll('svg'); var vals = [num(allyM.early), num(allyM.mid), num(allyM.late)]; for (var i=0;i<Math.min(3, svgs.length); i++){ var paths = svgs[i].querySelectorAll('path.stroke-primary'); if (paths && paths[0]) { paths[0].setAttribute('stroke-dasharray', vals[i]+', 100'); } var numEl = svgs[i].parentElement && svgs[i].parentElement.parentElement ? svgs[i].parentElement.parentElement.querySelector('p.font-bold.text-lg') : null; if (numEl){ numEl.textContent = String(vals[i]); }
+          }
+        }}
+        var comp = data.compositionComparison || {}; var ca = Array.isArray(comp.allyAdvantages)? comp.allyAdvantages : []; var ce = Array.isArray(comp.enemyAdvantages)? comp.enemyAdvantages : []; var caEl = document.querySelector('#comp-ally'); var ceEl = document.querySelector('#comp-enemy'); if (caEl){ caEl.innerHTML=''; ca.forEach(function(t){ var li = document.createElement('li'); li.className='flex items-center gap-2'; li.innerHTML = '<span class="material-symbols-outlined text-advantage text-base">check</span><span class="text-gray-300">'+t+'</span>'; caEl.appendChild(li); }); } if (ceEl){ ceEl.innerHTML=''; ce.forEach(function(t){ var li = document.createElement('li'); li.className='flex items-center gap-2'; li.innerHTML = '<span class="material-symbols-outlined text-disadvantage text-base">close</span><span class="text-gray-300">'+t+'</span>'; ceEl.appendChild(li); }); }
+        if (comp.summary){ setText('#comp-summary', String(comp.summary)); }
+        if (data.draftWinner){ var win = String(data.draftWinner); var wEl = document.querySelector('#eval-winner'); if (wEl){ if (win.toLowerCase()==='ally'){ wEl.className='inline-block bg-advantage/20 text-advantage text-sm font-bold px-3 py-1 rounded-full mb-3'; wEl.textContent = "Draft'ı Kazanan: Senin Takımın"; } else { wEl.className='inline-block bg-disadvantage/20 text-disadvantage text-sm font-bold px-3 py-1 rounded-full mb-3'; wEl.textContent = "Draft'ı Kazanan: Rakip Takım"; } } }
+        if (data.draftWinnerReason){ setText('#eval-reason', String(data.draftWinnerReason)); }
+        var gp = data.gamePlan || {}; if (gp.early){ setText('#plan-early', 'Erken Oyun: '+String(gp.early)); } if (gp.mid){ setText('#plan-mid', 'Orta Oyun Makro: '+String(gp.mid)); } if (gp.late){ setText('#plan-late', 'Geç Oyun Riski: '+String(gp.late)); }
+      } catch(_){ }
+    };
+  })();
+</script>
+</body></html>

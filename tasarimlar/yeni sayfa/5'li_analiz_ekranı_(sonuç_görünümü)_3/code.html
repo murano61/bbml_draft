@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>5'li Analiz Ekranı</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1f9ef9",
+            "background-light": "#f5f7f8",
+            "background-dark": "#0f1b23",
+          },
+          fontFamily: {
+            "display": ["Spline Sans"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL'0, 'wght'400, 'GRAD'0, 'opsz'24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<h2 class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1">5'li Analiz</h2>
+<div class="flex items-center justify-end gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent text-black dark:text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined text-black dark:text-white text-2xl">ios_share</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 w-12 bg-transparent text-black dark:text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined text-black dark:text-white text-2xl">bookmark</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-5 gap-2 px-4 py-4">
+<div class="flex flex-col gap-2 text-center">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-2 border-primary/50" data-alt="Jungle hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBv9voZvEPnTphryoPriY0a9jHtmkWE04oUu84trFK6OMPfWgDEGmAw6sYgog1Ue5pFgB76ZW7Qh8fRhlBe-U83Mk1J2djMzWdmfgIE_ZRUUv0UDtgpd6DntK6vePq5iwPClU8rkxwwhQ1h-UzziZQ4pLtl0Ehb9RjriYC2ObuWwtBHEEz6dEum-nnIbE44bzDM3iA9I5TenHAnoit_e6RzSPHvGEnRHP7BtA98L_TxJcoQawgvaSj7lhGcWOzsx9UkmYf61pbdQyg");'></div>
+<div>
+<p class="text-black dark:text-white text-xs font-medium leading-normal">Jungle</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-2 border-primary/50" data-alt="Gold lane hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9PTuArm43vvfmaXDYnAPKtEai1lwkFBxakRI_mwXfhaHJvsW5Xgre4f_n8QAZNorNmr4rgecKr2ruiJhnAJZJyunkKaI3k-iWh2c6HfNUHkh6qJfiEJ7UCqnNq6E2PL_bgNaaKO6t5xSuu2chw6uvPLTt8smmwaCjCufNukT2WfoytpFDZOSeWUuVScbzQJAvGo4gcRU1q9l2O4kBoQ7eYHUVNSNzGY-aR6kz2cww7NUyIaYc3sj2N9orerCxQ25Y5W8A0BlqYk0");'></div>
+<div>
+<p class="text-black dark:text-white text-xs font-medium leading-normal">Gold</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-2 border-primary/50" data-alt="Mid lane hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCDKigbv4ADha2qlg-jJFOynkrfL77K1G80Ai-cKc1VHdRoDaRex4JWUjn5oRG0FF3tn6AfyhZ_ib-YxopiPonf8FZrOP6aZi671J2ozvPWs1egAeB09OKhVcuYi68a9aHbk7ofF7WnYBt7hnulhVeeCB7eudFRtHDJKZr2V8dLY6TAuPuoA6grzN1dY_Sg2vZic7sht8Z8QSMnyyTMM9SpeC0huj6t3dTghHeW4dILHERBsu42u4hcCS5GD55rw0VvJdtMnL5l-wk");'></div>
+<div>
+<p class="text-black dark:text-white text-xs font-medium leading-normal">Mid</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-2 border-primary/50" data-alt="EXP lane hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKU13xuLPRGLSlL5GSExkEcbYKw_OTYRDPGCoq3c3UEicEmt0YkF7HHywxCivAg1CTgcDnKj2e0G_yXSTZekXrcwEjSF7O-19ZydKtLMsHcLKuSa1hPImg8xsdnx3z00O0i0u_Si8szFGtJFgmvDXfs4ZcegAhEF_BbUia1iDFJRPFlZfkOWr7MdcJKrIdHNaiPy13v8JR1W14pcGD7xeZg93y1XoHru4Pry9txcURhY-uRFl6ebhzLnS-s128FeI_HAxoSmIcN5E");'></div>
+<div>
+<p class="text-black dark:text-white text-xs font-medium leading-normal">EXP</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 text-center">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full border-2 border-primary/50" data-alt="Roam hero avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBqwRSNGlDtL-MlbEtSs9MZITLLb4f5efS1cotcWAx2vPLXj1-Zib3klA2i0JtIliHlFL3Gz0WGOR-ICk9RIFIyeqQDvZSr7LYfoz49b9EAPkd6lV1Dx0Z4FA-4HniF38GxjZrRivwFbdQe5sFBszXn9500Dic5cDnE9G0lUJx8GcDwI934CHMczg75vJEjwS3XZf6CSk9RvlftendAIxaJ4MXt802SmsnHWWnObHx7q2enSGRo8IOCjNr4w8adJ0Drj5lkS9YVumY");'></div>
+<div>
+<p class="text-black dark:text-white text-xs font-medium leading-normal">Roam</p>
+</div>
+</div>
+</div>
+<div class="p-4">
+<div class="flex flex-col items-center justify-start rounded-xl bg-slate-200/50 dark:bg-slate-800/50 p-6 text-center shadow-lg backdrop-blur-sm">
+<div class="relative flex h-40 w-40 items-center justify-center">
+<svg class="absolute inset-0 h-full w-full" viewBox="0 0 36 36">
+<path class="text-slate-300/50 dark:text-slate-700/50" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="86, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<p class="text-5xl font-bold text-black dark:text-white">86</p>
+</div>
+<div class="mt-4 flex flex-col gap-1">
+<p class="text-lg font-bold text-black dark:text-white">Tier: A</p>
+<p class="text-base text-slate-600 dark:text-slate-300">Rank için çok güçlü bir kompozisyon.</p>
+</div>
+</div>
+</div>
+<div class="pb-3 px-4">
+<div class="flex border-b border-slate-300 dark:border-slate-700 justify-between">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary pb-[13px] pt-4 flex-1" href="#">
+<p class="text-primary text-sm font-bold leading-normal tracking-[0.015em]">Genel</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-500 dark:text-slate-400 pb-[13px] pt-4 flex-1" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Strateji</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-500 dark:text-slate-400 pb-[13px] pt-4 flex-1" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Meta &amp; Zorluk</p>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-4">
+<div class="flex flex-col gap-3">
+<div class="flex gap-6 justify-between">
+<p class="text-black dark:text-white text-base font-medium leading-normal">Rol Dengesi</p>
+<p class="text-black dark:text-white text-sm font-normal leading-normal">85/100</p>
+</div>
+<div class="rounded-full bg-slate-200 dark:bg-slate-700">
+<div class="h-2 rounded-full bg-primary" style="width: 85%;"></div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">AI yorumu: Takım rolleri arasında mükemmel bir denge var.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex gap-6 justify-between">
+<p class="text-black dark:text-white text-base font-medium leading-normal">Hasar Dağılımı</p>
+<p class="text-black dark:text-white text-sm font-normal leading-normal">92/100</p>
+</div>
+<div class="rounded-full bg-slate-200 dark:bg-slate-700">
+<div class="h-2 rounded-full bg-primary" style="width: 92%;"></div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">AI yorumu: Büyü ve fiziksel hasar oranları ideal seviyede.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex gap-6 justify-between">
+<p class="text-black dark:text-white text-base font-medium leading-normal">CC &amp; Peel Potansiyeli</p>
+<p class="text-black dark:text-white text-sm font-normal leading-normal">78/100</p>
+</div>
+<div class="rounded-full bg-slate-200 dark:bg-slate-700">
+<div class="h-2 rounded-full bg-primary" style="width: 78%;"></div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">AI yorumu: Yeterli kitle kontrolü, taşıyıcıları korumak için ideal.</p>
+</div>
+</div>
+<div class="p-4">
+<div class="rounded-xl bg-slate-200/50 dark:bg-slate-800/50 p-4 flex flex-col gap-3">
+<h3 class="text-base font-bold text-black dark:text-white">AI Önerileri</h3>
+<ul class="flex flex-col gap-2 list-disc list-inside">
+<li class="text-sm text-slate-600 dark:text-slate-300">Daha fazla anlık hasar için Mid rolünde Eudora yerine Vale deneyin.</li>
+<li class="text-sm text-slate-600 dark:text-slate-300">Bu kompozisyon erken oyun baskısı için çok uygun, orman rotasyonunu hızlandırın.</li>
+<li class="text-sm text-slate-600 dark:text-slate-300">Kahramanların build önerileri için BBML Build'e göz atın.</li>
+</ul>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-4">
+<div>
+<h3 class="text-base font-bold text-black dark:text-white mb-3">Bu Analizde Kazandığın Rozetler</h3>
+<div class="grid grid-cols-3 gap-4 text-center">
+<div class="flex flex-col items-center gap-2">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700"><span class="material-symbols-outlined text-3xl text-primary">local_fire_department</span></div>
+<p class="text-xs font-medium text-slate-600 dark:text-slate-300">Alevli Beşli</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700"><span class="material-symbols-outlined text-3xl text-primary">shield</span></div>
+<p class="text-xs font-medium text-slate-600 dark:text-slate-300">Geçilmez Duvar</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700"><span class="material-symbols-outlined text-3xl text-primary">bolt</span></div>
+<p class="text-xs font-medium text-slate-600 dark:text-slate-300">Şok Takımı</p>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-base font-bold text-black dark:text-white mb-3">En İyi Skorun</h3>
+<div class="flex items-center justify-between rounded-xl bg-slate-200/50 dark:bg-slate-800/50 p-4">
+<p class="text-lg font-bold text-black dark:text-white">91</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">23.04.2024</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 p-4">
+<button class="w-full rounded-full bg-primary py-3.5 px-6 text-center text-base font-bold text-white">Yeni 5’li Oluştur</button>
+<button class="w-full rounded-full bg-primary/20 py-3.5 px-6 text-center text-base font-bold text-primary dark:text-white">Tek Kahraman Değiştir ve Yeniden Analiz Et</button>
+</div>
+</div>
+
+</body></html>

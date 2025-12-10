@@ -9,6 +9,7 @@ import '../../widgets/pill_chip.dart';
 import '../../widgets/primary_button.dart';
 import 'dart:math';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../../services/ads_service.dart';
 
 class EnemyPickScreen extends StatefulWidget {
   const EnemyPickScreen({super.key});
@@ -81,7 +82,8 @@ class _EnemyPickScreenState extends State<EnemyPickScreen> {
   }
 
   Future<void> _initBanner() async {
-    final unit = 'ca-app-pub-2220990495085543/9607366049';
+    if (!AdsService.enabled) return;
+    const unit = 'ca-app-pub-2220990495085543/9607366049';
     final ad = BannerAd(
       adUnitId: unit,
       request: const AdRequest(),
@@ -249,7 +251,7 @@ class _EnemyPickScreenState extends State<EnemyPickScreen> {
           ),
         ),
       ]),
-      bottomNavigationBar: _banner != null && _bannerReady
+      bottomNavigationBar: AdsService.enabled && _banner != null && _bannerReady
           ? Container(
               height: _banner!.size.height.toDouble(),
               alignment: Alignment.center,

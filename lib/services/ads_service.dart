@@ -6,6 +6,7 @@ import 'dart:async';
 
 class AdsService {
   static bool _initialized = false;
+  static bool enabled = false;
   static int _clicks = 0;
 
   static Future<void> init() async {
@@ -15,6 +16,7 @@ class AdsService {
   }
 
   static Future<bool> showRewarded({String? adUnitId, required VoidCallback onEarned}) async {
+    if (!enabled) { onEarned(); return true; }
     final unit = adUnitId ?? (Platform.isAndroid
         ? 'ca-app-pub-3940256099942544/5224354917'
         : 'ca-app-pub-3940256099942544/1712485313');
@@ -53,6 +55,7 @@ class AdsService {
   }
 
   static Future<bool> showInterstitial({String? adUnitId}) async {
+    if (!enabled) return false;
     final unit = adUnitId ?? (Platform.isAndroid
         ? 'ca-app-pub-2220990495085543/2215412440'
         : 'ca-app-pub-3940256099942544/4411468910');
@@ -86,9 +89,46 @@ class AdsService {
     }
   }
 
-  static Future<void> maybeShowInterstitial({String? adUnitId}) async {
+  static Future<bool> showRewardedInterstitial({String? adUnitId}) async {
+    if (!enabled) return false;
+    final unit = adUnitId ?? (Platform.isAndroid
+        ? 'ca-app-pub-2220990495085543/9163022223'
+        : 'ca-app-pub-3940256099942544/6978759866');
+    try {
+      final completer = Completer<bool>();
+      await RewardedInterstitialAd.load(
+        adUnitId: unit,
+        request: const AdRequest(),
+        rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
+          onAdLoaded: (ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+              onAdDismissedFullScreenContent: (ad) {
+                ad.dispose();
+                if (!completer.isCompleted) completer.complete(true);
+              },
+              onAdFailedToShowFullScreenContent: (ad, error) {
+                ad.dispose();
+                if (!completer.isCompleted) completer.complete(false);
+              },
+            );
+            ad.show(onUserEarnedReward: (ad, reward) {});
+          },
+          onAdFailedToLoad: (err) {
+            if (!completer.isCompleted) completer.complete(false);
+          },
+        ),
+      );
+      return await completer.future;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  static Future<void> maybeShowInterstitial({String? adUnitId, int every = 3}) async {
+    if (!enabled) return;
     _clicks++;
-    if (_clicks % 3 == 0) {
+    final n = every <= 0 ? 3 : every;
+    if (_clicks % n == 0) {
       await showInterstitial(adUnitId: adUnitId);
     }
   }

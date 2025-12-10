@@ -15,6 +15,12 @@ class K {
   static const routeLanguage = '/language_select';
   static const routeAiSuggestion = '/ai-suggestion';
   static const routeSubscription = '/subscription';
+  static const routeFiveAnalysis = '/five_analysis';
+  static const routeDraftPower = '/draft_power';
+  static const routeAiBuildEntry = '/ai_build_entry';
+  static const routeAiHeroSelect = '/ai_build_select_hero';
+  static const routeAiHeroBuild = '/ai_build_hero_build';
+  static const routeAiRandomBuild = '/ai_build_random';
   static const privacyUrl = 'https://massoft.vercel.app/privacypolicy';
   static const appleEulaUrl = 'https://www.apple.com/legal/internet-services/terms/site.html';
 }

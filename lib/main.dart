@@ -12,6 +12,13 @@ import 'screens/popular_heroes/popular_heroes_screen.dart';
 import 'screens/language/language_select_screen.dart';
 import 'screens/ai/ai_suggestion_screen.dart';
 import 'screens/subscription/subscription_screen.dart';
+import 'features/five_analysis/five_analysis_flow.dart';
+import 'features/draft_power/draft_power_screen.dart';
+import 'features/ai_build/ai_build_entry_screen.dart';
+import 'features/ai_build/ai_hero_select_screen.dart';
+import 'features/ai_build/ai_hero_build_screen.dart';
+import 'features/ai_build/ai_random_build_screen.dart';
+ 
  
 import 'services/locale_service.dart';
 import 'services/firebase_service.dart';
@@ -20,8 +27,10 @@ import 'firebase_options.dart';
 import 'services/hero_repository.dart';
 import 'dart:ui' as ui;
 import 'dart:async';
-import 'package:flutter/foundation.dart' show kIsWeb, kReleaseMode, defaultTargetPlatform, TargetPlatform;
+import 'package:flutter/foundation.dart' show kIsWeb, defaultTargetPlatform, TargetPlatform;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'services/gemini_service.dart';
+import 'services/ads_service.dart';
  
 
 void main() async {
@@ -39,6 +48,11 @@ void main() async {
     await FirebaseService.init(options: DefaultFirebaseOptions.currentPlatform);
   } else {
     await FirebaseService.init();
+  }
+
+  const bootstrapKey = String.fromEnvironment('BOOTSTRAP_GEMINI_KEY');
+  if (bootstrapKey.isNotEmpty) {
+    try { await GeminiService().setApiKey(bootstrapKey); } catch (_) {}
   }
 
   final startLocaleCode = await LocaleService.getLocaleCode();
@@ -94,6 +108,10 @@ class _AppState extends State<App> {
       await MobileAds.instance.initialize();
     } catch (_) {}
     try {
+      AdsService.enabled = true;
+      await AdsService.init();
+    } catch (_) {}
+    try {
       _localeCodeStored = await LocaleService.getLocaleCode();
       _hasSeenOnboarding = await LocaleService.getHasSeenOnboarding();
     } catch (_) {}
@@ -121,6 +139,12 @@ class _AppState extends State<App> {
       K.routeLanguage: (_) => const LanguageSelectScreen(),
       K.routeAiSuggestion: (_) => const AiSuggestionScreen(),
       K.routeSubscription: (_) => const SubscriptionScreen(),
+      K.routeFiveAnalysis: (_) => const FiveAnalysisFlow(),
+      K.routeDraftPower: (_) => const DraftPowerScreen(),
+      K.routeAiBuildEntry: (_) => const AiBuildEntryScreen(),
+      K.routeAiHeroSelect: (_) => const AiHeroSelectScreen(),
+      K.routeAiHeroBuild: (_) => const AiHeroBuildScreen(hero: null),
+      K.routeAiRandomBuild: (_) => const AiRandomBuildScreen(),
     };
     final initialHome = _localeCodeStored == null
         ? const LanguageSelectScreen()

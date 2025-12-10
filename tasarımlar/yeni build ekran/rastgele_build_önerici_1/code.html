@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rastgele Build Önerici</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ae50fb",
+              "background-light": "#f7f5f8",
+              "background-dark": "#1a0f23",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            keyframes: {
+              spin: {
+                'to': { transform: 'rotate(360deg)' },
+              },
+              pulse: {
+                '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+                '50%': { opacity: 0.8, transform: 'scale(1.02)' },
+              },
+              fade: {
+                '0%, 100%': { opacity: 0.2 },
+                '50%': { opacity: 1 },
+              },
+              float: {
+                '0%': { transform: 'translate(0, 0)' },
+                '50%': { transform: 'translate(5px, -10px)' },
+                '100%': { transform: 'translate(0, 0)' },
+              }
+            },
+            animation: {
+                'spin-slow': 'spin 10s linear infinite',
+                'pulse-glow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'fade-slow': 'fade 3s ease-in-out infinite',
+                'float-slow': 'float 5s ease-in-out infinite',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white">
+<div class="relative flex min-h-screen w-full flex-col bg-background-dark group/design-root overflow-x-hidden">
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-white/80">
+                    arrow_back_ios_new
+                 </span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Rastgele Build Önerici</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined text-white/80">
+                        settings
+                    </span>
+</button>
+</div>
+</div>
+<h1 class="text-white tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6">Rastgele Build</h1>
+<p class="text-white/70 text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">
+            Sürpriz bir build mi arıyorsun? AI senin için rastgele, eğlenceli bir build oluştursun!
+        </p>
+<div class="relative flex flex-col items-center justify-center py-8 my-8 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute top-1/4 left-1/4 w-1 h-1 bg-pink-500/50 rounded-full animate-float-slow" style="animation-delay: -1s;"></div>
+<div class="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-primary/50 rounded-full animate-float-slow" style="animation-delay: -2s; animation-direction: reverse;"></div>
+<div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-pink-500/50 rounded-full animate-float-slow" style="animation-delay: -3s;"></div>
+<div class="absolute bottom-1/3 right-1/3 w-2 h-2 bg-primary/40 rounded-full animate-float-slow" style="animation-delay: -0.5s; animation-direction: reverse;"></div>
+<div class="absolute top-1/2 left-1/2 w-1 h-1 bg-pink-500/60 rounded-full animate-float-slow" style="animation-delay: -1.5s;"></div>
+</div>
+<div class="relative w-48 h-48 animate-spin-slow">
+<div class="absolute inset-0 rounded-full border-2 border-transparent" style="background-image: conic-gradient(from 180deg at 50% 50%, #ae50fb, #f472b6, #ae50fb); filter: blur(10px);"></div>
+<div class="absolute inset-0 rounded-full border-2 border-transparent" style="background-image: conic-gradient(from 180deg at 50% 50%, #ae50fb, #f472b6, #ae50fb);"></div>
+<div class="absolute w-10 h-10 top-0 left-1/2 -ml-5 -mt-5 bg-center bg-no-repeat aspect-square bg-cover rounded-md border border-white/10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcShlr6S6efQTzrVj794xKWSQmHdM6uV6xCHvgwFsCtrZQKKOyjvBnujbu_fr0Z79otyquqvWYEDwzVgCmgVis2aOsBcQ9RO6VDvGA0vVisUID_yWaRDHiYfUUb1iuzJ2ec49UVoUBSkq7XOc9ORW0CEzfy_hTD7kU5JyDdqsNBx47MAcMM3T1nYbsnYz_4QFWM4JR7emASrMnf8PczL1bJeUcLw_HzyPLkHgnfCEUZ7O6LNCU4S2-ETtG1I4UjS14JKuHDRs1EpdH");'></div>
+<div class="absolute w-10 h-10 top-1/2 right-0 -mr-5 -mt-5 bg-center bg-no-repeat aspect-square bg-cover rounded-md border border-white/10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCJau1JH0klLVngh_jnHzVi2LR-54g0XA6Nth7YmAZ0z8BU6DH8TUev_Roq6eWAmtzcvkF5Qg3y3jWaJu5sy7xG4z_ecdmN3cwfaW3DHZ5Xi_rSzL8JXsnlm1ysjWTYDcSUvphxAyKp7N47n52FV-kzQ_rSTEhDH5qJOUIvhRdTb8Y8WE7jC1eOvcOQ-a3vlitgMVeBYfS9it3y6tbbRWcFArpSfVZmkVe4YlxnELa3ObN_SZI6Rbtfx6hZl1Uu26tLvnkuPe5hwvYe");'></div>
+<div class="absolute w-10 h-10 bottom-0 left-1/2 -ml-5 -mb-5 bg-center bg-no-repeat aspect-square bg-cover rounded-md border border-white/10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPQu9a7U431DAuIxDXF0w2Ry8jGalsNKPrG42rkvfkso7nDFUb9HD6QFoqnlvjXPtkwrBg2XE81pqylpNsG9jP2t8x01PLKdbkCbl7hXsHcP3mlrAndPOl7WINT7-jY42rzjilLbgt8gLUFuMKNngeJVlF8zMxgvGlLM31UnKwSY-N9zM5C1IVsbERbmshV7RNe7jUvDnRA552sSytA9K2GWp9ldSe3iCz4YFKg3aA_8azAm5eIvVZo3M8HtB0fom_U8kvapSXmAMt");'></div>
+<div class="absolute w-10 h-10 top-1/2 left-0 -ml-5 -mt-5 bg-center bg-no-repeat aspect-square bg-cover rounded-md border border-white/10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7DL7jixKKCSyWtmZ9GVvqaZ77lBdUdl3_au05Og6F6BkJUHjb1-uv5pm1ulJfv_bptiqN6Ld6gKh-l5FG6VDyQrazhrqHp1tAHnYYyZidEDaBkRLEgV3C_4qUyGEb_6RQO9sOU3vlZJHTHoHPiVpmzTD5v3Y5IQ_3Tu0h7D6EYaeceWjA_L-x2brp1NV4jB2Q7JcYe5-LOMjd_rkkrO_Kdebp4OTuSjdFEPavCY4kMKpdMYTLQXzSVkjj1Rz04y-bAkLqHXU02F1T");'></div>
+<div class="absolute w-10 h-10 top-[14.6%] right-[14.6%] -mr-5 -mt-5 bg-center bg-no-repeat aspect-square bg-cover rounded-md border border-white/10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZvWseMwFh-jVXeTWkdiCR3RrG6meF_xhSnS8g7lUR9F8HBgCDlDKou_RPPXyeYVnZhbk12JPum_NujyU6OKp6s9YyvNNIMavSNQ0XH6x7aPW3_HXbB3yGsSR0GzyU8xqVlYOpWIiOSexNkWqL78XsHERrqg7BzfankhKHC2RANjRfsrZg-gmzhDiutP9mFQjwt1FlUvdUDEOZrmcGgthUJweeu-h_qQnZiAwmCQUJBETO8fM-1xK8zj4t0XOfkFqOGoykrGGglFgr");'></div>
+<div class="absolute w-10 h-10 bottom-[14.6%] left-[14.6%] -ml-5 -mb-5 bg-center bg-no-repeat aspect-square bg-cover rounded-md border border-white/10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1pyoncxdFJq8kXsOK661N8TzoBbrq8sTWg0xe0EboHPicWgRmPbU3p_G_cOhsj7WeQML7c0of2drjrsAskQAFbP1wcYAPL-Cq_P6ZjrWzBUsWco7f2-aL1xnqu0VLiCDPPVSlMXFmXCWf0ABSOwaaEel1wFG3VFqLuy2CAKSX9KEtXEsv9JyMnPTGQOoFtNqqyJXJwxt1Vr51rwPRkR3Amo7smbZJ3YyPZY2a1RmKf-JXdBj-rqkP5I9qZtEXLAr_X_J0aBzhZHWm");'></div>
+</div>
+<div class="absolute flex items-center justify-center mt-24 pt-16">
+<p class="text-white/80 text-lg font-bold tracking-wider animate-pulse-glow" style="text-shadow: 0 0 8px theme(colors.primary/0.5), 0 0 16px theme(colors.pink.500/0.4);">
+                    AI Düşünüyor...
+                </p>
+</div>
+</div>
+<div class="flex-grow"></div> 
+<div class="sticky bottom-0 bg-background-dark/80 backdrop-blur-sm pt-4 pb-6 px-4 space-y-4 border-t border-white/10">
+<button class="w-full h-14 bg-primary text-white text-lg font-bold rounded-xl shadow-[0_0_20px_theme(colors.primary/0.5)] flex items-center justify-center">
+                Yeni Rastgele Build Oluştur
+            </button>
+<div class="flex items-center justify-center gap-8">
+<button class="flex flex-col items-center gap-1 text-white/70">
+<span class="material-symbols-outlined">
+                        share
+                    </span>
+<span class="text-xs font-medium">Paylaş</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-white/70">
+<span class="material-symbols-outlined">
+                        star
+                    </span>
+<span class="text-xs font-medium">Favorilere Ekle</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

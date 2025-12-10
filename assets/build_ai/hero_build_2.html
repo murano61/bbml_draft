@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Build Önerici</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>body{min-height:max(884px,100dvh)}</style>
+</head>
+<body class="bg-[#1a0f23] font-display text-white">
+<div class="px-4 pt-4">
+  <div id="heroSplash" class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[240px]" style="background-image:linear-gradient(0deg, rgba(10,14,47,0.8) 0%, rgba(10,14,47,0) 50%)">
+    <div class="flex flex-col gap-2 p-4">
+      <p id="heroName" class="text-3xl font-bold">Hero</p>
+      <div class="flex gap-2"><span id="heroRole" class="px-3 py-1 rounded-full text-sm" style="background-color:rgba(159,80,255,0.2);color:#c792ff">Role</span></div>
+    </div>
+  </div>
+</div>
+<div class="p-4">
+  <div class="rounded-xl p-4" style="background-color:#191c3d">
+    <p class="text-xl font-bold mb-4">Meta Build</p>
+    <div id="metaList" class="grid grid-cols-1 gap-4"></div>
+    <div class="flex items-start gap-4 justify-between mt-4">
+      <div class="flex items-center gap-2"><div id="spellIcon" class="size-10 rounded-md bg-cover"></div><p id="spellName" class="text-base font-medium">Retribution</p></div>
+      <div class="flex items-center gap-2"><p class="text-sm text-[#A9B2CC]">Emblem</p><p id="emblemCode" class="text-base font-medium">#AB12CD</p></div>
+    </div>
+  </div>
+</div>
+<div class="p-4 pt-0">
+  <div class="rounded-xl p-4" style="background-color:#191c3d">
+    <p class="text-xl font-bold mb-4">Eğlenceli Build</p>
+    <div id="funList" class="grid grid-cols-1 gap-4"></div>
+  </div>
+</div>
+<div class="sticky bottom-0 p-4"><button id="regenBtn" class="w-full h-12 rounded-xl bg-gradient-to-r from-[#9F50FF] to-[#FF3E9A] text-base font-bold">Yeni Build Oluştur</button></div>
+<script>
+  window.BBML_BUILD = window.BBML_BUILD || { postMessage: function(msg){ console.log('BBML_BUILD stub', msg); } };
+  const FALLBACK_IMG = 'https://via.placeholder.com/56x56/1a0f23/ffffff?text=%20';
+  document.getElementById('regenBtn').addEventListener('click', ()=> BBML_BUILD.postMessage('regen'));
+  window.populate = function(payload){
+    try{
+      const hero = payload.hero||{}; const meta = payload.meta||[]; const fun = payload.fun||[];
+      if(hero.imageUrl){ document.getElementById('heroSplash').style.backgroundImage = `linear-gradient(0deg, rgba(10,14,47,0.8) 0%, rgba(10,14,47,0) 50%), url(${hero.imageUrl})`; }
+      if(hero.name){ document.getElementById('heroName').textContent = hero.name; }
+      if(hero.role){ document.getElementById('heroRole').textContent = hero.role; }
+      const metaList = document.getElementById('metaList'); metaList.innerHTML='';
+      meta.slice(0,6).forEach(it=>{ const row=document.createElement('div'); row.className='flex items-center gap-4'; const ico=document.createElement('div'); ico.className='w-14 h-14 shrink-0 rounded-full bg-cover bg-center'; ico.style.backgroundImage=`url('${it.imageUrl||FALLBACK_IMG}')`; const txt=document.createElement('div'); txt.className='flex-1'; const t=document.createElement('p'); t.className='text-white font-semibold'; t.textContent=it.name||'İtem'; const d=document.createElement('p'); d.className='text-sm text-[#A9B2CC] mt-1'; d.textContent=it.desc||''; txt.appendChild(t); txt.appendChild(d); row.appendChild(ico); row.appendChild(txt); metaList.appendChild(row); });
+      const funList = document.getElementById('funList'); funList.innerHTML='';
+      fun.slice(0,6).forEach(it=>{ const row=document.createElement('div'); row.className='flex items-center gap-4'; const ico=document.createElement('div'); ico.className='w-14 h-14 shrink-0 rounded-full bg-cover bg-center'; ico.style.backgroundImage=`url('${it.imageUrl||FALLBACK_IMG}')`; const txt=document.createElement('div'); txt.className='flex-1'; const t=document.createElement('p'); t.className='text-white font-semibold'; t.textContent=it.name||'İtem'; const d=document.createElement('p'); d.className='text-sm text-[#A9B2CC] mt-1'; d.textContent=it.desc||''; txt.appendChild(t); txt.appendChild(d); row.appendChild(ico); row.appendChild(txt); funList.appendChild(row); });
+      document.getElementById('spellName').textContent = payload.spell || 'Retribution';
+      document.getElementById('emblemCode').textContent = payload.emblem || '#AB12CD';
+    }catch(e){ console.log('populate error', e); }
+  };
+</script>
+</body></html>

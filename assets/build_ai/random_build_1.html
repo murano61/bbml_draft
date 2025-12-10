@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- Copy of rastgele_build_önerici_1/code.html for stable asset path -->
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rastgele Build Önerici</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>body{min-height:max(884px,100dvh)}</style>
+</head>
+<body class="bg-[#1a0f23] font-display text-white">
+<div class="flex items-center p-4 pb-2 justify-between">
+  <div class="flex size-12 shrink-0 items-center justify-start"><span class="material-symbols-outlined text-white/80">arrow_back_ios_new</span></div>
+  <h2 class="text-white text-lg font-bold flex-1 text-center">Rastgele Build Önerici</h2>
+</div>
+<h1 class="text-white text-[32px] font-bold px-4 text-center pb-3 pt-6">Rastgele Build</h1>
+<p class="text-white/70 text-base px-4 text-center">Sürpriz bir build mi arıyorsun? AI senin için rastgele, eğlenceli bir build oluştursun!</p>
+<div class="relative flex flex-col items-center justify-center py-8 my-8 overflow-hidden">
+  <div id="itemsCircle" class="relative w-48 h-48" style="filter:blur(0)"></div>
+  <div class="absolute flex items-center justify-center mt-24 pt-16"><p class="text-white/80 text-lg font-bold tracking-wider">AI Düşünüyor...</p></div>
+</div>
+<div class="sticky bottom-0 bg-[#1a0f23]/80 backdrop-blur-sm pt-4 pb-6 px-4 space-y-4 border-t border-white/10">
+  <button class="w-full h-14 bg-[#ae50fb] text-white text-lg font-bold rounded-xl">Yeni Rastgele Build Oluştur</button>
+  <div class="flex items-center justify-center gap-8">
+    <button class="flex flex-col items-center gap-1 text-white/70"> <span class="material-symbols-outlined">share</span> <span class="text-xs font-medium">Paylaş</span> </button>
+    <button class="flex flex-col items-center gap-1 text-white/70"> <span class="material-symbols-outlined">star</span> <span class="text-xs font-medium">Favorilere Ekle</span> </button>
+  </div>
+</div>
+<script>
+  const FALLBACK_IMG = 'https://via.placeholder.com/40x40/1a0f23/ffffff?text=%20';
+  window.populate = function(payload){
+    try{
+      const items = (payload.items||[]).slice(0,6);
+      const root = document.getElementById('itemsCircle'); root.innerHTML='';
+      const radius = 90; const cx = 96; const cy = 96;
+      items.forEach((it, i)=>{
+        const ang = 2*Math.PI*i/items.length;
+        const x = cx + radius * Math.cos(ang) - 20;
+        const y = cy + radius * Math.sin(ang) - 20;
+        const d = document.createElement('div'); d.style.position='absolute'; d.style.left=x+'px'; d.style.top=y+'px'; d.style.width='40px'; d.style.height='40px'; d.style.borderRadius='8px'; d.style.backgroundImage=`url('${it.imageUrl||FALLBACK_IMG}')`; d.style.backgroundSize='cover';
+        d.style.border='1px solid rgba(255,255,255,0.1)'; root.appendChild(d);
+      });
+    }catch(e){ console.log('populate error', e); }
+  };
+</script>
+</body></html>

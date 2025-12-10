@@ -10,14 +10,14 @@ import 'firebase_service.dart';
 class HeroRepository {
   static List<HeroModel>? _heroesCache;
   static DateTime? _heroesCacheAt;
-  List<HeroModel> getHeroesLocal() => const [];
+  List<HeroModel> getHeroesLocal() => sampleHeroes;
 
   Future<List<HeroModel>> getHeroes() async {
     final now = DateTime.now();
     if (_heroesCache != null && _heroesCacheAt != null && now.difference(_heroesCacheAt!).inMinutes < 10) {
       return _heroesCache!;
     }
-    if (!FirebaseService.isInitialized) return _heroesCache ?? const [];
+    if (!FirebaseService.isInitialized) return _heroesCache ?? getHeroesLocal();
     try {
       final snap = await FirebaseService.db.collection('heroes').get();
       final list = snap.docs.map((d) {
@@ -46,7 +46,7 @@ class HeroRepository {
       } catch (_) {}
       return list;
     } catch (_) {
-      return _heroesCache ?? const [];
+      return _heroesCache ?? getHeroesLocal();
     }
   }
 

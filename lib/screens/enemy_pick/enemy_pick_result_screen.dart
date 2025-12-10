@@ -12,7 +12,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import '../../services/ai_suggestion_manager.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../../services/ads_service.dart';
 import 'dart:io' show Platform;
+
 
 class EnemyPickResultScreen extends StatefulWidget {
   const EnemyPickResultScreen({super.key});
@@ -122,7 +124,7 @@ class EnemyPickResultScreen extends StatefulWidget {
     if (_aiMode) {
       if (enemyId == null || enemyId.isEmpty) {
         final gs = GeminiService();
-        _aiEntries = await gs.suggest(enemyHeroId: null, roles: roles, locale: locale, noCache: true, nonce: 'v$_variation', excludeHeroIds: const [], timeoutMs: 20000, requireGemini: true);
+        _aiEntries = await gs.suggest(enemyHeroId: null, roles: roles, locale: locale, noCache: true, nonce: 'v$_variation', excludeHeroIds: const [], timeoutMs: 20000, requireGemini: false);
         final challenge = await gs.generateChallenge(roles: roles, locale: locale, timeoutMs: 6000);
         try { _lastStatus = await gs.getLastStatus(); } catch (_) {}
         if (_aiEntries.isNotEmpty) {
@@ -269,7 +271,7 @@ class EnemyPickResultScreen extends StatefulWidget {
       } else {
         final gs = GeminiService();
         _excludeIds.add(enemyId);
-        _aiEntries = await gs.suggest(enemyHeroId: enemyId, roles: roles, locale: locale, noCache: true, nonce: 'v$_variation', excludeHeroIds: _excludeIds.toList(), timeoutMs: 20000, requireGemini: true);
+        _aiEntries = await gs.suggest(enemyHeroId: enemyId, roles: roles, locale: locale, noCache: true, nonce: 'v$_variation', excludeHeroIds: _excludeIds.toList(), timeoutMs: 20000, requireGemini: false);
         try { _lastStatus = await gs.getLastStatus(); } catch (_) {}
         if (_aiEntries.isNotEmpty) {
           _suggestionsCounters = _aiEntries.map((e) {
@@ -356,8 +358,12 @@ class EnemyPickResultScreen extends StatefulWidget {
             final role = best.roles.isNotEmpty ? best.roles.first : 'Hero';
             html = html.replaceFirst('Luminara', best.name(locale));
             html = html.replaceFirst('Mage', role);
-            if (bestReason.isNotEmpty) {
-              html = html.replaceFirst('Her AoE control is perfect against the enemy team\'s dive composition.', bestReason);
+            String bestReasonText = bestReason;
+            if (bestReasonText.trim().isEmpty || bestReasonText.trim().toLowerCase() == 'generic_reason') {
+              bestReasonText = locale == 'tr' ? 'Bu kahramanın yetenek seti rakip kompozisyona karşı etkilidir.' : 'This hero\'s kit is effective against the enemy composition.';
+            }
+            if (bestReasonText.isNotEmpty) {
+              html = html.replaceFirst('Her AoE control is perfect against the enemy team\'s dive composition.', bestReasonText);
             }
           }
           if (alt2 != null) {
@@ -475,6 +481,7 @@ class EnemyPickResultScreen extends StatefulWidget {
   }
 
   Future<void> _initBanner() async {
+    if (!AdsService.enabled) return;
     final unit = Platform.isAndroid ? 'ca-app-pub-2220990495085543/9607366049' : 'ca-app-pub-3940256099942544/2934735716';
     final ad = BannerAd(
       adUnitId: unit,
@@ -512,10 +519,6 @@ class EnemyPickResultScreen extends StatefulWidget {
           ])) : (_aiMode && _html != null && _web != null)
           ? Stack(children:[
               Positioned.fill(child: WebViewWidget(controller: _web!)),
-              if (_lastStatus != null) Positioned(right: 8, top: 8, child: Container(padding: const EdgeInsets.symmetric(horizontal:12, vertical:8), decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(12)), child: Text(
-                'SRC:${(_lastStatus!['source']??'')}, MODEL:${(_lastStatus!['model']??'')}${((_lastStatus!['err']??'') as String).isNotEmpty ? ', ERR: ${_lastStatus!['err'] as String}' : ''}',
-                style: const TextStyle(color: Colors.white, fontSize: 10),
-              )))
             ])
           : _aiMode
                   ? _aiErrorWidget(context)
@@ -563,7 +566,7 @@ class EnemyPickResultScreen extends StatefulWidget {
           ]),
         ]),
       ),
-      bottomNavigationBar: (_aiMode && _banner != null && _bannerReady)
+      bottomNavigationBar: (AdsService.enabled && _aiMode && _banner != null && _bannerReady)
           ? Container(
               height: _banner!.size.height.toDouble(),
               alignment: Alignment.center,
@@ -647,14 +650,11 @@ class EnemyPickResultScreen extends StatefulWidget {
             if (src.isNotEmpty || model.isNotEmpty || err.isNotEmpty)
               Text('SRC:$src, MODEL:$model${err.isNotEmpty ? ', ERR: $err' : ''}', style: const TextStyle(color: Colors.white70, fontSize: 12)),
             const SizedBox(height: 16),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                PrimaryButton(label: 'Tekrar Dene', expanded: false, onPressed: () { setState(() { _loading = true; _variation++; }); _load(noCache: true); }),
-                const SizedBox(width: 12),
-                PrimaryButton(label: 'Geri Dön', expanded: false, onPressed: () { Navigator.pop(context); }),
-              ],
-            ),
+            Row(mainAxisSize: MainAxisSize.min, children: [
+              PrimaryButton(label: 'Tekrar Dene', expanded: false, onPressed: () { setState(() { _loading = true; _variation++; }); _load(noCache: true); }),
+              const SizedBox(width: 12),
+              PrimaryButton(label: 'Geri Dön', expanded: false, onPressed: () { Navigator.pop(context); }),
+            ]),
           ],
         ),
       ),

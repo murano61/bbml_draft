@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kahraman Seçili Build Önerici</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+    .neon-border {
+      border: 1px solid transparent;
+      background-image: linear-gradient(to right, #00C2FF, #9F50FF);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spin-reverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+    @keyframes particle-float {
+      0% { transform: translateY(0px) translateX(0px); opacity: 0; }
+      25% { opacity: 1; }
+      75% { opacity: 1; }
+      100% { transform: translateY(-50px) translateX(10px); opacity: 0; }
+    }
+    @keyframes particle-float-2 {
+      0% { transform: translateY(0px) translateX(0px); opacity: 0; }
+      25% { opacity: 1; }
+      75% { opacity: 1; }
+      100% { transform: translateY(-40px) translateX(-20px); opacity: 0; }
+    }
+    .animate-spin { animation: spin 2s linear infinite; }
+    .animate-spin-slow { animation: spin 15s linear infinite; }
+    .animate-spin-reverse-slow { animation: spin-reverse 15s linear infinite; }
+    .animate-pulse-glow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ae51fb",
+            "background-light": "#f7f5f8",
+            "background-dark": "#1a0f23",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col dark group/design-root overflow-hidden" style="background-color: #0A0E2F;">
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-opacity-80 backdrop-blur-sm z-10" style="background-color: #0A0E2F;">
+<div class="flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl">arrow_back_ios_new</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">AI Build Önerici</h2>
+</div>
+<div class="@container px-4">
+<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[280px]" data-alt="Splash art for the hero Fanny from Mobile Legends" style='background-image: linear-gradient(0deg, rgba(10, 14, 47, 0.8) 0%, rgba(10, 14, 47, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKPxd5eWuoOSTLacIYX0CKk-H2QY-5aZZaBLYebEdAVXCTLY_Kug8T-8pSaMxI5iQzvcXTlDQhzvgVkAlaPdPQF8MHC61nRziIWiyH2F1czioIDdYS0HDOc6iZ8me2BoRWvWrbeXojI31WiZspqDmEZXehg6FP9J-yvalgXhYOLdQrGn-RsQjgnzsNDxGxQxFnFKDl1vyrsFTAOVhLoJ1rfFJ4Y1C33qe3hVkYxD4Lq6-yPfXLdJhM1ZtTwOolGvDc7ZQ8fGedVluP");'>
+<div class="flex flex-col gap-2 p-4">
+<p class="text-white tracking-light text-3xl font-bold leading-tight">Fanny</p>
+<div class="flex gap-2 flex-wrap">
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full px-3" style="background-color: rgba(159, 80, 255, 0.2);">
+<p class="text-sm font-medium leading-normal" style="color: #c792ff;">Jungle</p>
+</div>
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full px-3" style="background-color: rgba(159, 80, 255, 0.2);">
+<p class="text-sm font-medium leading-normal" style="color: #c792ff;">MLBB Hero</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex px-4 py-4">
+<div class="flex h-12 flex-1 items-center justify-center rounded-xl p-1" style="background-color: #191c3d;">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:shadow-[0_0_12px_rgba(159,80,255,0.7)] has-[:checked]:text-white text-[#A9B2CC] text-sm font-medium leading-normal has-[:checked]:bg-gradient-to-r from-[#9F50FF] to-[#FF3E9A]">
+<span class="truncate">Meta Build</span>
+<input checked="" class="invisible w-0" name="build_type" type="radio" value="Meta Build"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:shadow-[0_0_12px_rgba(159,80,255,0.7)] has-[:checked]:text-white text-[#A9B2CC] text-sm font-medium leading-normal has-[:checked]:bg-gradient-to-r from-[#9F50FF] to-[#FF3E9A]">
+<span class="truncate">Eğlenceli Build</span>
+<input class="invisible w-0" name="build_type" type="radio" value="Eğlenceli Build"/>
+</label>
+</div>
+</div>
+<div class="p-4 pt-0 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl p-4 shadow-lg" style="background-color: #191c3d;">
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-4">Meta Build</p>
+<div class="grid grid-cols-3 gap-3 mb-4">
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCadx3sNAR8F1PzL7zW6phI7YI_wUeQQtt9oSiuSx9HkOYiHinZgCUM7AF3s5mdsMPzV169KRgS5qWz03vzEcq6FYW4qPyZmPQkJ8u-2i0gb7Bli28PJFxtLAWVleM7hTHduRR3fsvvyknjKF_mQKlD_qILUo7fdmnVI18k9VmdHzey2Pw4llGu5KbxSIUblvFgtetWNNP1jlg4-IQ8T37DkTkeloZ8C2yK1ljmeVa5bzGozNO6Pt3awbPfYgDKyh-_iyEdIw6aGaq4');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPsbEU0ZnhMwcc4JJtrFLuxkf14AzVdHkOsyH98hKu40dzrHbP0LxuQG2YkPCI_NZmW6R07BgRTza1SeHBj7fh3iXlVn8FjA0UvxF3UEKUIMr5y9hDU7B9-eRgobLu4aE271oqnon_ZPRXsvVhhyBxjJPy_C2sGkfIYLQ216n34zZKJVef7V8o96jsnER6_SVfXYUkv3ncSYYz3yUw-gzmpE4Ml0UcipHNDDU9LZ4Hp3o83xzd5eEyLh1KAnVGp5AiOEoTM7GZo34W');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxxv6uQulTFnNnyHNIAiQz8ip7s9A3bH4YPXWVSlPr48Yd4BnUwUk_gv-rplGNedej9kfFDuioKLZ0h753IhOv7ZAFw80ukpaubPnN2IWD1MTJq8_WpZWAAQ6Jan9VGt4leX7LHg23z-0SbvlygJsxab7zihIPrx0-_2HKExUqgrz43gKN7XUAamObNOhI1R9GvNZtg6JE8RcnaThVZJNheHZmcxh-zsoZIuWhUF-wUMZ2l5M-QD5Gh1yPKB7SAoMC2u7cKDsXkBYY');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8AXOM_yDfuOyi-aUibKehXbWBuf6-gDThz8Oalep6HDpST1SRt3oWuEZ3iOGkCcb6BdwCmqOwIkt1pN1EzPMRDci_o3MDO1xkbLMD-uJswuLTrGtLo31RpUYgeI91Iothdye6aZnyK3ntWDVmLxefDkVWuV05WZCKGv6Iwemz-YzHa0853qsFhhvGEGBmI8zKAqkjVLpilwh8SRlix7jND0fUh-Gfand8rBNQ3ZWPkz8cN9z-LkoIrYz630x4G25QNm_qxpf9YJte');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXxxXX0C1VHvlJccIcWij1OfyeekCos3DwZDlD56x88esWmUprkdQ1zH__qmAa_wLnDeW_3HwqZNph44YAdQzgPmCFZBLtOCujKhJ8soS-DgB1AUKGYSQVcSeCvQpPX2GMC-VjKAIx75D7OkfBxlFnoVRhFA34iIyvopI34q_OE7Rtp42y8t8emfm4zUKp5-ydOtUqIj4iKBGJyvA0jgVL1ygLSfxj0eI1sxydNiNTDfz0lsG19XxzIRkuEknNgJGL92OBwWTXrdvZ');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRQjw22AJFex7jqGCUJSvUSfO90j2soaZ-drwHrCo5m7lTEjS4hw1ncALh4YgcYi-JbbJwMiAjuDEWWYGDmjoNh6QGKAYT9OualaniF_gadzWp3iiKwxxECmP7opJxdoW5KD6pMZq7zwCSCUgOf9V6Jw9v9dXgvd47yqqx8T0lO575H5CZN1mIwHyJBQv-uaeuCH7EgdqHwD188Uq5YsfqEVF02fF03uWmFyHk0-ayqbNuubbJ0YYKZC4j8O8XQrYHU8uXwT7iAhzc');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+</div>
+<div class="flex items-start gap-4 justify-between">
+<div class="flex flex-col gap-2 flex-1">
+<p class="text-[#A9B2CC] text-sm font-normal leading-normal">Önerilen Battle Spell</p>
+<div class="flex items-center gap-2">
+<div class="size-10 rounded-md bg-cover" data-alt="Placeholder for battle spell icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC38nO9w7AFqZHKYSqzf6K8sVihnAa3G0VsIexDk9pCcGDgxwJPus8ugJoM3oiNg_m5R_8fXTvuqpS6JDO7Fw8XivDx4WayTYlXKVFWQ-sMzONUVPlxmpi6OXRiu2QyTLhbOzpEVO4cc_8KPoO1UVq9U8D7X27DXQar1Batpd88350oWqKa98lg4YaafHkUK29qALqHgsFoxJEOXd8AOzegC0GAeGffj82mzJnUiloBMzHeZAclv5EqJUK9th3rqcfQfmnzHFkJyGWM');"></div>
+<p class="text-[#F5F5F5] text-base font-medium leading-normal">Retribution</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 flex-1">
+<p class="text-[#A9B2CC] text-sm font-normal leading-normal">Emblem Kodu</p>
+<p class="text-[#F5F5F5] text-base font-medium leading-normal">#AB12CD</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 pt-0 @container">
+<div class="relative flex flex-col items-stretch justify-start rounded-xl p-4 shadow-lg neon-border" style="background-color: #191c3d;">
+<div class="absolute -top-2 -right-2 transform-gpu">
+<div class="rounded-full px-3 py-1 text-xs font-semibold text-white" style="background-color: #00C2FF; box-shadow: 0 0 10px #00C2FF;">
+            Eğlenceli!
+          </div>
+</div>
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-4">Eğlenceli Build</p>
+<div class="grid grid-cols-3 gap-3 mb-2">
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBy2qeqOBvdFP1W8s6-XquqYOJc3cDgwJcJO-C6S3kjXpPxemLkggDgoO3HD8hq-q-Mz2GRxOgB7SE2ZX_cIqfMOcbmnA3tTvLb7zebjhvsF9U7FmSooYMbEkCUBCpzPjtqv-z363g91pryzjA3vRbooXxvTM4GWo0I4VrIAVIySSpOejlHT0qeQ2RQ6sOOdm5GB79AhEwFTS5nUi4NXgfC4GTuLnm7875AuHAepjCXvJv2a2s_bQuQhyM8lp3lnfC2B5hBHj2KbSmq');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCE6_VtULjqowSJ7qznIc23jcVcTRCQdHyM5xMP3kczm9yuL11HoKgQRtMok_Ezbc5F5RJVBfJbjP2ugXwAbfE_4PVAsAny43eHRIa5SwmV5q-6FruRZ4n8WZkU9gvo7x85Lw9rGcoHElP4WLUYQ8TI1Fep2w0ukapk3ClWXCSMCXzuE51Qk7WaPg3kJgDYZhKPQN5EL2Hj1uW83N2QdXPlYGAfWf_ZjJlTiEEcaEJVPR_WuuQDWdWoDMHe1Ev946dw9Od60rsIJ86-');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9DhgfFBA4ZXxUFrDjcU7JHH7Uq7wKvYnpAKFKZ3LTe73hEOBjha_CoWfeXoOtdNNH72NwBWgpzNjPMF1OcnaEKggFdMSF5e5dO2ABHR6K6YdgAEcwXJEjyF3lemz9BzTk1WgK_7E6XAoQiQJ-H6TVj-_QLfz3Dr_mBfZcnC3t5PMQNCChriSC4-eOAlkkmKtKvforAPEjzgA9xLKuGmpenTc10SZPJnLGWG7200H3rO-oViQrznRMxPeVGFKOgjqlxtE9p__185oq');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjLzCPByUp_9GQKzG16GbX4Osc-hOBZ49R34DFE_fk0N7BM-YXQrV0AAAn18-zXkLI2dqR000UoQpBL3STp5AF72_CQF9UM9Hzt-w7hF-lKUwO_Tq0eKFnxCeg8FvMMQoeZ2uFrfVXvjygtSLJwCs5o7VAAieIVT2foVJNt-WYo_nBbSEzqozRD5nQKEPTqQ7zk_dD59vnLFoLTZ1zxvMj2EaOuP5Q8xOYJuZ_TxwRtqTZz4t3vrMpYYX31BrqfFasXJdpZnnKUyyJ');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2M5OCVoKkyi5nvP16QTGbrmnyLke1t2GJUgYRtUvN3iSvUJeQ8OkPKSsRPfN1xrHzYGJAo0DS50z8ZKX-IjRa9qk9qZAl9KyaAw6o3YpTkrYm-tSNl5qxz0VDwfNgnOFE7KcTZ6tt7XxsnvGY0nEJOkUD7-pgUMk8jytOtkpsLeQu34ciAt54kIloTQwGWmr1PWH9QWoT-BVNrv0I38RpwQWAAtI52-ZuXVDJb7BAYC4a14_-RF58brbxB632fzGejv4JW1W3UlWo');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+<div class="flex flex-col items-center gap-1.5 text-center">
+<div class="aspect-square w-full rounded-lg bg-cover" data-alt="Placeholder for game item icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBt5cdWk47AkbcXNqQUxzP0M4cAtB62nrxGxuOt1T-Y1ryRA9bKyl2Wy11ar90v3LITrF5xz8lOZm0chvg3HHOhHmZ7aA9ht3rK0mkDzgeskeLUCHLRdfwQQ6sKVfnkGKvkWLTXeOECyBaBITEjVK_NB6WuwexjXPlpAg1Un8gsexI2s7a-13-pPJfPsmoJEPxnQPEhu0sQpPV2MGMhU2hEZrFzu44MJbo6v430Bi2KlGc891XD_NL7AlYmrLQ3Z3RPcYRi8y8iihR2');"></div>
+<p class="text-[#F5F5F5] text-xs font-medium leading-tight">İtem Adı</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 mt-auto p-4 pt-2 bg-opacity-80 backdrop-blur-sm" style="background-color: #0A0E2F;">
+<button class="flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#9F50FF] to-[#FF3E9A] text-base font-bold text-white shadow-[0_4px_15px_rgba(159,80,255,0.4)]">
+        Yeni Build Oluştur
+      </button>
+<div class="flex items-center justify-center gap-8 mt-4">
+<div class="flex flex-col items-center gap-1 text-[#A9B2CC] cursor-pointer">
+<span class="material-symbols-outlined text-2xl">ios_share</span>
+<p class="text-xs font-medium">Paylaş</p>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#A9B2CC] cursor-pointer">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+<p class="text-xs font-medium">Favorilere Ekle</p>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#0A0E2F]/80 backdrop-blur-sm">
+<div class="relative flex items-center justify-center w-64 h-64">
+<div class="absolute w-full h-full animate-spin-slow">
+<div class="absolute top-0 left-1/2 -ml-4 w-8 h-8 rounded-full bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8AXOM_yDfuOyi-aUibKehXbWBuf6-gDThz8Oalep6HDpST1SRt3oWuEZ3iOGkCcb6BdwCmqOwIkt1pN1EzPMRDci_o3MDO1xkbLMD-uJswuLTrGtLo31RpUYgeI91Iothdye6aZnyK3ntWDVmLxefDkVWuV05WZCKGv6Iwemz-YzHa0853qsFhhvGEGBmI8zKAqkjVLpilwh8SRlix7jND0fUh-Gfand8rBNQ3ZWPkz8cN9z-LkoIrYz630x4G25QNm_qxpf9YJte'); filter: hue-rotate(90deg);"></div>
+<div class="absolute bottom-0 left-1/2 -ml-4 w-8 h-8 rounded-full bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXxxXX0C1VHvlJccIcWij1OfyeekCos3DwZDlD56x88esWmUprkdQ1zH__qmAa_wLnDeW_3HwqZNph44YAdQzgPmCFZBLtOCujKhJ8soS-DgB1AUKGYSQVcSeCvQpPX2GMC-VjKAIx75D7OkfBxlFnoVRhFA34iIyvopI34q_OE7Rtp42y8t8emfm4zUKp5-ydOtUqIj4iKBGJyvA0jgVL1ygLSfxj0eI1sxydNiNTDfz0lsG19XxzIRkuEknNgJGL92OBwWTXrdvZ'); filter: hue-rotate(180deg);"></div>
+<div class="absolute left-0 top-1/2 -mt-4 w-8 h-8 rounded-full bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRQjw22AJFex7jqGCUJSvUSfO90j2soaZ-drwHrCo5m7lTEjS4hw1ncALh4YgcYi-JbbJwMiAjuDEWWYGDmjoNh6QGKAYT9OualaniF_gadzWp3iiKwxxECmP7opJxdoW5KD6pMZq7zwCSCUgOf9V6Jw9v9dXgvd47yqqx8T0lO575H5CZN1mIwHyJBQv-uaeuCH7EgdqHwD188Uq5YsfqEVF02fF03uWmFyHk0-ayqbNuubbJ0YYKZC4j8O8XQrYHU8uXwT7iAhzc'); filter: hue-rotate(270deg);"></div>
+<div class="absolute right-0 top-1/2 -mt-4 w-8 h-8 rounded-full bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBy2qeqOBvdFP1W8s6-XquqYOJc3cDgwJcJO-C6S3kjXpPxemLkggDgoO3HD8hq-q-Mz2GRxOgB7SE2ZX_cIqfMOcbmnA3tTvLb7zebjhvsF9U7FmSooYMbEkCUBCpzPjtqv-z363g91pryzjA3vRbooXxvTM4GWo0I4VrIAVIySSpOejlHT0qeQ2RQ6sOOdm5GB79AhEwFTS5nUi4NXgfC4GTuLnm7875AuHAepjCXvJv2a2s_bQuQhyM8lp3lnfC2B5hBHj2KbSmq');"></div>
+</div>
+<div class="absolute w-48 h-48 animate-spin-reverse-slow">
+<div class="absolute top-0 left-1/2 -ml-4 w-8 h-8 rounded-full bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCadx3sNAR8F1PzL7zW6phI7YI_wUeQQtt9oSiuSx9HkOYiHinZgCUM7AF3s5mdsMPzV169KRgS5qWz03vzEcq6FYW4qPyZmPQkJ8u-2i0gb7Bli28PJFxtLAWVleM7hTHduRR3fsvvyknjKF_mQKlD_qILUo7fdmnVI18k9VmdHzey2Pw4llGu5KbxSIUblvFgtetWNNP1jlg4-IQ8T37DkTkeloZ8C2yK1ljmeVa5bzGozNO6Pt3awbPfYgDKyh-_iyEdIw6aGaq4'); filter: hue-rotate(120deg);"></div>
+<div class="absolute bottom-0 left-1/2 -ml-4 w-8 h-8 rounded-full bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPsbEU0ZnhMwcc4JJtrFLuxkf14AzVdHkOsyH98hKu40dzrHbP0LxuQG2YkPCI_NZmW6R07BgRTza1SeHBj7fh3iXlVn8FjA0UvxF3UEKUIMr5y9hDU7B9-eRgobLu4aE271oqnon_ZPRXsvVhhyBxjJPy_C2sGkfIYLQ216n34zZKJVef7V8o96jsnER6_SVfXYUkv3ncSYYz3yUw-gzmpE4Ml0UcipHNDDU9LZ4Hp3o83xzd5eEyLh1KAnVGp5AiOEoTM7GZo34W'); filter: hue-rotate(240deg);"></div>
+<div class="absolute left-0 top-1/2 -mt-4 w-8 h-8 rounded-full bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxxv6uQulTFnNnyHNIAiQz8ip7s9A3bH4YPXWVSlPr48Yd4BnUwUk_gv-rplGNedej9kfFDuioKLZ0h753IhOv7ZAFw80ukpaubPnN2IWD1MTJq8_WpZWAAQ6Jan9VGt4leX7LHg23z-0SbvlygJsxab7zihIPrx0-_2HKExUqgrz43gKN7XUAamObNOhI1R9GvNZtg6JE8RcnaThVZJNheHZmcxh-zsoZIuWhUF-wUMZ2l5M-QD5Gh1yPKB7SAoMC2u7cKDsXkBYY'); filter: hue-rotate(60deg);"></div>
+<div class="absolute right-0 top-1/2 -mt-4 w-8 h-8 rounded-full bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCE6_VtULjqowSJ7qznIc23jcVcTRCQdHyM5xMP3kczm9yuL11HoKgQRtMok_Ezbc5F5RJVBfJbjP2ugXwAbfE_4PVAsAny43eHRIa5SwmV5q-6FruRZ4n8WZkU9gvo7x85Lw9rGcoHElP4WLUYQ8TI1Fep2w0ukapk3ClWXCSMCXzuE51Qk7WaPg3kJgDYZhKPQN5EL2Hj1uW83N2QdXPlYGAfWf_ZjJlTiEEcaEJVPR_WuuQDWdWoDMHe1Ev946dw9Od60rsIJ86-'); filter: hue-rotate(300deg);"></div>
+</div>
+<div class="absolute w-40 h-40 rounded-full border-4 border-t-transparent animate-spin" style="border-color: #9F50FF; border-top-color: transparent; box-shadow: 0 0 20px #9F50FF, inset 0 0 20px #9F50FF;"></div>
+<div class="absolute w-32 h-32 rounded-full border-4 border-t-transparent animate-spin-reverse" style="border-color: #FF3E9A; border-top-color: transparent; box-shadow: 0 0 20px #FF3E9A, inset 0 0 20px #FF3E9A;"></div>
+</div>
+<div class="relative mt-8">
+<div class="absolute top-0 left-0 w-full h-full">
+<div class="absolute left-1/4 top-1/2 w-1.5 h-1.5 rounded-full bg-pink-400" style="animation: particle-float 3s ease-in-out infinite; animation-delay: 0s; box-shadow: 0 0 5px #FF3E9A;"></div>
+<div class="absolute left-3/4 top-1/3 w-1 h-1 rounded-full bg-purple-400" style="animation: particle-float-2 4s ease-in-out infinite; animation-delay: 0.5s; box-shadow: 0 0 5px #9F50FF;"></div>
+<div class="absolute left-1/2 top-2/3 w-2 h-2 rounded-full bg-cyan-300" style="animation: particle-float 3.5s ease-in-out infinite; animation-delay: 1s; box-shadow: 0 0 5px #00C2FF;"></div>
+<div class="absolute left-1/3 top-1/4 w-1.5 h-1.5 rounded-full bg-pink-400" style="animation: particle-float-2 3.2s ease-in-out infinite; animation-delay: 1.5s; box-shadow: 0 0 5px #FF3E9A;"></div>
+<div class="absolute left-2/3 top-1/2 w-1 h-1 rounded-full bg-purple-400" style="animation: particle-float 4.5s ease-in-out infinite; animation-delay: 2s; box-shadow: 0 0 5px #9F50FF;"></div>
+</div>
+<p class="text-white text-xl font-bold tracking-wider animate-pulse-glow" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 20px rgba(159, 80, 255, 0.7);">
+          AI Düşünüyor...
+        </p>
+</div>
+</div>
+</div>
+
+</body></html>

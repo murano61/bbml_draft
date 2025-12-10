@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- Copy of kahraman_seçili_build_önerici_1/code.html for stable asset path -->
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kahraman Seçili Build Önerici</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}</style>
+<style>body{min-height:max(884px,100dvh)}</style>
+</head>
+<body class="bg-[#0A0E2F] font-display text-white">
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-opacity-80 backdrop-blur-sm z-10" style="background-color:#0A0E2F">
+  <div class="flex size-12 shrink-0 items-center justify-center"><span class="material-symbols-outlined text-white text-2xl">arrow_back_ios_new</span></div>
+  <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">AI Build Önerici</h2>
+</div>
+<div class="px-4">
+  <div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[280px]" id="heroSplash" style="background-image:linear-gradient(0deg, rgba(10,14,47,0.8) 0%, rgba(10,14,47,0) 50%)">
+    <div class="flex flex-col gap-2 p-4">
+      <p class="tracking-light text-3xl font-bold leading-tight" id="heroName">Fanny</p>
+      <div class="flex gap-2 flex-wrap">
+        <div class="flex h-7 items-center justify-center rounded-full px-3" style="background-color:rgba(159,80,255,0.2)"><p class="text-sm font-medium" style="color:#c792ff" id="heroRole">Jungle</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="p-4 pt-0">
+  <div class="flex h-12 items-center justify-center rounded-xl p-1" style="background-color:#191c3d">
+    <label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 text-[#A9B2CC] text-sm font-medium"><span>Meta Build</span></label>
+    <label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 text-[#A9B2CC] text-sm font-medium"><span>Eğlenceli Build</span></label>
+  </div>
+</div>
+<div class="p-4 pt-0">
+  <div class="flex flex-col items-stretch rounded-xl p-4 shadow-lg" style="background-color:#191c3d">
+    <p class="text-xl font-bold mb-4">Meta Build</p>
+    <div class="grid grid-cols-3 gap-3 mb-4" id="metaGrid"></div>
+    <div class="flex items-start gap-4 justify-between">
+      <div class="flex flex-col gap-2 flex-1">
+        <p class="text-[#A9B2CC] text-sm">Önerilen Battle Spell</p>
+        <div class="flex items-center gap-2"><div class="size-10 rounded-md bg-cover" id="spellIcon"></div><p class="text-base font-medium" id="spellName">Retribution</p></div>
+      </div>
+      <div class="flex flex-col gap-2 flex-1"><p class="text-[#A9B2CC] text-sm">Emblem Kodu</p><p class="text-base font-medium" id="emblemCode">#AB12CD</p></div>
+    </div>
+  </div>
+</div>
+<div class="sticky bottom-0 mt-auto p-4 pt-2" style="background-color:#0A0E2F"><button id="regenBtn" class="flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#9F50FF] to-[#FF3E9A] text-base font-bold">Yeni Build Oluştur</button></div>
+<script>
+  window.BBML_BUILD = window.BBML_BUILD || { postMessage: function(msg){ console.log('BBML_BUILD stub', msg); } };
+  document.getElementById('regenBtn').addEventListener('click', ()=> BBML_BUILD.postMessage('regen'));
+  window.populate = function(payload){
+    try{
+      const hero = payload.hero||{}; const meta = payload.meta||[]; const fun = payload.fun||[];
+      if(hero.imageUrl){ document.getElementById('heroSplash').style.backgroundImage = `linear-gradient(0deg, rgba(10,14,47,0.8) 0%, rgba(10,14,47,0) 50%), url(${hero.imageUrl})`; }
+      if(hero.name){ document.getElementById('heroName').textContent = hero.name; }
+      if(hero.role){ document.getElementById('heroRole').textContent = hero.role; }
+      const metaGrid = document.getElementById('metaGrid'); metaGrid.innerHTML='';
+      meta.slice(0,6).forEach(it=>{
+        const d=document.createElement('div'); d.className='flex flex-col items-center gap-1.5 text-center';
+        const img=document.createElement('div'); img.className='aspect-square w-full rounded-lg bg-cover'; img.style.backgroundImage=`url('${it.imageUrl||''}')`;
+        const p=document.createElement('p'); p.className='text-[#F5F5F5] text-xs font-medium leading-tight'; p.textContent=it.name||'İtem';
+        d.appendChild(img); d.appendChild(p); metaGrid.appendChild(d);
+      });
+      document.getElementById('spellName').textContent = payload.spell || 'Retribution';
+      document.getElementById('emblemCode').textContent = payload.emblem || '#AB12CD';
+    }catch(e){ console.log('populate error', e); }
+  };
+</script>
+</body></html>

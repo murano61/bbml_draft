@@ -59,7 +59,8 @@ class _AiSuggestionScreenState extends State<AiSuggestionScreen> {
   }
 
   Future<void> _initBanner() async {
-    final unit = 'ca-app-pub-2220990495085543/9607366049';
+    if (!AdsService.enabled) return;
+    String unit = 'ca-app-pub-2220990495085543/9607366049';
     final ad = BannerAd(
       adUnitId: unit,
       request: const AdRequest(),
@@ -121,6 +122,7 @@ class _AiSuggestionScreenState extends State<AiSuggestionScreen> {
       if (!okProceed) return;
       await _refreshCounters();
     }
+    if (!mounted) return;
     Navigator.pushNamed(context, K.routeEnemyPickResult, arguments: {
       'enemyHeroId': _tab == 0 ? _enemy?.id : null,
       'role': _role.toList(),
@@ -173,7 +175,7 @@ class _AiSuggestionScreenState extends State<AiSuggestionScreen> {
           ]),
         ),
       ),
-      bottomNavigationBar: _banner != null && _bannerReady
+      bottomNavigationBar: AdsService.enabled && _banner != null && _bannerReady
           ? Container(
               height: _banner!.size.height.toDouble(),
               alignment: Alignment.center,

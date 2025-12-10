@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kahraman Seçili Build Önerici</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+    .neon-border {
+      border: 1px solid transparent;
+      background-image: linear-gradient(to right, #00C2FF, #9F50FF);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ae51fb",
+            "background-light": "#f7f5f8",
+            "background-dark": "#1a0f23",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col dark group/design-root overflow-x-hidden" style="background-color: #0A0E2F;">
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-opacity-80 backdrop-blur-sm z-10" style="background-color: #0A0E2F;">
+<div class="flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl">arrow_back_ios_new</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">AI Build Önerici</h2>
+</div>
+<div class="@container px-4">
+<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[280px]" data-alt="Splash art for the hero Fanny from Mobile Legends" style='background-image: linear-gradient(0deg, rgba(10, 14, 47, 0.8) 0%, rgba(10, 14, 47, 0) 50%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKPxd5eWuoOSTLacIYX0CKk-H2QY-5aZZaBLYebEdAVXCTLY_Kug8T-8pSaMxI5iQzvcXTlDQhzvgVkAlaPdPQF8MHC61nRziIWiyH2F1czioIDdYS0HDOc6iZ8me2BoRWvWrbeXojI31WiZspqDmEZXehg6FP9J-yvalgXhYOLdQrGn-RsQjgnzsNDxGxQxFnFKDl1vyrsFTAOVhLoJ1rfFJ4Y1C33qe3hVkYxD4Lq6-yPfXLdJhM1ZtTwOolGvDc7ZQ8fGedVluP");'>
+<div class="flex flex-col gap-2 p-4">
+<p class="text-white tracking-light text-3xl font-bold leading-tight">Fanny</p>
+<div class="flex gap-2 flex-wrap">
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full px-3" style="background-color: rgba(159, 80, 255, 0.2);">
+<p class="text-sm font-medium leading-normal" style="color: #c792ff;">Jungle</p>
+</div>
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full px-3" style="background-color: rgba(159, 80, 255, 0.2);">
+<p class="text-sm font-medium leading-normal" style="color: #c792ff;">MLBB Hero</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex px-4 py-4">
+<div class="flex h-12 flex-1 items-center justify-center rounded-xl p-1" style="background-color: #191c3d;">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:shadow-[0_0_12px_rgba(159,80,255,0.7)] has-[:checked]:text-white text-[#A9B2CC] text-sm font-medium leading-normal has-[:checked]:bg-gradient-to-r from-[#9F50FF] to-[#FF3E9A]">
+<span class="truncate">Meta Build</span>
+<input checked="" class="invisible w-0" name="build_type" type="radio" value="Meta Build"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:shadow-[0_0_12px_rgba(159,80,255,0.7)] has-[:checked]:text-white text-[#A9B2CC] text-sm font-medium leading-normal has-[:checked]:bg-gradient-to-r from-[#9F50FF] to-[#FF3E9A]">
+<span class="truncate">Eğlenceli Build</span>
+<input class="invisible w-0" name="build_type" type="radio" value="Eğlenceli Build"/>
+</label>
+</div>
+</div>
+<div class="p-4 pt-0 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl p-4 shadow-lg" style="background-color: #191c3d;">
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-4">Meta Build</p>
+<div class="grid grid-cols-1 gap-4 mb-6">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Sihirli Ayakkabılar</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Sihir ve hızın birleşimi.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Kanatlı Kırmızı Zırh</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Savaşın seyrini değiştir.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Avcı Darbesi</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Düşman avlamak için ideal.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Umutsuzluk Kılıcı</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Mutlak güç elinizde.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Rüzgar Konuşan</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Hızlı ve ölümcül saldırılar.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Ölümsüzlük</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Savaş alanında yeniden doğuş.</p>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-4 justify-between">
+<div class="flex flex-col gap-2 flex-1">
+<p class="text-[#A9B2CC] text-sm font-normal leading-normal">Önerilen Battle Spell</p>
+<div class="flex items-center gap-2">
+<div class="size-10 rounded-md bg-cover bg-center" data-alt="Placeholder for battle spell icon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqnM1SU-Rf2dBwmpfXgxY_OYMoTTviFdy7esGK2X-KCBiNXnA1QfkQxpvAtBcTL0CfEsrjpCZh_wX5lQsgaKQPfy2ZLVYUOjhsDdo4qTfn05kXDfaxGZpIPraigcb3XIWYc4ZsCjsyZ9G8XZV-619D6K1Bhi-93QGooOyQIIVnS8L1SICA49v_2hu0_Q1OfDkDezKIRuYbhIEV3AvbKH0WYN0iOjsmSY8O0omFRvkxAWOWzQugad9kAlAsPuDiPm_kKWwFBB7UH5lj');"></div>
+<p class="text-[#F5F5F5] text-base font-medium leading-normal">Retribution</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 flex-1">
+<p class="text-[#A9B2CC] text-sm font-normal leading-normal">Önerilen Emblem Kodu</p>
+<div class="flex items-center gap-2">
+<div class="size-10 rounded-md bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0');"></div>
+<div class="size-10 rounded-md bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0');"></div>
+<div class="size-10 rounded-md bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0');"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 pt-0 @container">
+<div class="relative flex flex-col items-stretch justify-start rounded-xl p-4 shadow-lg neon-border" style="background-color: #191c3d;">
+<div class="absolute -top-2 -right-2 transform-gpu">
+<div class="rounded-full px-3 py-1 text-xs font-semibold text-white" style="background-color: #00C2FF; box-shadow: 0 0 10px #00C2FF;">
+            Eğlenceli!
+          </div>
+</div>
+<p class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-4">Eğlenceli Build</p>
+<div class="grid grid-cols-1 gap-4 mb-2">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Sihirli Ayakkabılar</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Sihir ve hızın birleşimi.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Kanatlı Kırmızı Zırh</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Savaşın seyrini değiştir.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Avcı Darbesi</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Düşman avlamak için ideal.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Umutsuzluk Kılıcı</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Mutlak güç elinizde.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Rüzgar Konuşan</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Hızlı ve ölümcül saldırılar.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 shrink-0 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRvATc52BTTMNIqsWUWuOSziz2fa7vBPd9c9gn0QiwH2Smda2kLQ7i3Mv-ZaUFXivgqGLYGbIsbgFf0yxjHWZ7QAY4Cub5fqkf87oZC0Qx_LcgDTeWLRJGrJ1vYqVnN_qOzA_vZTpODTF1HTfM-7NeXWqoYXcjD6bnChrnDbPGBB7TAmowPTOWcc-v4EnBYa62JpHnAcxHPo4uVSZzWfILcqXqAny6KKJ_ObF6DMI4HMgmPZLQeoQtnQPJIQ2fOa5omMPxNAAwD2T0')"></div>
+<div class="flex-1">
+<p class="text-white font-semibold text-base leading-tight">Ölümsüzlük</p>
+<p class="text-sm text-[#A9B2CC] leading-tight mt-1">Savaş alanında yeniden doğuş.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 mt-auto p-4 pt-2 bg-opacity-80 backdrop-blur-sm" style="background-color: #0A0E2F;">
+<button class="flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#9F50FF] to-[#FF3E9A] text-base font-bold text-white shadow-[0_4px_15px_rgba(159,80,255,0.4)]">
+        Yeni Build Oluştur
+      </button>
+<div class="flex items-center justify-center gap-8 mt-4">
+<div class="flex flex-col items-center gap-1 text-[#A9B2CC] cursor-pointer">
+<span class="material-symbols-outlined text-2xl">ios_share</span>
+<p class="text-xs font-medium">Paylaş</p>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#A9B2CC] cursor-pointer">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+<p class="text-xs font-medium">Favorilere Ekle</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>
