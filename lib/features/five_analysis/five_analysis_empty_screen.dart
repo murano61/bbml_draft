@@ -15,7 +15,12 @@ class _FiveAnalysisEmptyScreenState extends State<FiveAnalysisEmptyScreen> {
   void initState() {
     super.initState();
     Future(() async {
-      final tpl = await rootBundle.loadString("tasarimlar/yeni sayfa/5'li_analiz_ekranı_(sonuç_görünümü)_1/code.html");
+      String tpl;
+      try {
+        tpl = await rootBundle.loadString("tasarimlar/yeni sayfa/5'li_analiz_ekranı_(sonuç_görünümü)_1/code.html");
+      } catch (e) {
+        tpl = '<html><body style="background:#0D0B1E;color:#fff;font-family:sans-serif"><div style="padding:24px"><h2>5’li Analiz</h2><p>İçerik yüklenemedi. Devam etmek için aşağıdaki butona dokun.</p><button style="margin-top:16px;padding:10px 14px;border-radius:8px;background:#9F50FF;color:#fff" onclick="window.location.href=\'bbml://selectFive\'">5 Kahraman Seç</button></div></body></html>';
+      }
       final c = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
         ..setNavigationDelegate(NavigationDelegate(

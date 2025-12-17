@@ -293,9 +293,15 @@ class _DraftPowerScreenState extends State<DraftPowerScreen> {
             }
             return NavigationDecision.navigate;
           },
-        ))
-        ..loadFlutterAsset('tasarimlar/karsilatirma/code.html');
-      debugPrint('WebView loading tasarimlar/karsilatirma/code.html');
+        ));
+      try {
+        final html = await DefaultAssetBundle.of(context).loadString('tasarimlar/karsilatirma/code.html');
+        await c.loadHtmlString(html);
+        debugPrint('DraftPowerScreen: loaded HTML from asset string');
+      } catch (e) {
+        debugPrint('DraftPowerScreen: asset load failed $e');
+        await c.loadHtmlString('<html><body style="background:#151329;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh">İçerik yüklenemedi</body></html>');
+      }
       setState(() => _web = c);
     });
   }
