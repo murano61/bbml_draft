@@ -30,14 +30,14 @@ class GeminiService {
     return prefs.getString(_prefApiKey);
   }
 
-  Future<String> generateChallenge({required List<String> roles, required String locale, int timeoutMs = 8000}) async {
+  Future<String> generateChallenge({required List<String> roles, required String locale, int timeoutMs = 6000}) async {
     final apiKey = await getApiKey();
     if (apiKey == null || apiKey.isEmpty) {
       await _setLastStatus('error', model: '', len: 0);
       await _setLastError('no_api_key');
       return '';
     }
-    final model = 'gemini-2.0-flash';
+    const model = 'gemini-2.0-flash';
     final gm = GenerativeModel(
       model: model,
       apiKey: apiKey,
@@ -56,11 +56,16 @@ class GeminiService {
     }
     final prompt = 'Give ONE short Mobile Legends challenge for lanes [$lanes] in ${langName(locale)}. 8–12 words. Respond ONLY in ${langName(locale)} without any other language words.';
     try {
-      final res = await gm.generateContent([Content.text(prompt)]).timeout(Duration(milliseconds: timeoutMs));
+      final res = await gm.generateContent([Content.text(prompt)])
+          .timeout(Duration(milliseconds: timeoutMs));
       final txt = res.text ?? '';
       await _setLastStatus('gemini', model: model, len: txt.length);
       await _setLastError('');
       return txt.trim();
+    } on TimeoutException catch (e) {
+      await _setLastStatus('error', model: model, len: 0);
+      await _setLastError('timeout:${e.message ?? ''}');
+      return '';
     } catch (e) {
       await _setLastStatus('error', model: model, len: 0);
       await _setLastError('exception:${e.toString()}');
@@ -130,7 +135,7 @@ class GeminiService {
     await _setLastError(err ?? '');
   }
 
-  Future<List<AiSuggestionEntry>> suggest({String? enemyHeroId, required List<String> roles, required String locale, bool noCache = false, String? nonce, List<String> excludeHeroIds = const [], int timeoutMs = 25000, bool requireGemini = false}) async {
+  Future<List<AiSuggestionEntry>> suggest({String? enemyHeroId, required List<String> roles, required String locale, bool noCache = false, String? nonce, List<String> excludeHeroIds = const [], int timeoutMs = 12000, bool requireGemini = false}) async {
     if (!noCache) {
       final cached = await getCached(enemyHeroId, roles, locale);
       if (cached != null && cached.isNotEmpty) return cached;
@@ -203,7 +208,7 @@ class GeminiService {
         if (done) return;
         final elapsed = DateTime.now().millisecondsSinceEpoch - startMs;
         final remaining = timeoutMs - elapsed;
-        if (remaining <= 500) return;
+        if (remaining <= 1500) return;
         final gm = GenerativeModel(
           model: m,
           apiKey: apiKey,
@@ -215,7 +220,8 @@ class GeminiService {
             SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
           ],
         );
-        final res = await gm.generateContent([Content.text(prompt.toString())]).timeout(Duration(milliseconds: remaining));
+        final res = await gm.generateContent([Content.text(prompt.toString())])
+            .timeout(Duration(milliseconds: remaining));
         if (res.candidates.isNotEmpty) {
           final parts = res.candidates.first.content.parts;
           final texts = <String>[];
