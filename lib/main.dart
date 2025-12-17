@@ -20,7 +20,7 @@ import 'firebase_options.dart';
 import 'services/hero_repository.dart';
 import 'dart:ui' as ui;
 import 'dart:async';
-import 'package:flutter/foundation.dart' show kIsWeb, kReleaseMode, defaultTargetPlatform, TargetPlatform;
+import 'package:flutter/foundation.dart' show kIsWeb, defaultTargetPlatform, TargetPlatform;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
  
 

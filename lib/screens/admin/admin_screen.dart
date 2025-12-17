@@ -103,13 +103,7 @@ class _AdminScreenState extends State<AdminScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => Navigator.of(context).pushNamed(K.routeAdminCounters),
-                  child: const Text('Counter Yönetimi (Yeni Sayfa)'),
-                ),
-              ),
+              // Counter yönetimi sayfası bu sürümde yok; butonu gizledik
               const SizedBox(height: 16),
               Form(
                 key: _formKey,
