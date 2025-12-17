@@ -32,7 +32,7 @@ class _PopularHeroesScreenState extends State<PopularHeroesScreen> {
   }
 
   Future<void> _load() async {
-    setState(() => _loading = true);
+    if (mounted) { setState(() => _loading = true); }
     final heroes = await repo.getHeroes();
     _featured = _pickRandom(heroes, 3);
     try {
@@ -61,7 +61,7 @@ class _PopularHeroesScreenState extends State<PopularHeroesScreen> {
       final n = heroes.length < 3 ? heroes.length : 3;
       _stats = List.generate(n, (i) => (heroes[i], counts[i]));
     }
-    setState(() => _loading = false);
+    if (mounted) { setState(() => _loading = false); }
   }
 
   List<HeroModel> _pickRandom(List<HeroModel> heroes, int n) {
