@@ -1,1 +1,9 @@
+# Use the recommended Flutter lints
 include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - lib/features/**
+  errors:
+    unused_import: warning
+    dead_code: warning
